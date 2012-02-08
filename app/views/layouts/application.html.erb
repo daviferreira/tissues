@@ -2,11 +2,46 @@
 <html>
   <head>
     <title>Tissues | <%= yield(:title) %></title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= yield %>
+    <div class="container">
+      <% if user_signed_in? %>
+      <scetion id="greetings">
+        <p>Happy bug hunting, <%= current_user.email %>.</p>
+      </section>
+      <% end %>
+      <section id="header">
+        <header>
+          <hgroup>
+            <h1><%= link_to "Tissues", root_path %></h1>
+            <h2>Killing bugs since 2012.</h2>
+          </hgroup>
+        </header>
+        <nav>
+          <%= link_to "Home", root_path %>
+          <%= link_to "About", static_pages_about_path %>
+          <%= link_to "Help", static_pages_help_path %>
+          <% if user_signed_in? %>
+            <%= link_to "My account", edit_user_registration_path %>
+            <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path %>
+            <%= link_to "Create an account", new_user_registration_path %>
+          <% end %>
+        </nav>
+      </section>
+      <section id="main">
+        <%= yield %>
+      </section>
+      <footer>
+        <p>Developed with <%= link_to raw("&hearts;"), "http://rubyonrails.org" %> by <% link_to "Davi Ferreira", "http://www.daviferreira.com" %></p>
+      </footer>
+    </div>
   </body>
 </html>
