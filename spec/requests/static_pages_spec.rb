@@ -9,7 +9,7 @@ describe "StaticPages" do
     before { visit '/static_pages/home' }
     
     it { should have_content('Tissues') }
-    it { should have_selector('title', :text => "Tissues | Home") }
+    it { should have_selector('title', :text => "Home | Tissues") }
     
   end
   
@@ -18,7 +18,7 @@ describe "StaticPages" do
     before { visit '/static_pages/help' }
 
     it { should have_content('Help') }
-    it { should have_selector('title', :text => "Tissues | Help") }
+    it { should have_selector('title', :text => "Help | Tissues") }
     
   end
   
@@ -27,7 +27,7 @@ describe "StaticPages" do
     before { visit '/static_pages/about' }
 
     it { should have_content('About') }
-    it { should have_selector('title', :text => "Tissues | About") }
+    it { should have_selector('title', :text => "About | Tissues") }
     
   end
   

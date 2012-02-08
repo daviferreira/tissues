@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tissues | <%= yield(:title) %></title>
+    <title><%= yield(:title) %> | Tissues</title>
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -43,5 +43,6 @@
         <p>Developed with <%= link_to raw("&hearts;"), "http://rubyonrails.org" %> by <% link_to "Davi Ferreira", "http://www.daviferreira.com" %></p>
       </footer>
     </div>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
