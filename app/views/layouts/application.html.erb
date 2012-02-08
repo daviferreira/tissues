@@ -13,7 +13,7 @@
     <div class="container">
       <% if user_signed_in? %>
       <scetion id="greetings">
-        <p>Happy bug hunting, <%= current_user.email %>.</p>
+        <p>Happy bug hunting, <%= current_user.name %>.</p>
       </section>
       <% end %>
       <section id="header">
