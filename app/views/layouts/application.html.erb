@@ -26,6 +26,7 @@
         <nav>
           <%= link_to "Home", root_path %>
           <%= link_to "About", static_pages_about_path %>
+          <%= link_to "Users", users_path %>
           <%= link_to "Help", static_pages_help_path %>
           <% if user_signed_in? %>
             <%= link_to "My account", edit_user_registration_path %>
