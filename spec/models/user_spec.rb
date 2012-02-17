@@ -8,6 +8,7 @@ describe User do
 
   # i'm not validating Devise, just the new fields
   it { should respond_to(:name) }
+  it { should respond_to(:projects) }
   
   it { should be_valid }
 
@@ -19,6 +20,28 @@ describe User do
   describe "when name is too long" do
     before { @user.name = "a" * 51 }
     it { should_not be_valid }
+  end
+  
+  describe "projects associations" do
+    before { @user.save }
+    let!(:older_project) do 
+      FactoryGirl.create(:project, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_project) do
+      FactoryGirl.create(:project, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right projects in the right order" do
+      @user.projects.should == [newer_project, older_project]
+    end
+    
+    it "should destroy associated projects" do
+      projects = @user.projects
+      @user.destroy
+      projects.each do |project|
+        project.find_by_id(project.id).should be_nil
+      end
+    end
   end
   
 end

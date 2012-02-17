@@ -1,3 +1,11 @@
 <% provide(:title, @user.name) %>
 <h1><%= @user.name %></h1>
 <%= @user.email %>
+
+<% if @user.projects.any? %>
+  <p><strong>Projects</strong> <%= @user.projects.count %></p>
+  <ul class="projects">
+    <%= render @projects %>
+  </ul>
+  <%= will_paginate @projects %>
+<% end %>
