@@ -44,7 +44,9 @@ a:hover {
 
 #masthead {
   h1 {
-    font-size: 62px;
+    font-size: 32px;
+    font-weight: 600;
+    @include text-shadow(-1px -1px 0 #999);
     a {
       color: #333;
     }
@@ -56,6 +58,7 @@ a:hover {
     font-size: 18px;
     color: #999;
     font-style: oblique;
+    margin: 12px 0 0;
   }
   nav {
     margin: 20px 0;
