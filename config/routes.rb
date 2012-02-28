@@ -1,12 +1,8 @@
 Tissues::Application.routes.draw do
-  get "projects/index"
-
-  get "projects/show"
-
-  get "projects/new"
 
   devise_for :users
   resources :users
+  resources :projects
 
   get "static_pages/home"
   get "static_pages/help"
