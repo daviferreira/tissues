@@ -1,3 +1,5 @@
 <% provide(:title, 'Home') %>
 <h1>Tissues</h1>
 <p>Tissues home page</p>
+
+<% if user_signed_in? %><%= link_to "Create project", new_project_path %><% end %>

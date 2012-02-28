@@ -10,6 +10,16 @@ describe "StaticPages" do
     
     it { should have_content('Tissues') }
     it { should have_selector('title', :text => "Home | Tissues") }
+    it { should_not have_selector('a', :href => new_project_path, :text => 'Create project') }
+    
+    describe "As a signed-in user" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { 
+        visit new_user_session_path
+        valid_signin user 
+      }
+      it { should have_selector('a', :href => new_project_path, :text => 'Create project') }
+    end
     
   end
   
