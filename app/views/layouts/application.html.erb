@@ -10,13 +10,13 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <% if user_signed_in? %>
+    <section id="greetings">
+      <p>Happy bug hunting, <%= current_user.name %>.</p>
+    </section>
+    <% end %>
     <div class="container">
-      <% if user_signed_in? %>
-      <scetion id="greetings">
-        <p>Happy bug hunting, <%= current_user.name %>.</p>
-      </section>
-      <% end %>
-      <section id="header">
+      <section id="masthead">
         <header>
           <hgroup>
             <h1><%= link_to "Tissues", root_path %></h1>

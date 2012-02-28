@@ -1,0 +1,34 @@
+@import "compass/css3";
+
+$app_width: 960px;
+
+html {
+  font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  color: #ccc;
+}
+
+body {
+    background: image-url("bg.png");
+}
+
+.container {
+  width: $app_width;
+  margin: 0 auto;
+}
+
+#greetings {
+  background: #2c2c2c;
+  color: #fff;
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.1) inset);
+  @include background-image(linear-gradient(center top , #333333, #222222));
+  padding: 6px;
+  font-size: 12px;
+  color: #ccc;
+  @include text-shadow(-1px -1px 0 #000);
+}
+
+#masthead {
+  margin: 20px 0 40px 0;
+  padding: 20px 0 40px 0;
+  border-bottom: 1px dotted #333;
+}
