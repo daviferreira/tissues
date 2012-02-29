@@ -3,9 +3,11 @@ require 'spec_helper'
 describe ProjectsController do
   render_views
   
+  let(:user) { FactoryGirl.create(:user) }
+  let(:project) { FactoryGirl.create(:project, :user => user, :name => "Sample Project") }
+  
   describe "as a signed-in user" do
     
-    let(:user) { FactoryGirl.create(:user) }
     before { sign_in user }
 
     describe "GET 'index'" do
@@ -13,11 +15,19 @@ describe ProjectsController do
         get 'index'
         response.should be_success
       end
+      
+      it "should list the user's projects" do
+        p1 = Factory(:project, :user => user, :name => "Foo bar")
+        p2 = Factory(:project, :user => user, :name => "Baz quux")
+        get 'index'
+        response.body.should have_selector('h1', :text => p1.name)
+        response.body.should have_selector('h1', :text => p2.name)
+      end
     end
 
     describe "GET 'show'" do
       it "returns http success" do
-        get 'show'
+        get 'show', :id => project.id
         response.should be_success
       end
     end
@@ -65,9 +75,8 @@ describe ProjectsController do
       
       describe "PUT 'update'" do
         it "returns http success" do
-          #put 'update'
-          #response.should be_success
-          pending "Update test"
+          put 'update'
+          response.should be_success
         end
       end
     
@@ -77,9 +86,8 @@ describe ProjectsController do
       
       describe "POST 'destroy'" do
         it "returns http success" do
-          #post 'destroy'
-          #response.should be_success
-          pending "Destroy test"
+          post 'destroy'
+          response.should be_success
         end
       end    
         
@@ -112,7 +120,7 @@ describe ProjectsController do
     
     describe "GET 'edit'" do
       it "redirects to the sign in path" do
-        get 'edit'
+        get 'edit', :project => project
         response.should redirect_to new_user_session_path
       end
     end

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "project pages" do
 
   subject { page }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe "as an authenticated user" do
     
-    let(:user) { FactoryGirl.create(:user) }
     before { 
       visit new_user_session_path
       valid_signin user 
@@ -36,6 +36,38 @@ describe "project pages" do
         
         it "should create a project" do
           expect { click_button "Submit" }.should change(Project, :count).by(1)
+        end
+                
+      end
+    end
+
+    describe "project edit" do
+      let(:project) { FactoryGirl.create(:project, :user => user, :name => "Test Project") }
+      before { visit edit_project_path(project.id) }
+
+      it { should have_selector('title', :text => "Edit Project #{project.name} | Tissues") }
+
+      describe "with invalid information" do
+
+        before { fill_in 'project_name', with: "" }
+
+        it "should not edit a project" do
+          expect { click_button "Submit" }.should_not change(project)
+        end
+
+        describe "error messages" do
+          let(:error) { '1 error prohibited this project from being saved' }
+          before { click_button "Submit" }
+          it { should have_content(error) } 
+        end
+      end
+
+      describe "with valid information" do
+
+        before { fill_in 'project_name', with: "Lorem ipsum" }
+        
+        it "should create a project" do
+          #expect { click_button "Submit" }.should change(Project, :count).by(1)
         end
                 
       end
