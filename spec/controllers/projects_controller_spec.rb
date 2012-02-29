@@ -20,40 +20,68 @@ describe ProjectsController do
         response.should be_success
       end
     end
-
-    describe "GET 'new'" do
-      it "returns http success" do
-        get 'new'
-        response.should be_success
+    
+    describe "create project" do
+      
+      describe "GET 'new'" do
+        it "returns http success" do
+          get 'new'
+          response.should be_success
+        end
       end
+      
+      describe "POST 'create'" do
+        it "returns http success" do
+          post 'create'
+          response.should be_success
+        end
+      end
+
+      describe "with invalid project data" do
+        it "should render new project template" do
+          post 'create', :project => user.projects.new(name: "")
+          response.should render_template("projects/new")
+        end
+      end
+      
+      describe "with valid project data" do
+        it "should redirect to projects path" do
+          post 'create', :project => {:name => "Test project"}
+          response.should redirect_to(projects_path)
+        end
+      end
+      
     end
     
-    describe "GET 'edit'" do
-      it "returns http success" do
-        get 'edit'
-        response.should be_success
+    describe "edit project" do
+
+      describe "GET 'edit'" do
+        it "returns http success" do
+          get 'edit'
+          response.should be_success
+        end
       end
+      
+      describe "PUT 'update'" do
+        it "returns http success" do
+          #put 'update'
+          #response.should be_success
+          pending "Update test"
+        end
+      end
+    
     end
 
-    describe "POST 'create'" do
-      it "returns http success" do
-        #post 'create'
-        pending "Test post create"
-      end
-    end
-
-    describe "PUT 'update'" do
-      it "returns http success" do
-        #put 'update'
-        pending "Test put update"
-      end
-    end
-
-    describe "POST 'destroy'" do
-      it "returns http success" do
-        #post 'destroy'
-        pending "Test post destroy"
-      end
+    describe "remove project" do
+      
+      describe "POST 'destroy'" do
+        it "returns http success" do
+          #post 'destroy'
+          #response.should be_success
+          pending "Destroy test"
+        end
+      end    
+        
     end
   
   end

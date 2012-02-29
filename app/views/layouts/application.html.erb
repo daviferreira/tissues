@@ -24,11 +24,13 @@
           </hgroup>
         </header>
         <nav>
+          <%= link_to("Create project", new_project_path, :class => 'btn primary create_project') if user_signed_in? %>
           <%= link_to "Home", root_path %>
           <%= link_to "About", static_pages_about_path %>
           <%= link_to "Users", users_path %>
           <%= link_to "Help", static_pages_help_path %>
           <% if user_signed_in? %>
+            <%= link_to "My projects", projects_path %>          
             <%= link_to "My account", edit_user_registration_path %>
             <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
           <% else %>

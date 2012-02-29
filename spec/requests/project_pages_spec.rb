@@ -18,7 +18,7 @@ describe "project pages" do
       describe "with invalid information" do
 
         it "should not create a project" do
-          expect { click_button "Submit" }.should_not change(project, :count)
+          expect { click_button "Submit" }.should_not change(Project, :count)
         end
 
         describe "error messages" do
@@ -30,9 +30,9 @@ describe "project pages" do
 
       describe "with valid information" do
 
-        before { fill_in 'project_content', with: "Lorem ipsum" }
+        before { fill_in 'project_name', with: "Lorem ipsum" }
         it "should create a project" do
-          expect { click_button "Submit" }.should change(project, :count).by(1)
+          expect { click_button "Submit" }.should change(Project, :count).by(1)
         end
       end
     end
