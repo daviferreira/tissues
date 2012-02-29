@@ -15,6 +15,8 @@ describe "project pages" do
     describe "project creation" do
       before { visit new_project_path }
 
+      it { should have_selector('title', :text => "New Project | Tissues") }
+
       describe "with invalid information" do
 
         it "should not create a project" do
@@ -31,10 +33,23 @@ describe "project pages" do
       describe "with valid information" do
 
         before { fill_in 'project_name', with: "Lorem ipsum" }
+        
         it "should create a project" do
           expect { click_button "Submit" }.should change(Project, :count).by(1)
         end
+                
       end
+    end
+    
+    describe "project listing" do
+      let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
+      let!(:p2) { FactoryGirl.create(:project, user: user, name: "Bar") }
+
+      before { visit projects_path }
+      
+      it { should have_selector('title', :text => "My Projects | Tissues") }
+      it { should have_selector('h1', :text => p1.name) }
+      it { should have_selector('h1', :text => p2.name) }
     end
     
   end
@@ -65,6 +80,8 @@ describe "project pages" do
         end
         specify { response.should redirect_to(new_user_session_path) }
       end
+      
+
     end
 
   end

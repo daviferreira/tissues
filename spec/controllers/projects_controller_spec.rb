@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  render_views
   
   describe "as a signed-in user" do
     
