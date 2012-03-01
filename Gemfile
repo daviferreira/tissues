@@ -20,6 +20,7 @@ group :assets do
   gem 'compass-rails', '1.0.0.rc.3'
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.0.3'
+  gem "less", "~> 2.0.6"
 end
 
 gem 'jquery-rails', '2.0.0'

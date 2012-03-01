@@ -44,4 +44,17 @@ describe User do
     end
   end
   
+  describe "listing users" do
+    before { @user.save }
+    let!(:user_a) do 
+      FactoryGirl.create(:user, name: "A user", email: "auser@example.com")
+    end
+    let!(:user_x) do
+      FactoryGirl.create(:user, name: "X user", email: "xuser@example.com")
+    end
+    it "should have the right users in the right order" do
+      User.all.should == [user_a, @user, user_x]
+    end
+  end
+  
 end

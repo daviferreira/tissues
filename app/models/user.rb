@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   
   validates :name, :presence => true, length: { maximum: 50 }
+  
+  default_scope order: 'users.name ASC'
 end

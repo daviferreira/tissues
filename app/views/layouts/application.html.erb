@@ -11,37 +11,44 @@
   </head>
   <body>
     <% if user_signed_in? %>
-    <section id="greetings">
-      <p>Happy bug hunting, <%= current_user.name %>.</p>
-    </section>
+    <div id="greetings" class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "Tissues", root_path, :class=> "brand" %>
+          <p>Happy bug hunting, <%= current_user.name %>.</p>
+        </div>
+      </div>
+    </div>
     <% end %>
     <div class="container">
-      <section id="masthead">
-        <header>
-          <hgroup>
-            <h1><%= link_to "Tissues", root_path %></h1>
-            <h2>Killing bugs since 2012.</h2>
-          </hgroup>
-        </header>
-        <nav>
-          <%= link_to("Create project", new_project_path, :class => 'btn primary create_project') if user_signed_in? %>
-          <%= link_to "Home", root_path %>
-          <%= link_to "About", static_pages_about_path %>
-          <%= link_to "Users", users_path %>
-          <%= link_to "Help", static_pages_help_path %>
-          <% if user_signed_in? %>
-            <%= link_to "My projects", projects_path %>          
-            <%= link_to "My account", edit_user_registration_path %>
-            <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-          <% else %>
-            <%= link_to "Sign in", new_user_session_path %>
-            <%= link_to "Create an account", new_user_registration_path %>
-          <% end %>
-        </nav>
-      </section>
+      <header id="overview" class="jumbotron subhead">
+        <h1>Tissue</h1>
+        <p class="lead">Kill all the bugs.</p>
+        <div class="subnav subnav-fixed">
+          <ul class="nav nav-pills">
+            <% if user_signed_in? %>
+              <li class="create-project"><%= link_to("Create project", new_project_path) %></li>
+            <% end %>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "About", static_pages_about_path %></li>
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Help", static_pages_help_path %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "My projects", projects_path %></li>     
+              <li><%= link_to "My account", edit_user_registration_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign in", new_user_session_path %></li>
+              <li><%= link_to "Create an account", new_user_registration_path %></li>
+            <% end %>
+
+          </ul>
+        </div>
+      </header>
+
       <section id="main">        
         <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
+          <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
         <%= yield %>
       </section>
