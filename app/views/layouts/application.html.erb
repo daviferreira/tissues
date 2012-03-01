@@ -39,7 +39,10 @@
           <% end %>
         </nav>
       </section>
-      <section id="main">
+      <section id="main">        
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
         <%= yield %>
       </section>
       <footer>

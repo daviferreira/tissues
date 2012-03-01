@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   end
   
   def edit
+    @project = Project.find(params[:id])
   end
   
   def create
@@ -27,8 +28,17 @@ class ProjectsController < ApplicationController
   end
   
   def update
+    @project = Project.find(params[:id])
+    if @project.update_attributes(params[:project])
+      redirect_to @project, :flash => { :success => "Project updated." }
+    else
+      render 'edit'
+    end
   end
   
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_path, :flash => { :success => "Project destroyed." }
   end
 end

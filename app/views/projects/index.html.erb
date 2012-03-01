@@ -2,15 +2,13 @@
 <h1>Projects#index</h1>
 <p>Find me in app/views/projects/index.html.erb</p>
 
-<% flash.each do |key, value| %>
-  <div class="flash <%= key %>"><%= value %></div>
-<% end %>
-
 <% @projects.each do |project| %>
   <article>
     <header>
-      <h1><%= project.name %></h1>
+      <h1><%= link_to project.name, project %></h1>
     </header>
     <%= link_to "Edit project", edit_project_path(project) %>
+    <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
+                                          :title => "Delete #{project.name}" %>
   </article>
 <% end %>

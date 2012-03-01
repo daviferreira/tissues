@@ -27,7 +27,7 @@ describe ProjectsController do
 
     describe "GET 'show'" do
       it "returns http success" do
-        get 'show', :id => project.id
+        get 'show', :id => project
         response.should be_success
       end
     end
@@ -68,27 +68,53 @@ describe ProjectsController do
 
       describe "GET 'edit'" do
         it "returns http success" do
-          get 'edit'
+          get 'edit', :id => project
           response.should be_success
         end
       end
       
       describe "PUT 'update'" do
-        it "returns http success" do
-          put 'update'
-          response.should be_success
+        
+        describe "with invalid project data" do
+          it "should render edit project template" do
+            post 'update', :id => project, :project => {:name => ""}
+            response.should render_template("projects/edit")
+          end
         end
+        
+        describe "with valid project data" do
+          it "redirects to project path" do
+            put 'update', :id => project, :project => {:name => "Editing project"}
+            response.should redirect_to project
+          end
+          
+          it "changes the project name" do
+            put 'update', :id => project, :project => {:name => "Editing project"}
+            project.reload
+            project.name.should == "Editing project"
+          end
+        end
+        
       end
     
     end
 
     describe "remove project" do
       
-      describe "POST 'destroy'" do
-        it "returns http success" do
-          post 'destroy'
-          response.should be_success
+      describe "DELETE 'destroy'" do
+        
+        it "redirects to the project listing path" do
+          delete 'destroy', :id => project
+          response.should redirect_to projects_path
         end
+        
+        it "should delete a project" do
+          p1 = FactoryGirl.create(:project, :user => user, :name => "Sample Project")
+          lambda do
+            delete :destroy, :id => p1
+          end.should change(Project, :count).by(-1)
+        end
+        
       end    
         
     end
@@ -139,9 +165,9 @@ describe ProjectsController do
       end
     end
     
-    describe "POST 'destroy'" do
+    describe "DELETE 'destroy'" do
       it "redirects to the sign in path" do
-        post 'destroy'
+        delete 'destroy'
         response.should redirect_to new_user_session_path
       end
     end    

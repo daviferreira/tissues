@@ -11,6 +11,30 @@ describe "project pages" do
       visit new_user_session_path
       valid_signin user 
     }
+    
+    describe "project listing" do
+      let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
+      let!(:p2) { FactoryGirl.create(:project, user: user, name: "Bar") }
+
+      before { visit projects_path }
+      
+      it { should have_selector('title', :text => "My Projects | Tissues") }
+      it { should have_selector('h1', :text => p1.name) }
+      it { should have_selector('h1', :text => p2.name) }
+      it { should have_selector('a', :text => "Edit project", :href => edit_project_path(p1)) }
+      it { should have_selector('a', :text => "Edit project", :href => edit_project_path(p2)) }
+      it { should have_selector('a', :text => "Delete project", :href => p1, :method => :delete) }
+      it { should have_selector('a', :text => "Delete project", :href => p2, :method => :delete) }
+    end
+    
+    describe "show a project" do
+      let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
+      
+      before { visit project_path(p1) }
+      
+      it { should have_selector('title', :text =>"#{p1.name} | Tissues") }
+      it { should have_selector('h1', :text => p1.name) }
+    end
 
     describe "project creation" do
       before { visit new_project_path }
@@ -43,17 +67,13 @@ describe "project pages" do
 
     describe "project edit" do
       let(:project) { FactoryGirl.create(:project, :user => user, :name => "Test Project") }
-      before { visit edit_project_path(project.id) }
+      before { visit edit_project_path(project) }
 
       it { should have_selector('title', :text => "Edit Project #{project.name} | Tissues") }
 
       describe "with invalid information" do
 
         before { fill_in 'project_name', with: "" }
-
-        it "should not edit a project" do
-          expect { click_button "Submit" }.should_not change(project)
-        end
 
         describe "error messages" do
           let(:error) { '1 error prohibited this project from being saved' }
@@ -65,23 +85,31 @@ describe "project pages" do
       describe "with valid information" do
 
         before { fill_in 'project_name', with: "Lorem ipsum" }
+        before { click_button "Submit" }
         
-        it "should create a project" do
-          #expect { click_button "Submit" }.should change(Project, :count).by(1)
+        it "should edit a project" do
+          project.reload
+          project.name.should == "Lorem ipsum"
         end
+        
+        it { should have_content("Project updated.") }
                 
       end
     end
     
-    describe "project listing" do
+    describe "delete project" do
       let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
-      let!(:p2) { FactoryGirl.create(:project, user: user, name: "Bar") }
 
       before { visit projects_path }
       
-      it { should have_selector('title', :text => "My Projects | Tissues") }
-      it { should have_selector('h1', :text => p1.name) }
-      it { should have_selector('h1', :text => p2.name) }
+      it "should destroy a project" do
+        expect { click_link "Delete project" }.should change(Project, :count).by(-1)
+      end
+      
+      describe "project destroyed message" do
+        before { click_link "Delete project" }
+        it { should have_content("Project destroyed.") }
+      end
     end
     
   end
