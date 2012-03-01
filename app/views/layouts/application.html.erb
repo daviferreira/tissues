@@ -10,20 +10,24 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <% if user_signed_in? %>
     <div id="greetings" class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "Tissues", root_path, :class=> "brand" %>
-          <p>Happy bug hunting, <%= current_user.name %>.</p>
+          <p>
+            <% if user_signed_in? %>
+            Happy bug hunting, <%= current_user.name %>.
+            <% else %>
+            Hello, stranger.
+            <% end %>
+          </p>
         </div>
       </div>
     </div>
-    <% end %>
-    <div class="container">
+    <div class="container" id="app-container">
       <header id="overview" class="jumbotron subhead">
-        <h1>Tissue</h1>
-        <p class="lead">Kill all the bugs.</p>
+        <h1>Tissues</h1>
+        <p class="lead">Off with the bugs!</p>
         <div class="subnav subnav-fixed">
           <ul class="nav nav-pills">
             <% if user_signed_in? %>
@@ -52,7 +56,7 @@
         <% end %>
         <%= yield %>
       </section>
-      <footer>
+      <footer class="footer">
         <p>Developed with <%= link_to raw("&hearts;"), "http://rubyonrails.org" %> by <%= link_to "Davi Ferreira", "http://www.daviferreira.com" %></p>
       </footer>
     </div>

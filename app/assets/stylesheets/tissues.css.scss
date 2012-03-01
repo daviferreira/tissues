@@ -1,8 +1,12 @@
 @import "compass/css3";
 
+#app-container {
+  margin-top: 120px;
+}
+
 .navbar p {
   color: rgba(#4ca5fe, 1);
-  margin: 10px 0 0;
+  margin: 10px 12px;
 }
 
 .navbar .brand {
@@ -87,4 +91,31 @@
 }
 .subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover {
     border-radius: 0 0 0 0;
+}
+
+#overview {
+  h1 {
+    font-size: 54px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 9px;
+  }
+
+  h2 {
+    font-weight: 300;
+    margin-bottom: 18px;
+    font-size: 20px;
+    line-height: 27px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+}
+
+#main {
+  margin-top: 40px;
+}
+
+.footer {
+    border-top: 1px solid #E5E5E5;
+    margin-top: 45px;
+    padding: 35px 0 36px;
 }
