@@ -1,22 +1,64 @@
 <% provide(:title, 'Create an Account') %>
-<h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>Sign up</h1>
+    <p class="lead">... and become a bug hunter.</p>
+  </header>
 
-  <div><%= f.label :name %><br />
-   <%= f.text_field :name %></div>
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Create an account", new_user_registration_path %>
+    </li>
+  </ul>
+  
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+        
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+      <div class="control-group">
+        <%= f.label :email, :class => "control-label" %>
+        <div class="controls">
+          <%= f.email_field :email %>
+        </div>
+      </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div class="control-group">
+        <%= f.label :password, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password %>
+        </div>
+      </div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <div class="control-group">
+        <%= f.label :password_confirmation, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password_confirmation %>
+        </div>
+      </div>
 
-<%= render "links" %>
+    </fieldset>
+    
+
+    <div class="form-actions"><%= f.submit "Sign up", :class => "btn btn-primary" %></div>
+    
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= render "links" %>
+      </div>
+    </div>
+  <% end %>
+  
+</section>

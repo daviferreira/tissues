@@ -130,13 +130,14 @@
     margin: 0 6px 0 0;
   }
   .navbar-search {
-    margin-left: 66px;
+    margin-left: 40px;
     .search-query {
       width: 180px;
     }
   }
   p {
     float: left;
+    color: #ccc;
     a {
       color: rgba(yellow, .7);
       @include transition(all .2s linear 0s);
