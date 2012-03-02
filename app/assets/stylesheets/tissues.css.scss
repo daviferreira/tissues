@@ -110,12 +110,12 @@
 }
 
 #main {
-  margin-top: 40px;
+  margin: 40px 0 40px 10px;
 }
 
 .footer {
     border-top: 1px solid #E5E5E5;
-    margin-top: 45px;
+    margin: 0 0 0 10px;
     padding: 35px 0 36px;
 }
 
@@ -153,5 +153,12 @@
   > div.create-project {
     float: right;
     margin: 4px 0 0;
+  }
+}
+
+table {
+  th:last-child, td:last-child {
+    width: 200px;
+    text-align: center;
   }
 }

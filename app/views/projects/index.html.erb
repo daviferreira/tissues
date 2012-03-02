@@ -15,14 +15,31 @@
     </li>
   </ul>
 
-  <% @projects.each do |project| %>
-    <article>
-      <header>
-        <h1><%= link_to project.name, project %></h1>
-      </header>
-      <%= link_to "Edit project", edit_project_path(project) %>
-      <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
-                                            :title => "Delete #{project.name}" %>
-    </article>
+  <% if @projects %>
+  <table class="table table-striped">
+    <thead>
+      <tr> 
+        <th>Project</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td>
+          <strong><%= link_to project.name, project %></strong>
+        </td>
+        <td class="actions">
+          <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
+          <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
+                                              :title => "Delete #{project.name}", :class => "btn btn-small btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <!-- create project teaser -->
   <% end %>
+  
 </section>
