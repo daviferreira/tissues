@@ -1,18 +1,44 @@
 <% provide(:title, 'Sign in') %>
-<h2>Sign in</h2>
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>Sign in</h1>
+    <p class="lead">... and become a bug hunter.</p>
+  </header>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Sign in", new_user_session_path %>
+    </li>
+  </ul>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :email, :class => "control-label" %>
+        <div class="controls">
+          <%= f.email_field :email %>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <%= f.label :password, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password %>
+        </div>
+      </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <% if devise_mapping.rememberable? -%>
+      <div class="control-group">
+        <div class="controls"><label class="checkbox"><%= f.check_box :remember_me %> Remember me</label></div>
+      </div>
+    <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+    <div class="form-actions"><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
+  <% end %>
 
-<%= render "links" %>
+  <%= render "links" %>
+
+</section>

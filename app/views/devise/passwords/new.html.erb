@@ -1,13 +1,31 @@
 <% provide(:title, 'Forgot your password?') %>
-<h2>Forgot your password?</h2>
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>Forgot your password?</h1>
+    <p class="lead">Top secret.</p>
+  </header>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Forgot your password?", new_user_password_path %>
+    </li>
+  </ul>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "form-horizontal" }) do |f| %>
+    <%= devise_error_messages! %>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :email, :class => "control-label" %>
+        <div class="controls">
+          <%= f.email_field :email %>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-actions"><%= f.submit "Send me reset password instructions", :class => "btn btn-primary" %></div>
+  <% end %>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "links" %>
+  <%= render "links" %>
+</section>
