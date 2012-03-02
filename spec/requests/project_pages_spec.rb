@@ -4,7 +4,6 @@ describe "project pages" do
 
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
-  let(:user2) { FactoryGirl.create(:user, :email => "second@example.com") } 
 
   describe "as an authenticated user" do
     
@@ -16,8 +15,6 @@ describe "project pages" do
     describe "project listing" do 
       let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
       let!(:p2) { FactoryGirl.create(:project, user: user, name: "Bar") }
-      let!(:p3) { FactoryGirl.create(:project, user: user2, name: "Foo") }
-      let!(:p4) { FactoryGirl.create(:project, user: user2, name: "Bar") }
 
       before { visit projects_path }
       
@@ -27,18 +24,30 @@ describe "project pages" do
       
       it { should have_selector('td > strong > a', :text => p1.name) }
       it { should have_selector('td > strong > a', :text => p2.name) }
-      it { should have_selector('td > strong > a', :text => p3.name) }
-      it { should have_selector('td > strong > a', :text => p4.name) }
       
       it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p1)) }
       it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p2)) }
       it { should have_selector('td.actions > a', :text => "Delete project", :href => p1, :method => :delete) }
       it { should have_selector('td.actions > a', :text => "Delete project", :href => p2, :method => :delete) }
 
-      #it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p3)).should be_false }
-      #it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p4)).should be_false }
-      #it { has_selector?('td.actions > a', :text => "Delete project", :href => p3, :method => :delete).should be_false }
-      #it { has_selector?('td.actions > a', :text => "Delete project", :href => p4, :method => :delete).should be_false }
+
+    end
+    
+    describe "project listing from different users" do
+      let!(:p3) { FactoryGirl.create(:project, user: user2, name: "Foo User 2") }
+      let!(:p4) { FactoryGirl.create(:project, user: user2, name: "Bar User 2") }
+    
+      let(:user2) { FactoryGirl.create(:user, :email => "second@example.com") }
+      
+      before { visit projects_path }
+      
+      it { should have_selector('td > strong > a', :text => p3.name) }
+      it { should have_selector('td > strong > a', :text => p4.name) }
+      
+      it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p3)).should be_false }
+      it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p4)).should be_false }
+      it { has_selector?('td.actions > a', :text => "Delete project", :href => p3, :method => :delete).should be_false }
+      it { has_selector?('td.actions > a', :text => "Delete project", :href => p4, :method => :delete).should be_false }
     end
     
     describe "show a project" do
