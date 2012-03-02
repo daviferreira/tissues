@@ -16,32 +16,11 @@
   </ul>
 
   <% if @projects %>
-  <table class="table table-striped">
-    <thead>
-      <tr> 
-        <th>Project</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div id="projects">
     <% @projects.each do |project| %>
-      <tr>
-        <td>
-          <strong><%= link_to project.name, project %></strong>
-        </td>
-        <td class="actions">
-          <% if project.user == current_user %>
-            <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
-            <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
-                                                :title => "Delete #{project.name}", :class => "btn btn-small btn-danger" %>
-          <% else %>
-            --
-          <% end %>
-        </td>
-      </tr>
+      <%= render project %>
     <% end %>
-    </tbody>
-  </table>
+  </div>
   <% else %>
   <!-- create project teaser -->
   <% end %>

@@ -1,4 +1,12 @@
-<li>
-  <h4><%= project.name %></h4>
-  <p>Created <%= time_ago_in_words(project.created_at) %> ago.</p>
-</li>
+<article>
+  <header>
+    <h1><%= link_to project.name, project %></h1>
+  </header>
+  <% if project.user == current_user %>
+  <div class="project-actions">
+      <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
+      <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
+                                          :title => "Delete #{project.name}", :class => "btn btn-small btn-danger" %>
+  </div>
+  <% end %>
+</article>

@@ -22,13 +22,13 @@ describe "project pages" do
       it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => "Projects", :href => projects_path) }
       
-      it { should have_selector('td > strong > a', :text => p1.name) }
-      it { should have_selector('td > strong > a', :text => p2.name) }
+      it { should have_selector('article > header > h1', :text => p1.name) }
+      it { should have_selector('article > header > h1', :text => p2.name) }
       
-      it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p1)) }
-      it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p2)) }
-      it { should have_selector('td.actions > a', :text => "Delete project", :href => p1, :method => :delete) }
-      it { should have_selector('td.actions > a', :text => "Delete project", :href => p2, :method => :delete) }
+      it { should have_selector('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p1)) }
+      it { should have_selector('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p2)) }
+      it { should have_selector('div.project-actions > a', :text => "Delete project", :href => p1, :method => :delete) }
+      it { should have_selector('div.project-actions > a', :text => "Delete project", :href => p2, :method => :delete) }
 
 
     end
@@ -41,13 +41,13 @@ describe "project pages" do
       
       before { visit projects_path }
       
-      it { should have_selector('td > strong > a', :text => p3.name) }
-      it { should have_selector('td > strong > a', :text => p4.name) }
+      it { should have_selector('article > header > h1', :text => p3.name) }
+      it { should have_selector('article > header > h1', :text => p4.name) }
       
-      it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p3)).should be_false }
-      it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p4)).should be_false }
-      it { has_selector?('td.actions > a', :text => "Delete project", :href => p3, :method => :delete).should be_false }
-      it { has_selector?('td.actions > a', :text => "Delete project", :href => p4, :method => :delete).should be_false }
+      it { has_selector?('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p3)).should be_false }
+      it { has_selector?('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p4)).should be_false }
+      it { has_selector?('div.project-actions > a', :text => "Delete project", :href => p3, :method => :delete).should be_false }
+      it { has_selector?('div.project-actions', :text => "Delete project", :href => p4, :method => :delete).should be_false }
     end
     
     describe "show a project" do
