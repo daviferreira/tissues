@@ -16,12 +16,13 @@ describe ProjectsController do
         response.should be_success
       end
       
-      it "should list the user's projects" do
-        p1 = Factory(:project, :user => user, :name => "Foo bar")
-        p2 = Factory(:project, :user => user, :name => "Baz quux")
+      it "should list all the projects" do
+        user2 = FactoryGirl.create(:user, :email => "another@example.com");
+        p1 = FactoryGirl.create(:project, :user => user, :name => "Foo bar")
+        p2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
         get 'index'
-        response.body.should have_selector('h1', :text => p1.name)
-        response.body.should have_selector('h1', :text => p2.name)
+        response.body.should have_selector('a', :text => p1.name)
+        response.body.should have_selector('a', :text => p2.name)
       end
     end
 
@@ -71,6 +72,13 @@ describe ProjectsController do
           get 'edit', :id => project
           response.should be_success
         end
+        
+        it "redirects to the home page user doesn't own the project" do
+          user2 = FactoryGirl.create(:user, :email => "another@example.com");
+          project2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
+          get 'edit', :id => project2
+          response.should redirect_to root_path
+        end
       end
       
       describe "PUT 'update'" do
@@ -93,6 +101,13 @@ describe ProjectsController do
             project.reload
             project.name.should == "Editing project"
           end
+          
+          it "redirects to the home page user doesn't own the project" do
+            user2 = FactoryGirl.create(:user, :email => "anotheruser@example.com");
+            project2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
+            put 'update', :id => project2, :project => {:name => "Editing project"}
+            response.should redirect_to root_path
+          end
         end
         
       end
@@ -113,6 +128,13 @@ describe ProjectsController do
           lambda do
             delete :destroy, :id => p1
           end.should change(Project, :count).by(-1)
+        end
+        
+        it "redirects to the home page user doesn't own the project" do
+          user2 = FactoryGirl.create(:user, :email => "anotheruser@example.com");
+          project2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
+          delete :destroy, :id => project2
+          response.should redirect_to root_path
         end
         
       end    

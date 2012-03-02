@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @projects = current_user.projects
+    @projects = Project.all
   end
 
   def show
@@ -14,7 +14,8 @@ class ProjectsController < ApplicationController
   end
   
   def edit
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find_by_id(params[:id])
+    redirect_to root_path if not @project
   end
   
   def create
@@ -28,8 +29,10 @@ class ProjectsController < ApplicationController
   end
   
   def update
-    @project = Project.find(params[:id])
-    if @project.update_attributes(params[:project])
+    @project = current_user.projects.find_by_id(params[:id])
+    if not @project
+      redirect_to root_path 
+    elsif @project.update_attributes(params[:project])
       redirect_to @project, :flash => { :success => "Project updated." }
     else
       render 'edit'
@@ -37,8 +40,12 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
-    redirect_to projects_path, :flash => { :success => "Project destroyed." }
+    @project = current_user.projects.find_by_id(params[:id])
+    if not @project
+      redirect_to root_path
+    else
+      @project.destroy
+      redirect_to projects_path, :flash => { :success => "Project destroyed." }
+    end
   end
 end

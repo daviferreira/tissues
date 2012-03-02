@@ -1,4 +1,4 @@
-<% provide(:title, 'My Projects') %>
+<% provide(:title, 'Projects') %>
 
 <section id="projects-page">
   <header id="overview" class="jumbotron subhead">
@@ -30,9 +30,13 @@
           <strong><%= link_to project.name, project %></strong>
         </td>
         <td class="actions">
-          <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
-          <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
-                                              :title => "Delete #{project.name}", :class => "btn btn-small btn-danger" %>
+          <% if project.user == current_user %>
+            <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
+            <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
+                                                :title => "Delete #{project.name}", :class => "btn btn-small btn-danger" %>
+          <% else %>
+            --
+          <% end %>
         </td>
       </tr>
     <% end %>
