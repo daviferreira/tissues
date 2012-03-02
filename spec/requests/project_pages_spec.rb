@@ -34,7 +34,7 @@ describe "project pages" do
       it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p2)) }
       it { should have_selector('td.actions > a', :text => "Delete project", :href => p1, :method => :delete) }
       it { should have_selector('td.actions > a', :text => "Delete project", :href => p2, :method => :delete) }
-      
+
       #it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p3)).should be_false }
       #it { has_selector?('td.actions > a', :text => "Edit project", :href => edit_project_path(p4)).should be_false }
       #it { has_selector?('td.actions > a', :text => "Delete project", :href => p3, :method => :delete).should be_false }
