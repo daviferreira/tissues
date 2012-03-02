@@ -19,12 +19,12 @@ describe "project pages" do
       before { visit projects_path }
       
       it { should have_selector('title', :text => "My Projects | Tissues") }
-      it { should have_selector('h1', :text => p1.name) }
-      it { should have_selector('h1', :text => p2.name) }
-      it { should have_selector('a', :text => "Edit project", :href => edit_project_path(p1)) }
-      it { should have_selector('a', :text => "Edit project", :href => edit_project_path(p2)) }
-      it { should have_selector('a', :text => "Delete project", :href => p1, :method => :delete) }
-      it { should have_selector('a', :text => "Delete project", :href => p2, :method => :delete) }
+      it { should have_selector('td > strong > a', :text => p1.name) }
+      it { should have_selector('td > strong > a', :text => p2.name) }
+      it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p1)) }
+      it { should have_selector('td.actions > a', :text => "Edit project", :href => edit_project_path(p2)) }
+      it { should have_selector('td.actions > a', :text => "Delete project", :href => p1, :method => :delete) }
+      it { should have_selector('td.actions > a', :text => "Delete project", :href => p2, :method => :delete) }
       
       it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => "Projects", :href => projects_path) }
@@ -37,6 +37,9 @@ describe "project pages" do
       
       it { should have_selector('title', :text =>"#{p1.name} | Tissues") }
       it { should have_selector('h1', :text => p1.name) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => "Projects", :href => projects_path) }
+      it { should have_selector('ul.breadcrumb > li.active > a', :text => p1.name, :href => project_path(p1)) }
     end
 
     describe "project creation" do

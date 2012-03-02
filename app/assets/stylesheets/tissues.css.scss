@@ -157,6 +157,11 @@
 }
 
 table {
+  td {
+    a {
+      vertical-align: middle;
+    }
+  }
   th:last-child, td:last-child {
     width: 200px;
     text-align: center;

@@ -1,3 +1,20 @@
 <% provide(:title, @project.name) %>
-<h1><%= @project.name %></h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1><%= @project.name %></h1>
+    <p class="lead">Project URL coming soon.</p>
+  </header>
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to "Projects", projects_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to @project.name, @project %>
+    </li>
+  </ul>
+  
+</section>
