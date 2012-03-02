@@ -1,0 +1,10 @@
+<div class="subnav subnav-fixed">
+  <div class="container">
+    <% if user_signed_in? %>
+      <div class="create-project"><%= link_to("Create project", new_project_path, :class => "btn btn-success") %></div>
+    <% end %>
+    <nav>
+      <%= render "layouts/menu" %>
+    </nav>
+  </div>
+</div>

@@ -11,22 +11,20 @@
   </head>
   <body>
     
-    <%= render "shared/greetings" %>
+    <%= render "layouts/greetings" %>
     
     <div class="container" id="app-container">
      
-      <%= render "shared/nav" %>
+      <%= render "layouts/nav" %>
 
-      <section id="main">        
+      <section id="main" class="clearfix">        
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>"><a class="close" data-dismiss="alert">×</a><%= value %></div>
         <% end %>
         <%= yield %>
       </section>
       
-      <footer class="footer">
-        <p>Developed with <%= link_to raw("&hearts;"), "http://rubyonrails.org" %> by <%= link_to "Davi Ferreira", "http://www.daviferreira.com" %></p>
-      </footer>
+      <%= render "layouts/footer" %>
       
     </div>
     
