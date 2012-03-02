@@ -58,7 +58,7 @@ describe ProjectsController do
       describe "with valid project data" do
         it "should redirect to projects path" do
           post 'create', :project => {:name => "Test project"}
-          response.should redirect_to(projects_path)
+          response.should redirect_to Project.last
         end
       end
       

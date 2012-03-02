@@ -1,0 +1,19 @@
+<div id="greetings" class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Tissues", root_path, :class=> "brand" %>
+      <div class="nav-collapse">
+        <p>
+          <% if user_signed_in? %>
+          <%= link_to gravatar_for(current_user), current_user %> Happy bug hunting, <%= link_to current_user.name, current_user %>.
+          <% else %>
+          Hello, stranger.
+          <% end %>
+        </p>
+        <form action="" class="navbar-search pull-left">
+          <input type="text" placeholder="Search" class="search-query span2">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

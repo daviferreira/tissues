@@ -25,6 +25,9 @@ describe "project pages" do
       it { should have_selector('a', :text => "Edit project", :href => edit_project_path(p2)) }
       it { should have_selector('a', :text => "Delete project", :href => p1, :method => :delete) }
       it { should have_selector('a', :text => "Delete project", :href => p2, :method => :delete) }
+      
+      it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
+      it { should have_selector('ul.breadcrumb > li.active > a', :text => "Projects", :href => projects_path) }
     end
     
     describe "show a project" do
@@ -40,6 +43,9 @@ describe "project pages" do
       before { visit new_project_path }
 
       it { should have_selector('title', :text => "New Project | Tissues") }
+      it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => "Projects", :href => projects_path) }
+      it { should have_selector('ul.breadcrumb > li.active > a', :text => "Create project", :href => new_project_path) }
 
       describe "with invalid information" do
 

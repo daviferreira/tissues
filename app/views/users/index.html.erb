@@ -1,9 +1,27 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
-<ul>
-<% @users.each do |user| %>
-  <li><%= link_to gravatar_for(user), user %> <%= link_to user.name, user %></li>
-<% end %>
-</ul>
 
-<%= will_paginate %>
+<section id="users-page">
+  
+  <header id="overview" class="jumbotron subhead">
+    <h1>Users</h1>
+    <p class="lead">Bug hunters.</p>
+  </header>
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Users", users_path %>
+    </li>
+  </ul>
+  
+  <ul>
+  <% @users.each do |user| %>
+    <li><%= link_to gravatar_for(user), user %> <%= link_to user.name, user %></li>
+  <% end %>
+  </ul>
+
+  <%= will_paginate %>
+  
+</section>

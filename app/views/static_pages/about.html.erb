@@ -1,3 +1,17 @@
 <% provide(:title, 'About') %>
-<h1>About</h1>
-<p>About this shit.</p>
+
+<section id="about-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>About</h1>
+    <p class="lead">What exactly is Tissues?</p>
+  </header>
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "About", static_pages_about_path %>
+    </li>
+  </ul>
+</section>

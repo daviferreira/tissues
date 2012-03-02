@@ -1,13 +1,14 @@
 <% if object.errors.any? %>
   <section class="alert alert-error">
+    <a class="close" data-dismiss="alert">×</a>
     <header>
-      <h2>
+      <h4 class="alert-heading">
         <%= pluralize(object.errors.count, "error") %>
         prohibited this <%= object.class.to_s.underscore.humanize.downcase %>
         from being saved:
-      </h2>
+      </h4>
     </header>
-    <p>There were problems with the following fields:</p>
+    
 
     <ul>
     <% object.errors.full_messages.each do |message| %>

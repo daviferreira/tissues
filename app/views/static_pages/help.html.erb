@@ -1,3 +1,18 @@
 <% provide(:title, 'Help') %>
-<h1>Help</h1>
-<p>Help, I need somebody.</p>
+
+<section id="help-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>Help</h1>
+    <p class="lead">Help, I need somebody.</p>
+  </header>
+
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Help", static_pages_help_path %>
+    </li>
+  </ul>
+</section>

@@ -21,6 +21,10 @@ describe "User pages" do
         page.should have_selector('img', class: 'gravatar', src: "http://gravatar.com/avatar/#{gravatar_id}.png")
       end
     end
+    
+    it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
+    it { should have_selector('ul.breadcrumb > li.active > a', :text => "Users", :href => users_path) }
+    
   end
 
   describe "profile page" do

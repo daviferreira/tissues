@@ -1,14 +1,28 @@
 <% provide(:title, 'My Projects') %>
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
 
-<% @projects.each do |project| %>
-  <article>
-    <header>
-      <h1><%= link_to project.name, project %></h1>
-    </header>
-    <%= link_to "Edit project", edit_project_path(project) %>
-    <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
-                                          :title => "Delete #{project.name}" %>
-  </article>
-<% end %>
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>Projects</h1>
+    <p class="lead">Here come the bugs.</p>
+  </header>
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Projects", projects_path %>
+    </li>
+  </ul>
+
+  <% @projects.each do |project| %>
+    <article>
+      <header>
+        <h1><%= link_to project.name, project %></h1>
+      </header>
+      <%= link_to "Edit project", edit_project_path(project) %>
+      <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
+                                            :title => "Delete #{project.name}" %>
+    </article>
+  <% end %>
+</section>

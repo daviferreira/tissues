@@ -1,0 +1,23 @@
+<div class="subnav subnav-fixed">
+  <div class="container">
+    <% if user_signed_in? %>
+      <div class="create-project"><%= link_to("Create project", new_project_path, :class => "btn btn-success") %></div>
+    <% end %>
+    <ul class="nav nav-pills">
+      <li><%= link_to "Home", root_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "My projects", projects_path %></li>     
+        <li><%= link_to "My account", edit_user_registration_path %></li>
+      <% else %>
+        <li><%= link_to "Sign in", new_user_session_path %></li>
+        <li><%= link_to "Create an account", new_user_registration_path %></li>
+      <% end %>
+      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "About", static_pages_about_path %></li>
+      <li><%= link_to "Help", static_pages_help_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "logout" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

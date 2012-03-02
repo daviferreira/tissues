@@ -1,7 +1,7 @@
 @import "compass/css3";
 
 #app-container {
-  margin-top: 120px;
+  margin-top: 60px;
 }
 
 .navbar p {
@@ -21,14 +21,14 @@
 }
 
 .navbar-fixed-top .brand {
-    @include transition(all 0.2s linear 0s);
+    @include transition(all 2s linear 0s);
     color: #000000;
     float: right;
     font-weight: bold;
     margin-left: 20px;
     padding-left: 0;
     padding-right: 0;
-    @include text-shadow(rgba(#fff, 0.1) 0 1px 0, rgba(#fff, 0.125) 0 0 30px);
+    @include text-shadow(rgba(#fff, .1) 0 1px 0, rgba(#fff, .125) 0 0 30px);
 }
 
 .subnav {
@@ -55,7 +55,7 @@
     background-color: #E9E9E9;
     border-left: 0 none;
     border-right-color: #DDDDDD;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05) inset;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .05) inset;
     color: #777777;
     padding-left: 13px;
 }
@@ -77,7 +77,7 @@
     border-color: #D5D5D5;
     border-radius: 0 0 0 0;
     border-width: 0 0 1px;
-    box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, .1);
     left: 0;
     position: fixed;
     right: 0;
@@ -118,4 +118,40 @@
     border-top: 1px solid #E5E5E5;
     margin-top: 45px;
     padding: 35px 0 36px;
+}
+
+#greetings {
+  .gravatar {
+    @include scale(20px, 20px);
+    width: 20px;
+    height: 20px;
+    @include border-radius(20px);
+    vertical-align: middle;
+    margin: 0 6px 0 0;
+  }
+  .navbar-search {
+    margin-left: 66px;
+    .search-query {
+      width: 180px;
+    }
+  }
+  p {
+    float: left;
+    a {
+      color: rgba(yellow, .7);
+      @include transition(all .2s linear 0s);
+      &:hover {
+        color: rgba(yellow, 1);
+        text-decoration: none;
+        @include text-shadow(rgba(yellow, .4) 1px 1px 2px);
+      }
+    }
+  }
+}
+
+.container {
+  > div.create-project {
+    float: right;
+    margin: 4px 0 0;
+  }
 }

@@ -1,5 +1,23 @@
 <% provide(:title, 'New Project') %>
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/new.html.erb</p>
 
-<%= render "form" %>
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1>Create a project</h1>
+    <p class="lead">Bug house.</p>
+  </header>
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Home", root_path %> <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to "Projects", projects_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Create project", new_project_path %>
+    </li>
+  </ul>
+
+  <%= render "form" %>
+  
+</section>

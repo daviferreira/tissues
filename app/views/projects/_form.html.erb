@@ -1,9 +1,13 @@
-<%= form_for(@project) do |f| %>
+<%= form_for(@project, :html => { :class => "form-horizontal" }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :name %>
+  <fieldset>
+  <div class="control-group">
+    <%= f.label "Project description", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, :class => "input-xxlarge" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Submit" %>
+  <div class="form-actions">
+    <%= f.submit "Create project", :class => "btn btn-primary" %>
   </div>
 <% end %>
