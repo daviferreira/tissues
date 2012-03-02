@@ -50,12 +50,12 @@ describe "project pages" do
       describe "with invalid information" do
 
         it "should not create a project" do
-          expect { click_button "Submit" }.should_not change(Project, :count)
+          expect { click_button "Create project" }.should_not change(Project, :count)
         end
 
         describe "error messages" do
           let(:error) { '1 error prohibited this project from being saved' }
-          before { click_button "Submit" }
+          before { click_button "Create project" }
           it { should have_content(error) } 
         end
       end
@@ -65,7 +65,7 @@ describe "project pages" do
         before { fill_in 'project_name', with: "Lorem ipsum" }
         
         it "should create a project" do
-          expect { click_button "Submit" }.should change(Project, :count).by(1)
+          expect { click_button "Create project" }.should change(Project, :count).by(1)
         end
                 
       end
@@ -83,7 +83,7 @@ describe "project pages" do
 
         describe "error messages" do
           let(:error) { '1 error prohibited this project from being saved' }
-          before { click_button "Submit" }
+          before { click_button "Create project" }
           it { should have_content(error) } 
         end
       end
@@ -91,7 +91,7 @@ describe "project pages" do
       describe "with valid information" do
 
         before { fill_in 'project_name', with: "Lorem ipsum" }
-        before { click_button "Submit" }
+        before { click_button "Create project" }
         
         it "should edit a project" do
           project.reload
