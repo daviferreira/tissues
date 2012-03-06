@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 <h1><%= @user.name %></h1>
 <%= @user.email %>
+<%= gravatar_for(@user) %>
 
 <% if @user.projects.any? %>
   <p><strong>Projects</strong> <%= @user.projects.count %></p>

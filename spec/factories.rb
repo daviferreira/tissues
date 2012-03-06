@@ -5,6 +5,14 @@ FactoryGirl.define do
     password "foobar"
   end
   
+  Factory.sequence :email do |n|
+    "person-#{n}@example.com"
+  end
+
+  Factory.sequence :name do |n|
+    "Person #{n}"
+  end
+  
   factory :project do
     name "Sample Project"
     status "active"

@@ -11,6 +11,12 @@ describe ProjectsController do
     before { sign_in user }
 
     describe "GET 'index'" do
+      before(:each) do
+        60.times do
+          Factory(:project, :name => Factory.next(:name), :user => user)
+        end
+      end
+       
       it "returns http success" do
         get 'index'
         response.should be_success
@@ -23,6 +29,16 @@ describe ProjectsController do
         get 'index'
         response.body.should have_selector('a', :text => p1.name)
         response.body.should have_selector('a', :text => p2.name)
+      end
+      
+      it "should paginate projects" do
+        get :index
+        response.body.should have_selector('div.pagination')
+        response.body.should have_selector('span.disabled', :content => "Previous")
+        response.body.should have_selector('a', :href => "/projects?page=2",
+                                           :content => "2")
+        response.body.should have_selector('a', :href => "/projects?page=2",
+                                           :content => "Next")
       end
     end
 

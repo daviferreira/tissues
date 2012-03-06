@@ -15,11 +15,12 @@
     </li>
   </ul>
 
-  <% if @projects %>
+  <% if @projects.any? %>
   <div id="projects" class="clearfix">
     <% @projects.each do |project| %>
       <%= render project %>
     <% end %>
+    <%= will_paginate %>
   </div>
   <% else %>
   <!-- create project teaser -->
