@@ -7,4 +7,6 @@ class Issue < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :project_id, presence: true
 	validates :content, presence: true
+
+  default_scope order: 'issues.updated_at DESC'
 end

@@ -8,6 +8,8 @@ en:
   projects: "Projects"
   create_project: "Create project"
 
+  issues: "Issues"
+
   users: "Users"
   all_users: "All users"
   users_tagline: "Bug hunters."

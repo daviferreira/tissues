@@ -30,6 +30,8 @@ describe "project pages" do
       it { should have_selector('div.project-actions > a', :text => "Delete project", :href => p1, :method => :delete) }
       it { should have_selector('div.project-actions > a', :text => "Delete project", :href => p2, :method => :delete) }
 
+      it { should have_selector('span.issues', :text => "#{p1.issues.count}") }
+      it { should have_selector('span.issues', :text => "#{p2.issues.count}") }
 
     end
     
@@ -52,6 +54,8 @@ describe "project pages" do
     
     describe "show a project" do
       let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
+      let!(:i1) { FactoryGirl.create(:issue, user: user, project: p1, content: "Issue #1") }
+      let!(:i2) { FactoryGirl.create(:issue, user: user, project: p1, content: "Issue #2") }
       
       before { visit project_path(p1) }
       
@@ -60,6 +64,11 @@ describe "project pages" do
       it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
       it { should have_selector('ul.breadcrumb > li > a', :text => "Projects", :href => projects_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => p1.name, :href => project_path(p1)) }
+
+      describe "issues" do      
+        it { should have_selector('p.issue', :text => i1.content) }
+        it { should have_selector('p.issue', :text => i2.content) }
+      end
     end
 
     describe "project creation" do

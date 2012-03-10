@@ -16,5 +16,14 @@
       <%= link_to @project.name, @project %>
     </li>
   </ul>
+
+  <section id="project-issues">
+    <header>
+      <h1>Issues</h1>
+    </header>
+    <% @project.issues.each do |issue| %>
+      <p class="issue"><%= issue.content %></p>
+    <% end %>
+  </section>
   
 </section>

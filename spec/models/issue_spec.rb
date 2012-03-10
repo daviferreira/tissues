@@ -35,4 +35,9 @@ describe Issue do
 		it { should_not be_valid }
 	end
 
+	describe "with blank content" do
+    before { @issue.content = " " }
+    it { should_not be_valid }
+  end
+
 end

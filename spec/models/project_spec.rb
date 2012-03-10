@@ -32,4 +32,30 @@ describe Project do
     it { should_not be_valid }
   end
 
+  describe "issues associations" do
+    before do
+      user.save
+      @project.save
+    end
+
+    let!(:older_issue) do 
+      FactoryGirl.create(:issue, user: user, project: @project, updated_at: 1.day.ago)
+    end
+    let!(:recent_updated_issue) do
+      FactoryGirl.create(:issue, user: user, project: @project, updated_at: 1.hour.ago)
+    end
+
+    it "should have the right issues in the right order" do
+      @project.issues.should == [recent_updated_issue, older_issue]
+    end
+    
+    it "should destroy associated issues" do
+      issues = @project.issues
+      @project.destroy
+      issues.each do |issue|
+        issue.find_by_id(issue.id).should be_nil
+      end
+    end
+  end
+
 end

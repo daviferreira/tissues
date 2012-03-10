@@ -57,5 +57,28 @@ describe User do
       User.all.should == [user_a, @user, user_x]
     end
   end
+
+  describe "issues associations" do
+    before { @user.save }
+    let!(:project) {FactoryGirl.create(:project, user: @user) }
+    let!(:older_issue) do 
+      FactoryGirl.create(:issue, user: @user, project: project, updated_at: 1.day.ago)
+    end
+    let!(:recent_updated_issue) do
+      FactoryGirl.create(:issue, user: @user, project: project, updated_at: 1.hour.ago)
+    end
+
+    it "should have the right issues in the right order" do
+      @user.issues.should == [recent_updated_issue, older_issue]
+    end
+    
+    it "should destroy associated issues" do
+      issues = @user.issues
+      @user.destroy
+      issues.each do |issue|
+        issue.find_by_id(issue.id).should be_nil
+      end
+    end
+  end
   
 end

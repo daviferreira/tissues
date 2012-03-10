@@ -18,4 +18,11 @@ FactoryGirl.define do
     status "active"
     user
   end
+
+  factory :issue do
+    content "Big issue"
+    status "pending"
+    project
+    user
+  end
 end
