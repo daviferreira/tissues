@@ -1,17 +1,17 @@
-<% provide(:title, 'Create an Account') %>
+<% provide(:title, t(:create_account)) %>
 
 <section id="projects-page">
   <header id="overview" class="jumbotron subhead">
-    <h1>Sign up</h1>
-    <p class="lead">... and become a bug hunter.</p>
+    <h1><%= t(:sign_up) %></h1>
+    <p class="lead"><%= t(:sign_up_tagline) %></p>
   </header>
 
   <ul class="breadcrumb">
     <li>
-      <%= link_to "Home", root_path %> <span class="divider">/</span>
+      <%= link_to t(:home), root_path %> <span class="divider">/</span>
     </li>
     <li class="active">
-      <%= link_to "Create an account", new_user_registration_path %>
+      <%= link_to t(:create_account), new_user_registration_path %>
     </li>
   </ul>
   
@@ -51,7 +51,7 @@
     </fieldset>
     
 
-    <div class="form-actions"><%= f.submit "Sign up", :class => "btn btn-primary" %></div>
+    <div class="form-actions"><%= f.submit t(:sign_up), :class => "btn btn-primary" %></div>
     
     <%= render "links" %>
     

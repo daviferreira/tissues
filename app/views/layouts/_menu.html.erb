@@ -1,16 +1,16 @@
 <ul class="nav nav-pills">
-  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to t(:home), root_path %></li>
   <% if user_signed_in? %>
-    <li><%= link_to "Projects", projects_path %></li>     
-    <li><%= link_to "My account", edit_user_registration_path %></li>
+    <li><%= link_to t(:projects), projects_path %></li>     
+    <li><%= link_to t(:my_account), edit_user_registration_path %></li>
   <% else %>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-    <li><%= link_to "Create an account", new_user_registration_path %></li>
+    <li><%= link_to t(:sign_in), new_user_session_path %></li>
+    <li><%= link_to t(:create_account), new_user_registration_path %></li>
   <% end %>
-  <li><%= link_to "Users", users_path %></li>
-  <li><%= link_to "About", static_pages_about_path %></li>
-  <li><%= link_to "Help", static_pages_help_path %></li>
+  <li><%= link_to t(:users), users_path %></li>
+  <li><%= link_to t(:about), static_pages_about_path %></li>
+  <li><%= link_to t(:help), static_pages_help_path %></li>
   <% if user_signed_in? %>
-    <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "logout" %></li>
+    <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete, :class => "logout" %></li>
   <% end %>
 </ul>
