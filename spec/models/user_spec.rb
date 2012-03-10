@@ -9,6 +9,7 @@ describe User do
   # i'm not validating Devise, just the new fields
   it { should respond_to(:name) }
   it { should respond_to(:projects) }
+  it { should respond_to(:issues) }
   
   it { should be_valid }
 

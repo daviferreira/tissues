@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   
   has_many :projects, dependent: :destroy
+  has_many :issues, dependent: :destroy
   
   validates :name, :presence => true, length: { maximum: 50 }
   

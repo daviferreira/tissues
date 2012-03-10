@@ -1,25 +1,32 @@
 en:
   home: "Home"
   home_tagline: "'cause everybody has issues, even applications."
+  
   help: "Help"
   about: "About"
-  users: "Users"
+
   projects: "Projects"
   create_project: "Create project"
+
+  users: "Users"
   all_users: "All users"
-  users_tagling: "Bug hunters."
+  users_tagline: "Bug hunters."
+  
   my_account: "My account"
   sign_in: "Sign in"
   create_account: "Create an account"
   logout: "Logout"
-  developed_by: "developed by"
-  greetings_user: "Happy bug hunting"
-  greetings_anonymous: "Hello, stranger."
-  search: "Search"
   forgot_your_password: "Forgot your password?"
   sign_up: "Sign up"
   sign_up_tagline: "... and become a bug hunter."
-  update: "Update"
   cancel_account: "Cancel my account"
+  
+  greetings_user: "Happy bug hunting"
+  greetings_anonymous: "Hello, stranger."
+
+  developed_by: "developed by"
+
+  search: "Search"
+  update: "Update"
   are_you_sure: "Are you sure?"
   back: "Back"

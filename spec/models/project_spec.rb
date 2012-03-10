@@ -12,6 +12,7 @@ describe Project do
   it { should respond_to(:name) }
   it { should respond_to(:status) }
   it { should respond_to(:user) }
+  it { should respond_to(:issues) }
   its(:user) { should == user }
     
   it { should be_valid }
