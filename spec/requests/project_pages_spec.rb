@@ -18,17 +18,17 @@ describe "project pages" do
 
       before { visit projects_path }
       
-      it { should have_selector('title', :text => "Projects | Tissues") }
-      it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
-      it { should have_selector('ul.breadcrumb > li.active > a', :text => "Projects", :href => projects_path) }
+      it { should have_selector('title', :text => "#{I18n.t(:projects)} | Tissues") }
+      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
+      it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t(:projects), :href => projects_path) }
       
       it { should have_selector('article > header > h1', :text => p1.name) }
       it { should have_selector('article > header > h1', :text => p2.name) }
       
-      it { should have_selector('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p1)) }
-      it { should have_selector('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p2)) }
-      it { should have_selector('div.project-actions > a', :text => "Delete project", :href => p1, :method => :delete) }
-      it { should have_selector('div.project-actions > a', :text => "Delete project", :href => p2, :method => :delete) }
+      it { should have_selector('div.project-actions > a', :text => I18n.t(:edit_project), :href => edit_project_path(p1)) }
+      it { should have_selector('div.project-actions > a', :text => I18n.t(:edit_project), :href => edit_project_path(p2)) }
+      it { should have_selector('div.project-actions > a', :text => I18n.t(:delete_project), :href => p1, :method => :delete) }
+      it { should have_selector('div.project-actions > a', :text => I18n.t(:delete_project), :href => p2, :method => :delete) }
 
       it { should have_selector('span.issues', :text => "#{p1.issues.count}") }
       it { should have_selector('span.issues', :text => "#{p2.issues.count}") }
@@ -46,10 +46,10 @@ describe "project pages" do
       it { should have_selector('article > header > h1', :text => p3.name) }
       it { should have_selector('article > header > h1', :text => p4.name) }
       
-      it { has_selector?('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p3)).should be_false }
-      it { has_selector?('div.project-actions > a', :text => "Edit project", :href => edit_project_path(p4)).should be_false }
-      it { has_selector?('div.project-actions > a', :text => "Delete project", :href => p3, :method => :delete).should be_false }
-      it { has_selector?('div.project-actions', :text => "Delete project", :href => p4, :method => :delete).should be_false }
+      it { has_selector?('div.project-actions > a', :text => I18n.t(:edit_project), :href => edit_project_path(p3)).should be_false }
+      it { has_selector?('div.project-actions > a', :text => I18n.t(:edit_project), :href => edit_project_path(p4)).should be_false }
+      it { has_selector?('div.project-actions > a', :text => I18n.t(:delete_project), :href => p3, :method => :delete).should be_false }
+      it { has_selector?('div.project-actions', :text => I18n.t(:delete_project), :href => p4, :method => :delete).should be_false }
     end
     
     describe "show a project" do
@@ -61,13 +61,14 @@ describe "project pages" do
       
       it { should have_selector('title', :text =>"#{p1.name} | Tissues") }
       it { should have_selector('h1', :text => p1.name) }
-      it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
-      it { should have_selector('ul.breadcrumb > li > a', :text => "Projects", :href => projects_path) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:projects), :href => projects_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => p1.name, :href => project_path(p1)) }
 
       describe "issues" do      
         it { should have_selector('p.issue', :text => i1.content) }
         it { should have_selector('p.issue', :text => i2.content) }
+        it { should have_selector('a#create-issue', :text => I18n.t(:create_issue)) }
       end
     end
 
@@ -75,9 +76,9 @@ describe "project pages" do
       before { visit new_project_path }
 
       it { should have_selector('title', :text => "New Project | Tissues") }
-      it { should have_selector('ul.breadcrumb > li > a', :text => "Home", :href => root_path) }
-      it { should have_selector('ul.breadcrumb > li > a', :text => "Projects", :href => projects_path) }
-      it { should have_selector('ul.breadcrumb > li.active > a', :text => "Create project", :href => new_project_path) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
+      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:projects), :href => projects_path) }
+      it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t(:create_project), :href => new_project_path) }
 
       describe "with invalid information" do
 
@@ -107,7 +108,7 @@ describe "project pages" do
       let(:project) { FactoryGirl.create(:project, :user => user, :name => "Test Project") }
       before { visit edit_project_path(project) }
 
-      it { should have_selector('title', :text => "Edit Project #{project.name} | Tissues") }
+      it { should have_selector('title', :text => "#{I18n.t(:edit_project)} #{project.name} | Tissues") }
 
       describe "with invalid information" do
 

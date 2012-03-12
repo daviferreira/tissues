@@ -7,8 +7,11 @@ en:
 
   projects: "Projects"
   create_project: "Create project"
+  edit_project: "Edit project"
+  delete_project: "Delete project"
 
   issues: "Issues"
+  create_issue: "Add an issue"
 
   users: "Users"
   all_users: "All users"
