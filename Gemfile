@@ -4,7 +4,6 @@ gem 'rails', '3.2.2'
 gem 'devise', '2.0.0'
 gem 'omniauth', '1.0.2'
 gem 'will_paginate', '3.0.3'
-gem 'sqlite3', '1.3.5'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
@@ -32,6 +31,10 @@ group :test do
   gem 'guard-spork', '0.3.2'
   gem 'spork', '~> 0.9.0.rc'
   gem 'factory_girl_rails', '1.4.0'
+end
+
+group :development, :test do
+  gem 'sqlite3', '1.3.5'
 end
 
 group :production do
