@@ -3,6 +3,7 @@ Tissues::Application.routes.draw do
   devise_for :users
   resources :users
   resources :projects
+  resources :issues
 
   get "static_pages/home"
   get "static_pages/help"
