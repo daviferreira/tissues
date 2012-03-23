@@ -2,8 +2,7 @@
 <section id="projects-page">
   <header id="overview" class="jumbotron subhead">
     <h1><%= @project.name %></h1>
-    <p class="lead">Project URL coming soon.</p>
-    <%= link_to @project.url, @project.url, :class => "project_url btn btn-large btn-success" %>
+    <p class="lead"><%= link_to @project.url, @project.url, :target => "_blank" %></p>
   </header>
 
   <ul class="breadcrumb">

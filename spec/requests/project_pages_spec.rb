@@ -61,7 +61,7 @@ describe "project pages" do
       
       it { should have_selector('title', :text =>"#{p1.name} | Tissues") }
       it { should have_selector('h1', :text => p1.name) }
-      it { should have_selector('a.project_url', :href => p1.url) }
+      it { should have_selector('p.lead > a', :href => p1.url) }
       it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
       it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:projects), :href => projects_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => p1.name, :href => project_path(p1)) }
