@@ -22,6 +22,7 @@
       <h1>Issues</h1>
     </header>
     <%= link_to t(:create_issue), "#", :class => "btn btn-success btn-small", :id => "create-issue" %>
+    <%= render "issues/form" %>
     <% @project.issues.each do |issue| %>
       <p class="well issue"><%= issue.content %></p>
     <% end %>

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :correct_user, only: [:update, :destroy]
   
   def index
     @projects = Project.paginate(page: params[:page])
@@ -7,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @issue = current_user.issues.build(:project => @project)
   end
 
   def new
@@ -29,10 +31,7 @@ class ProjectsController < ApplicationController
   end
   
   def update
-    @project = current_user.projects.find_by_id(params[:id])
-    if not @project
-      redirect_to root_path 
-    elsif @project.update_attributes(params[:project])
+    if @project.update_attributes(params[:project])
       redirect_to @project, :flash => { :success => "Project updated." }
     else
       render 'edit'
@@ -40,12 +39,15 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
-    @project = current_user.projects.find_by_id(params[:id])
-    if not @project
-      redirect_to root_path
-    else
-      @project.destroy
-      redirect_to projects_path, :flash => { :success => "Project destroyed." }
-    end
+    @project.destroy
+    redirect_to projects_path, :flash => { :success => "Project destroyed." }
   end
+  
+  private
+
+      def correct_user
+        @project = current_user.projects.find_by_id(params[:id])
+        redirect_to root_path if @project.nil?
+      end
+  
 end

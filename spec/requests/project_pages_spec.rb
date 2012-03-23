@@ -7,10 +7,10 @@ describe "project pages" do
 
   describe "as an authenticated user" do
     
-    before { 
+    before do
       visit new_user_session_path
       valid_signin user 
-    }
+    end
     
     describe "project listing" do 
       let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
@@ -70,6 +70,27 @@ describe "project pages" do
         it { should have_selector('p.issue', :text => i1.content) }
         it { should have_selector('p.issue', :text => i2.content) }
         it { should have_selector('a#create-issue', :text => I18n.t(:create_issue)) }
+        
+        describe "with invalid information" do
+
+          it "should not create a issue" do
+            expect { click_button I18n.t(:submit_issue) }.should_not change(Issue, :count)
+          end
+
+          describe "error messages" do
+            before { click_button I18n.t(:submit_issue) }
+            it { should have_content('error') } 
+          end
+        end
+
+        describe "with valid information" do
+
+          before { fill_in 'issue_content', with: "Lorem ipsum" }
+          it "should create a issue" do
+            expect { click_button I18n.t(:submit_issue) }.should change(Issue, :count).by(1)
+          end
+        end
+        
       end
     end
 

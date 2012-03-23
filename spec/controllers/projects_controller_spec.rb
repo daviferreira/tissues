@@ -147,7 +147,7 @@ describe ProjectsController do
         end
         
         it "redirects to the home page user doesn't own the project" do
-          user2 = FactoryGirl.create(:user, :email => "anotheruser@example.com");
+          user2 = FactoryGirl.create(:user, :email => "anotheruser@example.com")
           project2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
           delete :destroy, :id => project2
           response.should redirect_to root_path

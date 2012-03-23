@@ -12,6 +12,8 @@ en:
 
   issues: "Issues"
   create_issue: "Add an issue"
+  submit_issue: "Submit issue"
+  compose_new_issue: "Compose new issue"
 
   users: "Users"
   all_users: "All users"
