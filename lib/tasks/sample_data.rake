@@ -21,6 +21,14 @@ namespace :db do
       name = Faker::Lorem.sentence(5)
       users.each { |user| user.projects.create!(name: name, status: "active") }
     end
+
+    projects = Project.all(limit: 6)
+    user = User.first
+    50.times do
+      content = Faker::Lorem.sentence(10)
+      projects.each { |project| user.issues.create!(content: content, who_is_solving: Random.rand(11), 
+                                                       who_is_validating: Random.rand(11), project_id: project.id) }
+    end
     
   end
 end

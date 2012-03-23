@@ -23,7 +23,7 @@
     </header>
     <%= link_to t(:create_issue), "#", :class => "btn btn-success btn-small", :id => "create-issue" %>
     <% @project.issues.each do |issue| %>
-      <p class="issue"><%= issue.content %></p>
+      <p class="well issue"><%= issue.content %></p>
     <% end %>
   </section>
   
