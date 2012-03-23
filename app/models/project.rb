@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :status
+  attr_accessible :name, :url, :status
   belongs_to :user
   
   has_many :issues, dependent: :destroy

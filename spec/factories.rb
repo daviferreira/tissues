@@ -15,6 +15,7 @@ FactoryGirl.define do
   
   factory :project do
     name "Sample Project"
+    url "http://www.example.com"
     status "active"
     user
   end
