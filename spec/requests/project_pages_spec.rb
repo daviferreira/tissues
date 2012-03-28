@@ -65,6 +65,8 @@ describe "project pages" do
       it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
       it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:projects), :href => projects_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => p1.name, :href => project_path(p1)) }
+      
+      it { should have_selector('a.archive-project', :text => I18n.t(:archive_project), :href => archive_project_path(p1)) }
 
       describe "issues" do      
         it { should have_selector('p.issue', :text => i1.content) }

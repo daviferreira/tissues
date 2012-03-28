@@ -43,6 +43,10 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, :flash => { :success => "Project destroyed." }
   end
   
+  def archive
+    
+  end
+  
   private
 
       def correct_user

@@ -9,6 +9,7 @@ en:
   create_project: "Create project"
   edit_project: "Edit project"
   delete_project: "Delete project"
+  archive_project: "Archive project"
 
   issues: "Issues"
   create_issue: "Add an issue"
