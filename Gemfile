@@ -32,6 +32,7 @@ group :test do
   gem 'guard-spork', '0.3.2'
   gem 'spork', '~> 0.9.0.rc'
   gem 'factory_girl_rails', '1.4.0'
+  gem 'simplecov', '0.6.1'
 end
 
 group :development, :test do
