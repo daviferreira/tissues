@@ -156,6 +156,33 @@ describe ProjectsController do
       end    
         
     end
+
+    describe "archive project" do
+
+      describe "POST 'archive'" do
+
+        it "redirects to the project listing path" do
+          post 'archive', :id => project
+          response.should redirect_to projects_path
+        end
+        
+        it "should archive a project" do
+          p1 = FactoryGirl.create(:project, :user => user, :name => "Sample Project")
+          post :archive, :id => p1
+          p1.reload
+          p1.status.should == "archived"
+        end
+        
+        it "redirects to the home page user doesn't own the project" do
+          user2 = FactoryGirl.create(:user, :email => "anotheruser@example.com")
+          project2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
+          post :archive, :id => project2
+          response.should redirect_to root_path
+        end
+
+      end
+
+    end
   
   end
   
@@ -208,7 +235,14 @@ describe ProjectsController do
         delete 'destroy'
         response.should redirect_to new_user_session_path
       end
-    end    
+    end  
+
+    describe "POST 'archive'" do
+      it "redirects to the sign in path" do
+        post 'archive'
+        response.should redirect_to new_user_session_path
+      end
+    end
   
   end
 

@@ -69,8 +69,8 @@ describe "project pages" do
       it { should have_selector('a.archive-project', :text => I18n.t(:archive_project), :href => archive_project_path(p1)) }
 
       describe "issues" do      
-        it { should have_selector('p.issue', :text => i1.content) }
-        it { should have_selector('p.issue', :text => i2.content) }
+        it { should have_selector('li', :text => i1.content) }
+        it { should have_selector('li', :text => i2.content) }
         it { should have_selector('a#create-issue', :text => I18n.t(:create_issue)) }
         
         describe "with invalid information" do
@@ -172,6 +172,23 @@ describe "project pages" do
       describe "project destroyed message" do
         before { click_link "Delete project" }
         it { should have_content("Project destroyed.") }
+      end
+    end
+
+    describe "archive project" do
+      let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
+
+      before { visit project_path(p1) }
+      
+      it "should archive a project" do
+        click_link I18n.t(:archive_project)
+        p1.reload
+        p1.status.should == "archived"
+      end
+      
+      describe "project archived message" do
+        before { click_link I18n.t(:archive_project) }
+        it { should have_content("Project archived.") }
       end
     end
     

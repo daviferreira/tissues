@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user, only: [:update, :destroy]
+  before_filter :correct_user, only: [:update, :destroy, :archive]
   
   def index
     @projects = Project.paginate(page: params[:page])
@@ -44,7 +44,8 @@ class ProjectsController < ApplicationController
   end
   
   def archive
-    
+    @project.update_attributes({:status => "archived"})
+    redirect_to projects_path, :flash => { :success => "Project archived." }
   end
   
   private

@@ -202,3 +202,19 @@
     }
   }
 }
+
+#project-issues {
+  > header {
+    border-bottom: 1px dotted #ccc;
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+  }
+  #create-issue {
+    float: right;
+    margin: 5px 0 0;
+  }
+  #issue_content {
+    width: 90%;
+    height: 60px;
+  }
+}
