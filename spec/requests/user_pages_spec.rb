@@ -30,16 +30,16 @@ describe "User pages" do
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
-    let!(:p2) { FactoryGirl.create(:project, user: user, name: "Bar") }
+    let!(:p2) { FactoryGirl.create(:project, user: FactoryGirl.create(:user, email: "newuser@example.com"), name: "Bar") }
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: "#{user.name} | Tissues") }
     it { should have_selector('p', text: "#{I18n.t(:projects)} #{user.projects.count.to_s}") }
     
-    describe "projects" do
+    describe "my projects" do
       it { should have_content(p1.name) }
-      it { should have_content(p2.name) }
+      it { should_not have_content(p2.name) }
       it { should have_content(user.projects.count) }
     end
   end
