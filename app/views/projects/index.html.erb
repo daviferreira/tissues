@@ -20,7 +20,7 @@
     <% @projects.each do |project| %>
       <%= render project %>
     <% end %>
-    <%= will_paginate %>
+    <%= page_navigation_links @projects %>
   </div>
   <% else %>
   <!-- create project teaser -->

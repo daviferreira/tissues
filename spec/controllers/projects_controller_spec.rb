@@ -34,7 +34,7 @@ describe ProjectsController do
       it "should paginate projects" do
         get :index
         response.body.should have_selector('div.pagination')
-        response.body.should have_selector('span.disabled', :content => "Previous")
+        response.body.should have_selector('li.disabled', :content => "Previous")
         response.body.should have_selector('a', :href => "/projects?page=2",
                                            :content => "2")
         response.body.should have_selector('a', :href => "/projects?page=2",
