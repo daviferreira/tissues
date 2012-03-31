@@ -1,4 +1,22 @@
 <% provide(:title, "#{t(:edit_project)} #{@project.name}") %>
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/edit.html.erb</p>
-<%= render "form" %>
+
+<section id="projects-page">
+  <header id="overview" class="jumbotron subhead">
+    <h1><%= t(:edit_project) %></h1>
+  </header>
+
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to t(:home), root_path %> <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to t(:projects), projects_path %> <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to t(:edit_project), edit_project_path(@project) %>
+    </li>
+  </ul>
+
+  <%= render "form" %>
+  
+</section>

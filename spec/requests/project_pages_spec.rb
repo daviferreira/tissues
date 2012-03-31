@@ -99,7 +99,7 @@ describe "project pages" do
     describe "project creation" do
       before { visit new_project_path }
 
-      it { should have_selector('title', :text => "New Project | Tissues") }
+      it { should have_selector('title', :text => "Create project | Tissues") }
       it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
       it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:projects), :href => projects_path) }
       it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t(:create_project), :href => new_project_path) }
@@ -107,12 +107,12 @@ describe "project pages" do
       describe "with invalid information" do
 
         it "should not create a project" do
-          expect { click_button "Create project" }.should_not change(Project, :count)
+          expect { click_button I18n.t(:save_project) }.should_not change(Project, :count)
         end
 
         describe "error messages" do
           let(:error) { '1 error prohibited this project from being saved' }
-          before { click_button "Create project" }
+          before { click_button I18n.t(:save_project) }
           it { should have_content(error) } 
         end
       end
@@ -122,7 +122,7 @@ describe "project pages" do
         before { fill_in 'project_name', with: "Lorem ipsum" }
         
         it "should create a project" do
-          expect { click_button "Create project" }.should change(Project, :count).by(1)
+          expect { click_button I18n.t(:save_project) }.should change(Project, :count).by(1)
         end
                 
       end
@@ -140,7 +140,7 @@ describe "project pages" do
 
         describe "error messages" do
           let(:error) { '1 error prohibited this project from being saved' }
-          before { click_button "Create project" }
+          before { click_button I18n.t(:save_project) }
           it { should have_content(error) } 
         end
       end
@@ -148,7 +148,7 @@ describe "project pages" do
       describe "with valid information" do
 
         before { fill_in 'project_name', with: "Lorem ipsum" }
-        before { click_button "Create project" }
+        before { click_button I18n.t(:save_project) }
         
         it "should edit a project" do
           project.reload

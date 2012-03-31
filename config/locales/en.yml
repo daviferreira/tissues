@@ -10,6 +10,9 @@ en:
   edit_project: "Edit project"
   delete_project: "Delete project"
   archive_project: "Archive project"
+  save_project: "Save project"
+  project_description: "Project description"
+  project_url: "Project URL"
 
   issues: "Issues"
   create_issue: "Add an issue"

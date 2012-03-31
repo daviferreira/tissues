@@ -196,9 +196,15 @@
     float: left;
     margin: 20px;
     list-style: none;
+    width: 100px;
+    height: 100px;
     .gravatar {
       border-radius: 60px;
       display: block;
+    }
+    img {
+      width: 80px;
+      height: 80px;
     }
   }
 }
@@ -216,5 +222,20 @@
   #issue_content {
     width: 90%;
     height: 60px;
+  }
+}
+
+.logout {
+  color: rgba(red, 1);
+}
+
+#user-page {
+  #overview {
+    .gravatar {
+      float: left;
+      margin: 4px 16px 0 0;
+      display: block;
+      border-radius: 60px;
+    }
   }
 }
