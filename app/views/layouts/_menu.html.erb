@@ -2,7 +2,7 @@
   <li><%= link_to t(:home), root_path %></li>
   <% if user_signed_in? %>
     <li><%= link_to t(:projects), projects_path %></li>     
-    <li><%= link_to t(:issues), "#" %></li>     
+    <li><%= link_to t(:issues), issues_path %></li>     
     <li><%= link_to t(:my_account), edit_user_registration_path %></li>
   <% else %>
     <li><%= link_to t(:sign_in), new_user_session_path %></li>

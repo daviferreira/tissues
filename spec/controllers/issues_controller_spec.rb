@@ -95,5 +95,44 @@ describe IssuesController do
     end
     
   end
+
+  describe "GET 'index'" do
+
+    describe "for an authorized user" do
+
+      before(:each) do
+        sign_in user
+        100.times do
+          Factory(:issue, :content => Factory.next(:name), :user => user, :project => project)
+        end
+      end
+       
+      it "returns http success" do
+        get :index
+        response.should be_success
+      end
+      
+      it "should list all the issues" do
+        user2 = FactoryGirl.create(:user, :email => "another@example.com");
+        i1 = FactoryGirl.create(:issue, :user => user, :content => "Foo bar", :project => project)
+        i2 = FactoryGirl.create(:issue, :user => user2, :content => "Baz quux", :project => project)
+        get 'index'
+        response.body.should have_selector('p', :text => i1.content)
+        response.body.should have_selector('p', :text => i2.content)
+      end
+      
+      it "should paginate issues" do
+        get :index
+        response.body.should have_selector('div.pagination')
+        response.body.should have_selector('li.disabled', :content => "Previous")
+        response.body.should have_selector('span.gap', :href => "#")
+        response.body.should have_selector('a', :href => "/issues?page=2",
+                                           :content => "2")
+        response.body.should have_selector('a', :href => "/issues?page=2",
+                                           :content => "Next")
+      end
+    end
+  end
+
   
 end

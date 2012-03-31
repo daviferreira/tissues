@@ -3,6 +3,10 @@ class IssuesController < ApplicationController
   before_filter :correct_user, only: :destroy
   before_filter :has_valid_project?, only: :create
 
+  def index
+    @issues = Issue.paginate(page: params[:page], per_page: 10)
+  end
+
   def create
       @issue = current_user.issues.build(params[:issue])
       @project = @issue.project

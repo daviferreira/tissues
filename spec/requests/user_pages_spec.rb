@@ -45,5 +45,15 @@ describe "User pages" do
       it { should have_content(user.projects.count) }
     end
   end
+
+  describe "Devise" do
+    before { visit new_user_registration_path }
+
+    describe "error messages" do
+      let(:error) { '3 errors prohibited this user from being saved' }
+      before { click_button "Sign up" }
+      it { should have_content(error) } 
+    end
+  end
   
 end

@@ -1,8 +1,8 @@
-<% provide(:title, t(:projects)) %>
+<% provide(:title, t(:issues)) %>
 
-<section id="projects-page">
+<section id="issues-page">
   <header id="overview" class="jumbotron subhead">
-    <h1><%= t(:projects) %></h1>
+    <h1><%= t(:issues) %></h1>
     <p class="lead">Here come the bugs.</p>
   </header>
 
@@ -11,16 +11,16 @@
       <%= link_to t(:home), root_path %> <span class="divider">/</span>
     </li>
     <li class="active">
-      <%= link_to t(:projects), projects_path %>
+      <%= link_to t(:issues), issues_path %>
     </li>
   </ul>
 
-  <% if @projects.any? %>
-  <div id="projects" class="clearfix">
-    <% @projects.each do |project| %>
-      <%= render project %>
+  <% if @issues.any? %>
+  <div id="issues" class="clearfix">
+    <% @issues.each do |issue| %>
+      <%= render issue %>
     <% end %>
-    <%= page_navigation_links @projects %>
+    <%= page_navigation_links @issues %>
   </div>
   <% else %>
   <!-- create project teaser -->
