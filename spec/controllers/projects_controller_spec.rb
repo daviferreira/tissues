@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 
 describe ProjectsController do
@@ -12,7 +13,7 @@ describe ProjectsController do
 
     describe "GET 'index'" do
       before(:each) do
-        60.times do
+        100.times do
           Factory(:project, :name => Factory.next(:name), :user => user)
         end
       end
@@ -35,6 +36,7 @@ describe ProjectsController do
         get :index
         response.body.should have_selector('div.pagination')
         response.body.should have_selector('li.disabled', :content => "Previous")
+        response.body.should have_selector('span.gap', :href => "#")
         response.body.should have_selector('a', :href => "/projects?page=2",
                                            :content => "2")
         response.body.should have_selector('a', :href => "/projects?page=2",
