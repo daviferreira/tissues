@@ -96,6 +96,14 @@ describe "project pages" do
       end
     end
 
+    describe "archived project" do
+      let!(:p_archived) { FactoryGirl.create(:project, user: user, name: "Archived Project", status: "archived") }
+      
+      before { visit project_path(p_archived) }
+
+      it { should_not have_selector('a#create-issue', :text => I18n.t(:create_issue)) }
+    end
+
     describe "project creation" do
       before { visit new_project_path }
 
