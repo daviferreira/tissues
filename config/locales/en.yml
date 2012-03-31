@@ -1,6 +1,6 @@
 en:
   home: "Home"
-  home_tagline: "'cause everybody has issues, even applications."
+  home_tagline: "Everybody has issues, even applications."
   
   help: "Help"
   about: "About"
@@ -18,10 +18,10 @@ en:
   create_issue: "Add an issue"
   submit_issue: "Submit issue"
   compose_new_issue: "Compose new issue"
+  issue_author: "Found by"
 
   users: "Users"
   all_users: "All users"
-  users_tagline: "Bug hunters."
   
   my_account: "My account"
   sign_in: "Sign in"
@@ -29,7 +29,6 @@ en:
   logout: "Logout"
   forgot_your_password: "Forgot your password?"
   sign_up: "Sign up"
-  sign_up_tagline: "... and become a bug hunter."
   cancel_account: "Cancel my account"
   
   greetings_user: "Happy bug hunting"

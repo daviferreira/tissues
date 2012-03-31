@@ -16,7 +16,7 @@ module DeviseHelper
 
     html = <<-HTML
     <section class="alert alert-error">
-      <a class="close" data-dismiss="alert">×</a>
+      <a class="close" data-dismiss="alert">&times;</a>
       <header>
         <h4 class="alert-heading">
           #{sentence}

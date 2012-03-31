@@ -159,6 +159,33 @@
   }
 }
 
+.logout {
+  color: rgba(red, 1);
+}
+
+.pagination {
+  clear: both;
+  ul {
+    margin: 8px 0 0 8px;
+  }
+}
+
+#project-issues {
+  > header {
+    border-bottom: 1px dotted #ccc;
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+  }
+  #create-issue {
+    float: right;
+    margin: 5px 0 0;
+  }
+  #issue_content {
+    width: 90%;
+    height: 60px;
+  }
+}
+
 .container {
   > div.create-project {
     float: right;
@@ -208,7 +235,6 @@ article.project {
   }
 }
 
-
 .avatars-list {
   li {
     float: left;
@@ -227,26 +253,6 @@ article.project {
   }
 }
 
-#project-issues {
-  > header {
-    border-bottom: 1px dotted #ccc;
-    padding: 0 0 10px 0;
-    margin: 0 0 10px 0;
-  }
-  #create-issue {
-    float: right;
-    margin: 5px 0 0;
-  }
-  #issue_content {
-    width: 90%;
-    height: 60px;
-  }
-}
-
-.logout {
-  color: rgba(red, 1);
-}
-
 #user-page {
   #overview {
     .gravatar {
@@ -258,9 +264,32 @@ article.project {
   }
 }
 
-.pagination {
-  clear: both;
-  ul {
-    margin: 8px 0 0 8px;
+#issues {
+  margin: 12px;
+  article {
+    border: 1px solid #f7f7f7;
+    @include border-radius(6px);
+    margin: 12px 0;
+    padding: 12px;
+    @include box-shadow(#ccc 0 0 6px);
+  }
+  p:first-child {
+    font-weight: 700;
+    color: rgba(#333, 1);
+    font-size: 18px;
+    line-height: 22px;
+  }
+  p.author {
+    margin: 6px 0 0;
+    padding: 6px 0 0;
+    border-top: 1px dotted #ccc;
+  }
+  span {
+    & a {
+      color: rgba(#fff, .9);
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }

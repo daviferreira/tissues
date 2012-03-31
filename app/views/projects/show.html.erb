@@ -23,11 +23,11 @@
       <h1>Issues</h1>
     </header>
     
-    <ul id="issues-list">
+    <div id="issues">
     <% @project.issues.each do |issue| %>
-      <li><%= issue.content %></li>
+      <%= render issue %>
     <% end %>
-    </ul>
+    </div>
 
     <%= render "issues/form" %>
   </section>

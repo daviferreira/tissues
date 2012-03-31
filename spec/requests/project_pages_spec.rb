@@ -69,8 +69,8 @@ describe "project pages" do
       it { should have_selector('a.archive-project', :text => I18n.t(:archive_project), :href => archive_project_path(p1)) }
 
       describe "issues" do      
-        it { should have_selector('li', :text => i1.content) }
-        it { should have_selector('li', :text => i2.content) }
+        it { should have_selector('article.issue', :text => i1.content) }
+        it { should have_selector('article.issue', :text => i2.content) }
         it { should have_selector('a#create-issue', :text => I18n.t(:create_issue)) }
         
         describe "with invalid information" do

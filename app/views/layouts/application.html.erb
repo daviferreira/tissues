@@ -19,7 +19,7 @@
 
       <section id="main" class="clearfix">        
         <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><a class="close" data-dismiss="alert">×</a><%= value %></div>
+          <div class="alert alert-<%= key %>"><a class="close" data-dismiss="alert">&times;</a><%= value %></div>
         <% end %>
         <%= yield %>
       </section>
