@@ -4,7 +4,9 @@
   </header>
   <p class="info"><%= t("issues.title") %>: <span class="issues"><%= project.issues.count %></span> </p>
   <ul class="users clearfix">
-    <li><%= image_tag(project.user.avatar.url(:thumb), :class => "avatar") %></li>
+    <% project.related_users.each do |user| %>
+      <li><%= image_tag(user.avatar.url(:thumb), :class => "avatar") %></li>
+    <% end %>
   </ul>
   <% if project.user == current_user %>
     <div class="project-actions">
