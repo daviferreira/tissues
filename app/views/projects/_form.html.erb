@@ -2,18 +2,18 @@
   <%= render 'shared/error_messages', object: f.object %>
   <fieldset>
   <div class="control-group">
-    <%= f.label t(:project_description), :class => "control-label" %>
+    <%= f.label t("projects.description"), :class => "control-label" %>
     <div class="controls">
       <%= f.text_field :name, :class => "input-xxlarge" %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label t(:project_url), :class => "control-label" %>
+    <%= f.label t("projects.url"), :class => "control-label" %>
     <div class="controls">
       <%= f.text_field :url, :class => "input-xlarge" %>
     </div>
   </div>
   <div class="form-actions">
-    <%= f.submit t(:save_project), :class => "btn btn-primary" %>
+    <%= f.submit t("projects.save"), :class => "btn btn-primary" %>
   </div>
 <% end %>

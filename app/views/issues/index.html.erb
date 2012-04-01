@@ -1,16 +1,16 @@
-<% provide(:title, t(:issues)) %>
+<% provide(:title, t("issues.title")) %>
 
 <section id="issues-page">
   <header id="overview" class="jumbotron subhead">
-    <h1><%= t(:issues) %></h1>
+    <h1><%= t("issues.title") %></h1>
   </header>
 
   <ul class="breadcrumb">
     <li>
-      <%= link_to t(:home), root_path %> <span class="divider">/</span>
+      <%= link_to t("home.title"), root_path %> <span class="divider">/</span>
     </li>
     <li class="active">
-      <%= link_to t(:issues), issues_path %>
+      <%= link_to t("issues.title"), issues_path %>
     </li>
   </ul>
 

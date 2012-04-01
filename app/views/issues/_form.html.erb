@@ -2,10 +2,10 @@
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :project_id, :value => @project.id %>
   <div class="field">
-    <%= f.text_area :content, placeholder: t(:compose_new_issue) %>
+    <%= f.text_area :content, placeholder: t("issues.compose") %>
   </div>
   <div class="field">
-    <%= f.text_field :tag_list, placeholder: t(:tags_separated_by_comma), class: "input-xxlarge" %>
+    <%= f.text_field :tag_list, placeholder: t("issues.tags"), class: "input-xxlarge" %>
   </div>
-  <%= f.submit t(:submit_issue), class: "btn btn-large btn-primary" %>
+  <%= f.submit t("issues.submit"), class: "btn btn-large btn-primary" %>
 <% end %>

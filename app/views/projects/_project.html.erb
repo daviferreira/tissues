@@ -2,7 +2,7 @@
   <header>
     <h1><%= link_to project.name, project %> <span class="label label-<%= "success" if project.status == "active" %>"><%= project.status %></span></h1>
   </header>
-  <p class="info"><%= t(:issues) %>: <span class="issues"><%= project.issues.count %></span> </p>
+  <p class="info"><%= t("issues.title") %>: <span class="issues"><%= project.issues.count %></span> </p>
   <ul class="users clearfix">
     <li><%= gravatar_for(project.user) %></li>
   </ul>

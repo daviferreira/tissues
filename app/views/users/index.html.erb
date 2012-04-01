@@ -1,17 +1,17 @@
-<% provide(:title, t(:all_users)) %>
+<% provide(:title, t("users.all")) %>
 
 <section id="users-page">
   
   <header id="overview" class="jumbotron subhead">
-    <h1><%= t(:all_users) %></h1>
+    <h1><%= t("users.all") %></h1>
   </header>
 
   <ul class="breadcrumb">
     <li>
-      <%= link_to t(:home), root_path %> <span class="divider">/</span>
+      <%= link_to t("home.title"), root_path %> <span class="divider">/</span>
     </li>
     <li class="active">
-      <%= link_to t(:users), users_path %>
+      <%= link_to t("users.title"), users_path %>
     </li>
   </ul>
   

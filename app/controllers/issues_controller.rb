@@ -9,6 +9,7 @@ class IssuesController < ApplicationController
 
   def create
       @issue = current_user.issues.build(params[:issue])
+      @issue.status = "pending"
       @project = @issue.project
       flash[:success] = "Issue created!" if @issue.save
       render "projects/show"

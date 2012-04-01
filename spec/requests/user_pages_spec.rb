@@ -12,7 +12,7 @@ describe "User pages" do
       visit users_path
     end
 
-    it { should have_selector('title', text: "#{I18n.t(:all_users)} | Tissues") }
+    it { should have_selector('title', text: "#{I18n.t("users.all")} | Tissues") }
 
     it "should list each user" do
       User.all.each do |user|
@@ -22,8 +22,8 @@ describe "User pages" do
       end
     end
     
-    it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t(:home), :href => root_path) }
-    it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t(:users), :href => users_path) }
+    it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
+    it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t("users.title"), :href => users_path) }
     
   end
 
@@ -36,8 +36,8 @@ describe "User pages" do
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: "#{user.name} | Tissues") }
-    it { should have_selector('p', text: "#{I18n.t(:projects)}: #{user.projects.count.to_s}") }
-    it { should have_selector('p', text: "#{I18n.t(:issues)}: #{user.issues.count.to_s}") }
+    it { should have_selector('p', text: "#{I18n.t("projects.title")}: #{user.projects.count.to_s}") }
+    it { should have_selector('p', text: "#{I18n.t("issues.title")}: #{user.issues.count.to_s}") }
     
     describe "my projects" do
       it { should have_content(p1.name) }

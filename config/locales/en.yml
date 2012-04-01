@@ -1,28 +1,32 @@
 en:
-  home: "Home"
-  home_tagline: "Everybody has issues, even applications."
+  home: 
+    title: "Home"
+    tagline: "Everybody has issues, even applications."
   
   help: "Help"
   about: "About"
 
-  projects: "Projects"
-  create_project: "Create project"
-  edit_project: "Edit project"
-  delete_project: "Delete project"
-  archive_project: "Archive project"
-  save_project: "Save project"
-  project_description: "Project description"
-  project_url: "Project URL"
+  projects: 
+    title: "Projects"
+    create: "Create project"
+    edit: "Edit project"
+    delete: "Delete project"
+    archive: "Archive project"
+    save: "Save project"
+    description: "Project description"
+    url: "Project URL"
 
-  issues: "Issues"
-  create_issue: "Submit an issue"
-  submit_issue: "Submit issue"
-  compose_new_issue: "Compose new issue"
-  issue_author: "Submitted by"
-  tags_separated_by_comma: "Tags, separated by comma"
+  issues: 
+    title: "Issues"
+    create: "Submit an issue"
+    submit: "Submit issue"
+    compose: "Compose new issue"
+    author: "Submitted by"
+    tags: "Tags, separated by comma"
 
-  users: "Users"
-  all_users: "All users"
+  users: 
+    title: "Users"
+    all: "All users"
   
   my_account: "My account"
   sign_in: "Sign in"
