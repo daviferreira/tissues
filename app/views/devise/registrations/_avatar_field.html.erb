@@ -1,0 +1,6 @@
+<div id="avatar-field" class="control-group" <% if not display %>style="display:none;"<% end %>>
+  <%= f.label :avatar, :class => "control-label" %>
+  <div class="controls">
+    <%= f.file_field :avatar, :class => 'input-file' %>
+  </div>
+</div>

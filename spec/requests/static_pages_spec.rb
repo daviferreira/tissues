@@ -21,7 +21,7 @@ describe "StaticPages" do
       end
       
       it { should have_selector('a', :href => new_project_path, :text => I18n.t("projects.create")) }
-      it { should have_selector('img.gravatar') }
+      it { should have_selector('img.avatar') }
     end
     
   end

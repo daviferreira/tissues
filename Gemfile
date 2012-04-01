@@ -5,6 +5,7 @@ gem 'devise', '2.0.0'
 gem 'omniauth', '1.0.2'
 gem 'will_paginate', '3.0.3'
 gem 'acts-as-taggable-on', '2.2.2'
+gem "paperclip", "3.0"
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'

@@ -33,6 +33,25 @@
         </div>
       </div>
 
+      <% if @user.avatar.exists? then %>
+
+        <div id="box-form-avatar">
+          <%= image_tag @user.avatar.url(:medium) %>
+
+          <div class="actions">
+            <%= link_to t("avatar.change"), "#", :class => "btn btn-small btn-primary", :id => "change_avatar" %>
+            <%= link_to t("avatar.delete"), destroy_avatar_path(resource), :class => "yes", :remote => true, :class => "btn btn-small btn-danger", :id => "delete_avatar", :data => { :user_id => resource.id }, :confirm => t(:are_you_sure) %>
+          </div>
+
+          <%= render "avatar_field", :f => f, :display => false %>
+        </div>
+
+      <% else %>
+
+        <%= render "avatar_field", :f => f, :display => true %>
+
+      <% end %>
+
       <div class="control-group">
         <%= f.label :password, :class => "control-label" %>
         <div class="controls">

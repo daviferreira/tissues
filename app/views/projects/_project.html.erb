@@ -4,13 +4,13 @@
   </header>
   <p class="info"><%= t("issues.title") %>: <span class="issues"><%= project.issues.count %></span> </p>
   <ul class="users clearfix">
-    <li><%= gravatar_for(project.user) %></li>
+    <li><%= image_tag(project.user.avatar.url(:thumb), :class => "avatar") %></li>
   </ul>
   <% if project.user == current_user %>
     <div class="project-actions">
         <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
-        <%= link_to "Delete project", project, :method => :delete, :confirm => "You sure?",
-                                            :title => "Delete #{project.name}", :class => "btn btn-small btn-danger" %>
+        <%= link_to "Delete project", project, :method => :delete, :confirm => t(:are_you_sure),
+                                            :title => "#{t(:delete)} #{project.name}", :class => "btn btn-small btn-danger" %>
     </div>
   <% end %>
 </article>

@@ -130,7 +130,7 @@
 }
 
 #greetings {
-  .gravatar {
+  .avatar {
     @include scale(20px, 20px);
     width: 20px;
     height: 20px;
@@ -240,22 +240,21 @@ article.project {
     float: left;
     margin: 20px;
     list-style: none;
-    width: 100px;
-    height: 100px;
-    .gravatar {
+    width: 80px;
+    height: 140px;
+    text-align: center;
+    .avatar {
       border-radius: 60px;
-      display: block;
-    }
-    img {
       width: 80px;
       height: 80px;
+      margin: 0 0 6px 0;
     }
   }
 }
 
 #user-page {
   #overview {
-    .gravatar {
+    .avatar {
       float: left;
       margin: 4px 16px 0 0;
       display: block;
@@ -306,5 +305,27 @@ article.project {
   border-top: 6px solid rgba(#ccc, .5);
   p {
     float: right;
+  }
+}
+
+#box-form-avatar {
+  margin: 0 0 20px 160px;
+  padding: 20px;
+  img {
+    @include border-radius(60px);
+  }
+  .actions {
+    margin: 6px 0 0;
+    padding: 12px 0 0;
+    border-top: 1px dotted #ccc;
+  }
+  #avatar-field {
+    margin: 20px 0 0;
+    .control-label {
+      width: auto;
+    }
+    .controls {
+      margin: 0 0 0 60px;
+    }
   }
 }

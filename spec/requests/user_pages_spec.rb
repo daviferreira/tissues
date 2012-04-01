@@ -17,8 +17,7 @@ describe "User pages" do
     it "should list each user" do
       User.all.each do |user|
         page.should have_selector('li', text: user.name)
-        gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
-        page.should have_selector('img', class: 'gravatar', src: "http://gravatar.com/avatar/#{gravatar_id}.png")
+        page.should have_selector('img', class: 'avatar')
       end
     end
     
@@ -53,6 +52,27 @@ describe "User pages" do
       let(:error) { '3 errors prohibited this user from being saved' }
       before { click_button "Sign up" }
       it { should have_content(error) } 
+    end
+  end
+
+  describe "Avatar" do
+
+    describe "new user" do
+      before { visit new_user_registration_path }
+
+      it { should have_selector('input', type: "file", id: "user_avatar") }
+    end
+
+    describe "existing user" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      before do
+        visit new_user_session_path
+        valid_signin user 
+        visit edit_user_registration_path
+      end
+
+      it { should have_selector('input', type: "file", id: "user_avatar") }
     end
   end
   

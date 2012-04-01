@@ -9,3 +9,4 @@ doc/
 bundler_stubs/*
 coverage
 Gemfile.lock
+public/system

@@ -43,5 +43,6 @@ en:
 
   search: "Search"
   update: "Update"
+  delete: "Delete"
   are_you_sure: "Are you sure?"
   back: "Back"

@@ -74,7 +74,7 @@ describe UsersController do
     
     it "should have a profile image" do
       get :show, :id => @user
-      response.body.should have_selector('img', :class => "gravatar")
+      response.body.should have_selector('img', :class => "avatar")
     end
     
     it "should show the user's projects" do
