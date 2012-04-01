@@ -18,7 +18,7 @@ en:
   create_issue: "Add an issue"
   submit_issue: "Submit issue"
   compose_new_issue: "Compose new issue"
-  issue_author: "Found by"
+  issue_author: "Submitted by"
 
   users: "Users"
   all_users: "All users"
