@@ -1,4 +1,12 @@
 <article class="issue">
-  <p><%= issue.content %> <% if not @project %><span class="label label-info"><%= link_to issue.project.name, issue.project %></span><% end %></p>
+  <p>
+    <%= issue.content %> 
+    <% if not @project %><span class="label label-info"><%= link_to issue.project.name, issue.project %></span><% end %>
+    <% if issue.tags.any? %>
+      <% issue.tags.each do |tag| %>
+        <span class="label label-warning"><%= tag.name %></span>
+      <% end %>
+    <% end %>
+  </p>
   <p class="author"><strong><%= t(:issue_author) %></strong> <span class="label"><%= link_to issue.user.name, issue.user %></span></p>
 </article>

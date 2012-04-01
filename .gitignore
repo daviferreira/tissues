@@ -8,3 +8,4 @@ doc/
 .DS_Store
 bundler_stubs/*
 coverage
+Gemfile.lock

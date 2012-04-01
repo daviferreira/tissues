@@ -15,10 +15,11 @@ en:
   project_url: "Project URL"
 
   issues: "Issues"
-  create_issue: "Add an issue"
+  create_issue: "Submit an issue"
   submit_issue: "Submit issue"
   compose_new_issue: "Compose new issue"
   issue_author: "Submitted by"
+  tags_separated_by_comma: "Tags, separated by comma"
 
   users: "Users"
   all_users: "All users"
