@@ -3,6 +3,7 @@ FactoryGirl.define do
     name     "Example User"
     email    "user@example.com"
     password "foobar"
+    avatar   nil
   end
   
   Factory.sequence :email do |n|

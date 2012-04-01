@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, only: [:destroy_avatar]
   before_filter :correct_user, only: [:destroy_avatar]
 
   def show

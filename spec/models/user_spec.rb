@@ -11,6 +11,13 @@ describe User do
   it { should respond_to(:projects) }
   it { should respond_to(:issues) }
   
+  it { should have_attached_file(:avatar) }
+  it { should validate_attachment_content_type(:avatar).
+                allowing('image/png', 'image/gif', 'image/jpeg').
+                rejecting('text/plain', 'text/xml') }
+  it { should validate_attachment_size(:avatar).
+                less_than(2.megabytes) }
+
   it { should be_valid }
 
   describe "when name is not present" do

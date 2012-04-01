@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
                     :default_url => '/assets/missing_:style.png'
   
   validates :name, :presence => true, length: { maximum: 50 }
+
+  validates_attachment :avatar, :content_type => { :content_type => /image/ },
+                                :size => { :in => 0..2.megabytes }
   
   default_scope order: 'users.name ASC'
 end

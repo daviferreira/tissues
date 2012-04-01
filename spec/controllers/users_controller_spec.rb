@@ -100,4 +100,37 @@ describe UsersController do
     
   end
 
+  describe "GET 'destroy_avatar'" do
+
+    let(:user) { FactoryGirl.create(:user, :email => "paperclip@test.com", :avatar => File.join(Rails.root, 'spec', 'fixtures', 'test.png')) }
+
+    describe "for a signed in user" do
+
+      before { sign_in user }
+
+      it "should destroy the user avatar if right user" do
+        get :destroy_avatar, :id => user.id
+        user.avatar.url.should == "/assets/missing_original.png"
+      end
+
+      it "should redirect to the root_path when not the right user" do
+        wrong_user = FactoryGirl.create(:user)
+        sign_in wrong_user
+        get :destroy_avatar, :id => user.id
+        response.should redirect_to root_path
+      end
+
+    end
+
+    describe "for a non signed_in user" do
+
+      it "should redirect to the root path" do
+        get :destroy_avatar
+        response.should redirect_to new_user_session_path
+      end
+
+    end
+
+  end
+
 end
