@@ -8,10 +8,9 @@ class IssuesController < ApplicationController
   end
 
   def create
-      @issue = current_user.issues.build(params[:issue])
-      @project = @issue.project
-      flash[:success] = "Issue created!" if @issue.save  
-      render "projects/show"
+      issue = current_user.issues.build(params[:issue])
+      flash[:success] = "Issue created!" if issue.save
+      redirect_to issue.project
   end
 
   def destroy

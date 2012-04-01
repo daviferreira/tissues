@@ -39,7 +39,7 @@ describe IssuesController do
       
       it "should re-render the project page with a project" do
         post :create, :issue => @attr.merge(:project_id => project.id)
-        response.should render_template('projects/show')
+        response.should redirect_to project
       end
     end
 
@@ -53,9 +53,9 @@ describe IssuesController do
         end.should change(Issue, :count).by(1)
       end
       
-      it "should redirect to the root path" do
+      it "should redirect to the project" do
         post :create, :issue => @attr
-        response.should render_template('projects/show')
+        response.should redirect_to project
       end
 
       it "should have a flash success message" do
