@@ -9,4 +9,23 @@
     <% end %>
   </p>
   <p class="author"><strong><%= t("issues.author") %></strong> <span class="label"><%= link_to issue.user.name, issue.user %></span></p>
+
+  
+    
+    <% if issue.comment_threads.any? %>
+      <section class="comentarios">
+        <header>
+          <h1>Comentários</h1>
+        </header>
+        <% issue.comment_threads.each do |comment| %>
+          <article>
+            <p><%= comment.body %></p>
+            <p class="author">By <%= link_to comment.user.name, comment.user %>, <%= time_ago_in_words(comment.created_at) %> ago</p>
+          </article>
+        <% end %>
+      </section>
+    <% end %>
+    
+    <%= render :partial => "comments/form", :locals => {:issue => issue} %>
+
 </article>
