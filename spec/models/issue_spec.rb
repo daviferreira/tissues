@@ -16,7 +16,7 @@ describe Issue do
 	it { should respond_to(:who_is_solving) }
 	it { should respond_to(:who_is_validating) }
 	its(:user) { should == user }
-  	its(:project) { should == project }
+  its(:project) { should == project }
 
 	it { should be_valid }
 
