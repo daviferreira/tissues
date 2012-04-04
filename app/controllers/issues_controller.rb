@@ -22,7 +22,7 @@ class IssuesController < ApplicationController
   end
 
   def solve
-
+    issue = Issue.find(params[:id])
   end
 
   def validate

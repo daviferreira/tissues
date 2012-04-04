@@ -271,23 +271,28 @@ article.project {
     margin: 12px 0;
     padding: 12px;
     @include box-shadow(#ccc 0 0 6px);
-  }
-  p:first-child {
-    font-weight: 700;
-    color: rgba(#333, 1);
-    font-size: 18px;
-    line-height: 22px;
-  }
-  p.author {
-    margin: 6px 0 0;
-    padding: 6px 0 0;
-    border-top: 1px dotted #ccc;
-  }
-  span {
-    & a {
-      color: rgba(#fff, .9);
-      &:hover {
-        text-decoration: none;
+    p.actions {
+      float: right;
+      background: rgba(#fff, 1);
+      padding: 12px;
+    }
+    p:first-child {
+      font-weight: 700;
+      color: rgba(#333, 1);
+      font-size: 18px;
+      line-height: 22px;
+    }
+    p.author {
+      margin: 6px 0 0;
+      padding: 6px 0 0;
+      border-top: 1px dotted #ccc;
+    }
+    span {
+      & a {
+        color: rgba(#fff, .9);
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
