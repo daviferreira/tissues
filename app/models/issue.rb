@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
-	attr_accessible :content, :project_id, :who_is_solving, :who_is_validating, :tag_list
+	attr_accessible :content, :project_id, :who_is_solving, :who_is_validating, :tag_list, :status
 
 	belongs_to :user
 	belongs_to :project

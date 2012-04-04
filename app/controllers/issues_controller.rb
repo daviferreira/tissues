@@ -22,7 +22,15 @@ class IssuesController < ApplicationController
   end
 
   def solve
-    issue = Issue.find(params[:id])
+    @issue = Issue.find(params[:id])
+    #TODO: can haz solver?
+    @issue.who_is_solving = current_user.id
+    @issue.status = "in progress"
+
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
   end
 
   def validate

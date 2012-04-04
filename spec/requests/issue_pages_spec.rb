@@ -23,11 +23,11 @@ describe "IssuePages" do
       it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t("issues.title"), :href => issues_path) }
       
       it { should have_selector('article.issue > p', :text => i1.content) }
-      it { should have_selector('article.issue > p > span.label > a', :text => i1.project.name) }
+      it { should have_selector('article.issue > p > span > a', :text => i1.project.name) }
       it { should have_selector('article.issue > p.author', :text => "#{I18n.t("issues.author")} #{i1.user.name}") }
 
       it { should have_selector('article.issue > p', :text => i2.content) }
-      it { should have_selector('article.issue > p > span.label > a', :text => i2.project.name) }
+      it { should have_selector('article.issue > p > span > a', :text => i2.project.name) }
       it { should have_selector('article.issue > p.author', :text => "#{I18n.t("issues.author")} #{i1.user.name}") }
 
     end

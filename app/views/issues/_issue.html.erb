@@ -1,19 +1,20 @@
-<article class="issue issue-<%= issue.status %>">
-  <p class="actions">
-    <% if not issue.status == "pending" or issue.status == "revalidated" %>
-      <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-large btn-success" %>
-    <% elsif issue.status == "pending_validation" and issue.who_is_solving != current_user %>
-      <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-large btn-warning" %>
+<article class="issue issue-<%= issue.status.to_s.sub(" ", "_") %>">
+  <p class="actions" id="issue-actions-<%= issue.id %>">
+    <% if issue.status == "pending" or issue.status == "revalidated" %>
+      <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-large btn-success", :remote => true %>
+    <% elsif issue.status == "waiting for validation" and issue.who_is_solving != current_user %>
+      <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-large btn-warning", :remote => true %>
     <% end %>
   </p>
   <p>
     <%= issue.content %> 
-    <% if not @project %><span class="label label-info"><%= link_to issue.project.name, issue.project %></span><% end %>
+    <span class="label label-<%= issue.status.to_s.sub(" ", "_") %>"><%= issue.status %></span>
     <% if issue.tags.any? %>
       <% issue.tags.each do |tag| %>
         <span class="label label-warning"><%= link_to tag.name, "#" %></span>
       <% end %>
     <% end %>
+    <% if not @project %><span class="label"><%= link_to issue.project.name, issue.project %></span><% end %>
   </p>
   <p class="author"><strong><%= t("issues.author") %></strong> <span class="label"><%= link_to issue.user.name, issue.user %></span></p>
   
