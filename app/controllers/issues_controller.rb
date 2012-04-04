@@ -20,6 +20,22 @@ class IssuesController < ApplicationController
     @issue.destroy
     redirect_to project
   end
+
+  def solve
+
+  end
+
+  def validate
+
+  end
+
+  def done_solving
+
+  end
+
+  def done_validating
+
+  end
   
   private
 
