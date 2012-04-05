@@ -24,8 +24,10 @@ class IssuesController < ApplicationController
   def solve
     @issue = Issue.find(params[:id])
     #TODO: can haz solver?
+    #TODO: take it to the model
     @issue.who_is_solving = current_user.id
     @issue.status = "in progress"
+    @issue.save
 
     respond_to do |format|
       format.html { redirect_to @issue.project }

@@ -1,4 +1,4 @@
-<%= form_for(:comment, :url => comments_path) do |f| %>
+<%= form_for(:comment, :url => comments_path, :html => {:class => "comment"}) do |f| %>
   
   <%= f.hidden_field :issue_id, :value => issue.id %>
 

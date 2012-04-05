@@ -1,12 +1,17 @@
 <article class="issue issue-<%= issue.status.to_s.sub(" ", "_") %>">
   <p class="actions" id="issue-actions-<%= issue.id %>">
+    <!-- TODO: Action helper -->
     <% if issue.status == "pending" or issue.status == "revalidated" %>
       <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-large btn-success", :remote => true %>
-    <% elsif issue.status == "waiting for validation" and issue.who_is_solving != current_user %>
+    <% end %>
+    <% if issue.status == "waiting for validation" and issue.who_is_solving != current_user %>
       <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-large btn-warning", :remote => true %>
     <% end %>
+    <% if issue.status == "in progress" and issue.who_is_solving == current_user.id %>
+      <%= link_to "Done!", done_solving_path(issue), :class => "btn btn-large btn-success", :remote => true %>
+    <% end %>
   </p>
-  <p>
+  <p class="content">
     <%= issue.content %> 
     <span class="label label-<%= issue.status.to_s.sub(" ", "_") %>"><%= issue.status %></span>
     <% if issue.tags.any? %>
@@ -20,9 +25,6 @@
   
   <% if issue.comment_threads.any? %>
     <section class="comentarios">
-      <header>
-        <h1>Comentários</h1>
-      </header>
       <% issue.comment_threads.each do |comment| %>
         <article>
           <p><%= comment.body %></p>

@@ -276,7 +276,7 @@ article.project {
       background: rgba(#fff, 1);
       padding: 12px;
     }
-    p:first-child {
+    p.content {
       font-weight: 700;
       color: rgba(#333, 1);
       font-size: 18px;
@@ -338,4 +338,8 @@ article.project {
 .comment-body {
   width: 400px;
   height: 40px;
+}
+
+form.comment {
+  margin: 12px 0 0;
 }
