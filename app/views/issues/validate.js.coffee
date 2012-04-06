@@ -1,0 +1,1 @@
+$('#issue-actions-<%= @issue.id %>').html '<%= escape_javascript(render("issues/buttons_validation", :issue => @issue)) %>'

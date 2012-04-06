@@ -4,6 +4,9 @@ class Issue < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :project
 
+  belongs_to :who_is_solving, :class_name => 'User', :foreign_key => 'who_is_solving'
+  belongs_to :who_is_validating, :class_name => 'User', :foreign_key => 'who_is_validating'
+
   acts_as_taggable
   acts_as_commentable
 	

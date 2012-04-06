@@ -25,7 +25,7 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
     #TODO: can haz solver?
     #TODO: take it to the model
-    @issue.who_is_solving = current_user.id
+    @issue.who_is_solving = current_user
     @issue.status = "in progress"
     @issue.save
 
@@ -36,11 +36,30 @@ class IssuesController < ApplicationController
   end
 
   def validate
+    @issue = Issue.find(params[:id])
+    #TODO: can haz validator?
+    #TODO: take it to the model
+    @issue.who_is_validating = current_user
+    @issue.status = "validating"
+    @issue.save
 
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
   end
 
   def done_solving
+    @issue = Issue.find(params[:id])
+    #TODO: can haz solved?
+    #TODO: take it to the model
+    @issue.status = "waiting for validation"
+    @issue.save
 
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
   end
 
   def done_validating

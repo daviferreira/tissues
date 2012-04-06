@@ -12,7 +12,9 @@ class Project < ActiveRecord::Base
   def related_users
     users = [self.user]
     self.issues.each do |issue| 
-      users.push(issue.user) unless users.include? issue.user 
+      ['user', 'who_is_solving', 'who_is_validating'].each do |field|
+        users.push(issue.send(field)) unless not issue.send(field) or users.include? issue.send(field)
+      end
       issue.comment_threads.each { |comment| users.push(comment.user) unless users.include? comment.user }
     end
     return users

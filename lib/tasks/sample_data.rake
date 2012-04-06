@@ -26,8 +26,9 @@ namespace :db do
     user = User.first
     50.times do
       content = Faker::Lorem.sentence(10)
-      projects.each { |project| user.issues.create!(content: content, who_is_solving: Random.rand(11), 
-                                                       who_is_validating: Random.rand(11), project_id: project.id) }
+      projects.each { |project| user.issues.create!(content: content, who_is_solving: nil, 
+                                                       who_is_validating: nil, project_id: project.id,
+                                                       status: "pending") }
     end
     
   end

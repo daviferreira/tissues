@@ -1,14 +1,21 @@
 <article class="issue issue-<%= issue.status.to_s.sub(" ", "_") %>">
   <p class="actions" id="issue-actions-<%= issue.id %>">
     <!-- TODO: Action helper -->
-    <% if issue.status == "pending" or issue.status == "revalidated" %>
+    <% if issue.status == "pending" %>
       <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-large btn-success", :remote => true %>
     <% end %>
-    <% if issue.status == "waiting for validation" and issue.who_is_solving != current_user %>
-      <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-large btn-warning", :remote => true %>
+    <% if issue.status == "waiting for validation" %>
+      <% if issue.who_is_solving == current_user %>
+        Waiting for validation.
+      <% else %>
+        <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-large btn-warning", :remote => true %>
+      <% end %>
     <% end %>
-    <% if issue.status == "in progress" and issue.who_is_solving == current_user.id %>
-      <%= link_to "Done!", done_solving_path(issue), :class => "btn btn-large btn-success", :remote => true %>
+    <% if issue.status == "in progress" and issue.who_is_solving == current_user %>
+      <%= render "issues/button_done", :issue => issue %>
+    <% end %>
+    <% if issue.status == "validating" and issue.who_is_validating == current_user %>
+      <%= render "issues/buttons_validation", :issue => issue %>
     <% end %>
   </p>
   <p class="content">
@@ -34,6 +41,6 @@
     </section>
   <% end %>
   
-  <%= render :partial => "comments/form", :locals => {:issue => issue} %>
+  <%= render "comments/form", :issue => issue %>
 
 </article>

@@ -1,4 +1,1 @@
-$('#issue-actions-<%= @issue.id %>')
-  .fadeOut(->
-    $(@).remove()
-  )
+$('#issue-actions-<%= @issue.id %>').html '<%= escape_javascript(render("issues/button_done", :issue => @issue)) %>'

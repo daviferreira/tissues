@@ -1,0 +1,1 @@
+$('#issue-actions-<%= @issue.id %>').html 'Yay!'
