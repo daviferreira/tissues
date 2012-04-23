@@ -31,9 +31,7 @@ describe "StaticPages" do
     before { visit '/static_pages/help' }
 
     it { should have_content('Help') }
-    it { should have_selector('title', :text => "#{I18n.t(:help)} | Tissues") }
-    it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
-    it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t(:help), :href => static_pages_help_path) }
+    it { should have_selector('title', :text => "#{I18n.t(:help)} | Tissues") }    
     
   end
   
@@ -43,8 +41,6 @@ describe "StaticPages" do
 
     it { should have_content('About') }
     it { should have_selector('title', :text => "#{I18n.t(:about)} | Tissues") }
-    it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
-    it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t(:about), :href => static_pages_about_path) }
   
   end
   

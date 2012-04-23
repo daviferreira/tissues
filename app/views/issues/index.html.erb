@@ -5,15 +5,6 @@
     <h1><%= t("issues.title") %></h1>
   </header>
 
-  <ul class="breadcrumb">
-    <li>
-      <%= link_to t("home.title"), root_path %> <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to t("issues.title"), issues_path %>
-    </li>
-  </ul>
-
   <% if @issues.any? %>
   <div id="issues" class="clearfix">
     <% @issues.each do |issue| %>

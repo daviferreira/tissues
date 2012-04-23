@@ -8,5 +8,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require ../stylesheets/bootstrap/js/bootstrap-alert
+//= require ../stylesheets/bootstrap/js/bootstrap-tooltip
 //= require tissues
 //= require_tree .

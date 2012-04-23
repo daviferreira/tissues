@@ -4,15 +4,6 @@
     <h1>Forgot your password?</h1>
   </header>
 
-  <ul class="breadcrumb">
-    <li>
-      <%= link_to "Home", root_path %> <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to "Forgot your password?", new_user_password_path %>
-    </li>
-  </ul>
-
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "form-horizontal" }) do |f| %>
     <%= devise_error_messages! %>
     <fieldset>

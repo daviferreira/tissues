@@ -4,15 +4,6 @@
     <h1>Sign in</h1>
   </header>
 
-  <ul class="breadcrumb">
-    <li>
-      <%= link_to "Home", root_path %> <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to "Sign in", new_user_session_path %>
-    </li>
-  </ul>
-
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
     <fieldset>
       <div class="control-group">

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe IssuesController do
   render_views
   
@@ -37,9 +35,9 @@ describe IssuesController do
         response.should redirect_to root_path
       end
       
-      it "should re-render the project page with a project" do
+      it "should redirect to the project page with a project" do
         post :create, :issue => @attr.merge(:project_id => project.id)
-        response.should render_template('projects/show')
+        response.should redirect_to project
       end
     end
 
@@ -53,9 +51,9 @@ describe IssuesController do
         end.should change(Issue, :count).by(1)
       end
       
-      it "should re-render the project page" do
+      it "should redirect to the project page" do
         post :create, :issue => @attr
-        response.should render_template('projects/show')
+        response.should redirect_to project
       end
 
       it "should have a flash success message" do
@@ -116,9 +114,9 @@ describe IssuesController do
         user2 = FactoryGirl.create(:user, :email => "another@example.com");
         i1 = FactoryGirl.create(:issue, :user => user, :content => "Foo bar", :project => project)
         i2 = FactoryGirl.create(:issue, :user => user2, :content => "Baz quux", :project => project)
-        get 'index'
-        response.body.should have_selector('p', :text => i1.content)
-        response.body.should have_selector('p', :text => i2.content)
+        get 'index', :page => 11
+        response.body.should have_selector('li', :text => i1.content)
+        response.body.should have_selector('li', :text => i2.content)
       end
       
       it "should paginate issues" do

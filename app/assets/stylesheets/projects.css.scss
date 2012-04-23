@@ -14,27 +14,12 @@ $text_color: #424242;
 }
 
 #projects-page {
-  margin: 15px;
+  margin: 0 16px;
   textarea {
     @include border-radius(6px);
     @include box-shadow(inset #ccc 2px 2px 8px);    
     padding: 10px;
     font-size: 17px;
-  }
-  header {
-    h1 {
-      color: $text_color;
-      font-size: 52px;
-      font-weight: 900;
-      line-height: 57px;
-      margin: 0 0;
-      padding: 15px;
-      letter-spacing: -2px;
-      small {
-        letter-spacing: 0;
-        font-size: 20px;
-      }
-    }
   }
   ul {
     li.issue {
@@ -44,9 +29,6 @@ $text_color: #424242;
       color: #222;
       font-size: 13px;
       line-height: 16px;
-      div.info {
-        background-color: rgba($project_color, .8);
-      }
       &.issue-not-approved { @include issue-state(#ff0000); }
       &.issue-in-progress { @include issue-state(#3a74d0); }
       &.issue-waiting-for-validation { @include issue-state(#fc0); }
@@ -71,9 +53,10 @@ $text_color: #424242;
         display: none;
       }
       div.info {
+        background-color: rgba($project_color, .8);
         top: -28px;
         position: absolute;
-        width: 1140px;
+        width: 1138px;
         left: -12px;
         ul {
           float: right;
@@ -183,5 +166,76 @@ $text_color: #424242;
   }
   .btn {
     margin: 12px 0 0;
+  }
+}
+
+article.project {
+  padding: 16px;
+  @include border-radius(6px);
+  border: 6px solid #ccc;
+  margin: 0 16px 16px 16px;
+  background-color: lighten(#f3eee4, 5);
+  header {
+    h1 {
+      font-size: 42px;
+      line-height: 48px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin: 0 0;
+      padding: 0 0;
+      text-transform: lowercase;
+      a {
+        color: rgba($project_color, .8);
+        text-decoration: none;
+        &:hover {
+          color: rgba($project_color, 1);
+        }
+      }
+    }
+  }
+  p.info {
+    color: #666;
+    font-weight: 700;
+    margin: 10px 0 0;
+    border-bottom: 1px dotted #ccc;
+    padding: 0 0 10px 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  ul.users {
+    margin: 6px 0;
+    li {
+      float: left;
+      list-style: none;
+      margin: 0 6px 0 0;
+      img {
+        $image_size: 28px;
+        width: $image_size;
+        height: $image_size;
+        @include border-radius($image_size);
+      }
+    }
+  }
+  div.project-actions {
+    margin: 10px 0 0;
+    padding: 10px 0 0;
+    float: right;
+  }
+}
+
+.avatars-list {
+  li {
+    float: left;
+    margin: 20px;
+    list-style: none;
+    width: 80px;
+    height: 140px;
+    text-align: center;
+    .avatar {
+      border-radius: 60px;
+      width: 80px;
+      height: 80px;
+      margin: 0 0 6px 0;
+    }
   }
 }

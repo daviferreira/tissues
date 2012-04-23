@@ -69,14 +69,14 @@ describe User do
     before { @user.save }
     let!(:project) {FactoryGirl.create(:project, user: @user) }
     let!(:older_issue) do 
-      FactoryGirl.create(:issue, user: @user, project: project, updated_at: 1.day.ago)
+      FactoryGirl.create(:issue, user: @user, project: project, created_at: 1.day.ago)
     end
-    let!(:recent_updated_issue) do
-      FactoryGirl.create(:issue, user: @user, project: project, updated_at: 1.hour.ago)
+    let!(:recent_issue) do
+      FactoryGirl.create(:issue, user: @user, project: project, created_at: 1.hour.ago)
     end
 
     it "should have the right issues in the right order" do
-      @user.issues.should == [recent_updated_issue, older_issue]
+      @user.issues.should == [older_issue, recent_issue]
     end
     
     it "should destroy associated issues" do

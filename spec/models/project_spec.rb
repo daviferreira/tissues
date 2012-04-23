@@ -40,14 +40,14 @@ describe Project do
     end
 
     let!(:older_issue) do 
-      FactoryGirl.create(:issue, user: user, project: @project, updated_at: 1.day.ago)
+      FactoryGirl.create(:issue, user: user, project: @project, created_at: 1.day.ago)
     end
-    let!(:recent_updated_issue) do
-      FactoryGirl.create(:issue, user: user, project: @project, updated_at: 1.hour.ago)
+    let!(:recent_issue) do
+      FactoryGirl.create(:issue, user: user, project: @project, created_at: 1.hour.ago)
     end
 
     it "should have the right issues in the right order" do
-      @project.issues.should == [recent_updated_issue, older_issue]
+      @project.issues.should == [older_issue, recent_issue]
     end
     
     it "should destroy associated issues" do

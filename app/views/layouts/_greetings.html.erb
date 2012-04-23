@@ -1,7 +1,9 @@
 <div id="greetings">
   <div class="container">
-    <%= link_to "Tissues", root_path, :class=> "brand" %>
-    <div class="nav-collapse">
+    <nav>
+      <%= render "layouts/menu" %>
+    </nav>
+    <div class="user-info">
       <p>
         <% if user_signed_in? %>
           <%= link_to image_tag(current_user.avatar.url(:thumb), :class => "avatar"), current_user %> <%= t(:greetings_user) %>, <%= link_to current_user.name, current_user %>.

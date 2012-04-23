@@ -10,16 +10,14 @@ window.apply_issue_status = (status, issue) ->
   $details[0].className = $details[0].className.replace(/details\-([a-z\-]+)/g, '');
   $details.addClass("details-#{status}")
 
-$('.alert').alert 'close'
-
 $ ->
-  $('a[href="#new_issue"]').on 'click', (e) ->
-    e.preventDefault
-    $('#issue_content').focus()
+  $('ul.users').tooltip {
+      selector: "a[rel=tooltip]"
+  }
 
-  $('div.info, div.actions').mouseenter ->
+  $('div.info, div.actions').on "mouseenter", ->
     $(@).parent().find("> a").addClass "active"
 
-  $('div.info, div.actions').mouseleave ->
+  $('div.info, div.actions').on "mouseleave", ->
     if !$(@).parent().hasClass "active"
       $(@).parent().find("> a").removeClass "active"

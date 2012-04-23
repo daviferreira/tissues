@@ -19,8 +19,6 @@ describe "project pages" do
       before { visit projects_path }
       
       it { should have_selector('title', :text => "#{I18n.t("projects.title")} | Tissues") }
-      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
-      it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t("projects.title"), :href => projects_path) }
       
       it { should have_selector('article > header > h1', :text => p1.name) }
       it { should have_selector('article > header > h1', :text => p2.name) }
@@ -30,8 +28,8 @@ describe "project pages" do
       it { should have_selector('div.project-actions > a', :text => I18n.t("projects.delete"), :href => p1, :method => :delete) }
       it { should have_selector('div.project-actions > a', :text => I18n.t("projects.delete"), :href => p2, :method => :delete) }
 
-      it { should have_selector('span.issues', :text => "#{p1.issues.count}") }
-      it { should have_selector('span.issues', :text => "#{p2.issues.count}") }
+      it { should have_selector('p.info', :text => "#{p1.issues.count} issues") }
+      it { should have_selector('p.info', :text => "#{p2.issues.count} issues") }
 
     end
     
@@ -61,17 +59,13 @@ describe "project pages" do
       
       it { should have_selector('title', :text =>"#{p1.name} | Tissues") }
       it { should have_selector('h1', :text => p1.name) }
-      it { should have_selector('p.lead > a', :href => p1.url) }
-      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
-      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("projects.title"), :href => projects_path) }
-      it { should have_selector('ul.breadcrumb > li.active > a', :text => p1.name, :href => project_path(p1)) }
+      it { should have_selector('h1 > small > a', :href => p1.url) }
       
       it { should have_selector('a.archive-project', :text => I18n.t("projects.archive"), :href => archive_project_path(p1)) }
 
       describe "issues" do      
-        it { should have_selector('article.issue', :text => i1.content) }
-        it { should have_selector('article.issue', :text => i2.content) }
-        it { should have_selector('a#create-issue', :text => I18n.t("issues.create")) }
+        it { should have_selector('li.issue', :text => i1.content) }
+        it { should have_selector('li.issue', :text => i2.content) }
         
         describe "with invalid information" do
 
@@ -79,10 +73,6 @@ describe "project pages" do
             expect { click_button I18n.t("issues.submit") }.should_not change(Issue, :count)
           end
 
-          describe "error messages" do
-            before { click_button I18n.t("issues.submit") }
-            it { should have_content('error') } 
-          end
         end
 
         describe "with valid information" do
@@ -108,9 +98,6 @@ describe "project pages" do
       before { visit new_project_path }
 
       it { should have_selector('title', :text => "Create project | Tissues") }
-      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
-      it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("projects.title"), :href => projects_path) }
-      it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t("projects.create"), :href => new_project_path) }
 
       describe "with invalid information" do
 

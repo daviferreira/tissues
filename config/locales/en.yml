@@ -21,7 +21,7 @@ en:
     create: "Submit an issue"
     submit: "Submit issue"
     compose: "Compose new issue"
-    author: "Submitted by"
+    author: "submitted by"
     tags: "Tags, separated by comma"
     working_on_it: "working on it"
     solved_waiting_validation: "solved it, waiting for validation"

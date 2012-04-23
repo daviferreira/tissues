@@ -7,18 +7,6 @@
     <p class="lead"><%= mail_to @user.email %></p>
   </header>
 
-  <ul class="breadcrumb">
-    <li>
-      <%= link_to t("home.title"), root_path %> <span class="divider">/</span>
-    </li>
-    <li>
-      <%= link_to t("projects.title"), projects_path %> <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to t("projects.edit"), edit_project_path(@project) %>
-    </li>
-  </ul>
-
   <div class="well">
     <p><strong>Projects:</strong> <%= @user.projects.count %>, <strong>Issues:</strong> <%= @user.projects.count %></p>
   </div>

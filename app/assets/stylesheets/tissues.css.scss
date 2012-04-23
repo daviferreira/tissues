@@ -7,8 +7,28 @@ body {
   font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
 }
 
-#app-container {
-  margin-top: 40px;
+header#overview {
+  margin: 16px 0 16px 0;
+  padding: 0 0 16px 0;
+  h1 {
+    color: #424242;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 57px;
+    margin: 0 0;
+    padding: 16px;
+    letter-spacing: -2px;
+    text-transform: lowercase;
+    @include text-shadow(#fff -1px -1px 0);
+    small {
+      letter-spacing: 0;
+      font-size: 20px;
+      text-shadow: none;
+    }
+  }
+  p.lead {
+    padding: 0 16px;
+  }
 }
 
 .navbar p {
@@ -116,7 +136,7 @@ body {
 }
 
 #main {
-  margin: 40px 0 40px 10px;
+  margin: 0 0 40px 10px;
 }
 
 .footer {
@@ -136,31 +156,42 @@ body {
 }
 
 #greetings {
-  .avatar {
-    @include scale(20px, 20px);
-    width: 20px;
-    height: 20px;
-    @include border-radius(20px);
-    vertical-align: middle;
-    margin: 0 6px 0 0;
-  }
-  .navbar-search {
-    margin-left: 40px;
-    .search-query {
-      width: 180px;
+  border-bottom: 1px dotted #ccc;
+  padding: 6px 0;
+  background-color: lighten(#f3eee4, 5);
+  nav {
+    float: right;
+    .nav {
+      margin: 0 0;
+      > li {
+        > a {
+          padding: 0 6px;
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      } 
     }
+  }
+  .user-info {
+    .avatar {
+      @include scale(20px, 20px);
+      width: 20px;
+      height: 20px;
+      @include border-radius(20px);
+      vertical-align: middle;
+      margin: -4px 6px 0 0;
+    }  
   }
   p {
     float: left;
-    color: #ccc;
-    a {
-      color: rgba(yellow, .7);
-      @include transition(all .2s linear 0s);
-      &:hover {
-        color: rgba(yellow, 1);
-        text-decoration: none;
-        @include text-shadow(rgba(yellow, .4) 1px 1px 2px);
-      }
+    color: #666;
+  }
+  a {
+    @include transition(all .2s linear 0s);
+    &:hover {
+      text-decoration: none;
+      @include text-shadow(rgba(#000, .2) 1px 1px 2px);
     }
   }
 }
@@ -171,6 +202,7 @@ body {
 
 .pagination {
   clear: both;
+  text-align: center;
   ul {
     margin: 8px 0 0 8px;
   }
@@ -196,65 +228,6 @@ body {
   > div.create-project {
     float: right;
     margin: 4px 0 0;
-  }
-}
-
-article.project {
-  width: 324px;
-  padding: 20px;
-  @include border-radius(6px);
-  border: 1px solid #ccc;
-  float: left;
-  height: 200px;
-  margin: 10px;
-  overflow: hidden;
-  header {
-    h1 {
-      font-size: 20px;
-      line-height: 22px;
-    }
-  }
-  p.info {
-    color: #666;
-    font-weight: 900;
-    margin: 10px 0 0;
-    border-bottom: 1px dotted #ccc;
-    padding: 0 0 10px 0;
-  }
-  ul.users {
-    margin: 6px 0;
-    li {
-      float: left;
-      list-style: none;
-      margin: 0 6px 0 0;
-      img {
-        $image_size: 28px;
-        width: $image_size;
-        height: $image_size;
-        @include border-radius($image_size);
-      }
-    }
-  }
-  div.project-actions {
-    margin: 10px 0 0;
-    padding: 10px 0 0;
-  }
-}
-
-.avatars-list {
-  li {
-    float: left;
-    margin: 20px;
-    list-style: none;
-    width: 80px;
-    height: 140px;
-    text-align: center;
-    .avatar {
-      border-radius: 60px;
-      width: 80px;
-      height: 80px;
-      margin: 0 0 6px 0;
-    }
   }
 }
 
@@ -355,4 +328,11 @@ form.comment {
     p {
       padding: 12px;
     }
+}
+
+.tooltip {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 4px;
+  font-weight: 700;
 }

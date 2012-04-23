@@ -1,13 +1,4 @@
 <article class="project">
-  <header>
-    <h1><%= link_to project.name, project %> <span class="label label-<%= "success" if project.status == "active" %>"><%= project.status %></span></h1>
-  </header>
-  <p class="info"><%= t("issues.title") %>: <span class="issues"><%= project.issues.count %></span> </p>
-  <ul class="users clearfix">
-    <% project.related_users.each do |user| %>
-      <li><%= image_tag(user.avatar.url(:thumb), :class => "avatar") %></li>
-    <% end %>
-  </ul>
   <% if project.user == current_user %>
     <div class="project-actions">
         <%= link_to "Edit project", edit_project_path(project), :class => "btn btn-small btn-primary" %>
@@ -15,4 +6,13 @@
                                             :title => "#{t(:delete)} #{project.name}", :class => "btn btn-small btn-danger" %>
     </div>
   <% end %>
+  <header>
+    <h1><%= link_to project.name, project %> <span class="label label-<%= "success" if project.status == "active" %>"><%= project.status %></span></h1>
+  </header>
+  <p class="info"><%= pluralize project.issues.count, "issue" %></p>
+  <ul class="users clearfix">
+    <% project.related_users.each do |user| %>
+      <li><%= link_to image_tag(user.avatar.url(:thumb), :class => "avatar"), user, :rel => "tooltip", :title => user.name %></li>
+    <% end %>
+  </ul>
 </article>

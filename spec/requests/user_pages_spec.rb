@@ -20,10 +20,7 @@ describe "User pages" do
         page.should have_selector('img', class: 'avatar')
       end
     end
-    
-    it { should have_selector('ul.breadcrumb > li > a', :text => I18n.t("home.title"), :href => root_path) }
-    it { should have_selector('ul.breadcrumb > li.active > a', :text => I18n.t("users.title"), :href => users_path) }
-    
+      
   end
 
   describe "profile page" do

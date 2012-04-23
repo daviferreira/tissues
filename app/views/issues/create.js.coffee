@@ -8,12 +8,20 @@
   if !$issues_list.length
     $issues_list = $('<ul class="clearfix" />').insertAfter $project.find("header:first")
 
-  $('<%= escape_javascript(render @issue) %>')
-    .appendTo($issues_list)
-    .show "scale", 200
+  $issue = $('<%= escape_javascript(render @issue) %>')
+            .appendTo($issues_list)
+            .show "scale", 200
 
   flash "<%= flash[:success] %>", "success"
 
   $("#new_issue").find("textarea").val ""
+
+  $issue.find('div.info, div.actions').on "mouseenter", ->
+    $(@).parent().find("> a").addClass "active"
+
+  $issue.find('div.info, div.actions').on "mouseleave", ->
+    if !$(@).parent().hasClass "active"
+      $(@).parent().find("> a").removeClass "active"
+
 <% end %>
 <% flash.clear %>

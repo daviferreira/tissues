@@ -5,15 +5,6 @@
     <h1><%= t(:my_account) %></h1>
   </header>
 
-    <ul class="breadcrumb">
-    <li>
-      <%= link_to t("home.title"), root_path %> <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to t(:my_account), edit_user_registration_path %>
-    </li>
-  </ul>
-
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal" }) do |f| %>
     <%= devise_error_messages! %>
 
