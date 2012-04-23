@@ -9,8 +9,12 @@ class IssuesController < ApplicationController
 
   def create
     @issue = current_user.issues.build(params[:issue])
-    @issue.status = "pending"
-    flash[:success] = "Issue created!" if @issue.save
+    if @issue.valid?
+      @issue.status = "pending"
+      flash[:success] = "Issue created!" if @issue.save
+    else
+      flash[:error] = t("issues.error_creating")
+    end
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js
@@ -33,11 +37,12 @@ class IssuesController < ApplicationController
 
   def solve
     @issue = Issue.find(params[:id])
-    #TODO: can haz solver?
-    #TODO: take it to the model
-    @issue.who_is_solving = current_user
-    @issue.status = "in progress"
-    @issue.save
+
+    if @issue.can_be_solved?
+      @issue.who_is_solving = current_user
+      @issue.status = "in progress"
+      @issue.save
+    end
 
     respond_to do |format|
       format.html { redirect_to @issue.project }
@@ -47,10 +52,11 @@ class IssuesController < ApplicationController
 
   def done_solving
     @issue = Issue.find(params[:id])
-    #TODO: can haz solved?
-    #TODO: take it to the model
-    @issue.status = "waiting for validation"
-    @issue.save
+    
+    if @issue.can_be_finished_by?(current_user, "solving")
+      @issue.status = "waiting for validation"
+      @issue.save
+    end
 
     respond_to do |format|
       format.html { redirect_to @issue.project }
@@ -59,12 +65,12 @@ class IssuesController < ApplicationController
   end
 
   def abandon_solving
-    #TODO: can haz abandon solving?
-    #TODO: take it to the model
     @issue = Issue.find(params[:id])
-    @issue.who_is_solving = nil
-    @issue.status = "pending"
-    @issue.save
+    if @issue.can_be_finished_by?(current_user, "solving")
+      @issue.who_is_solving = nil
+      @issue.status = "pending"
+      @issue.save
+    end
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js
@@ -73,11 +79,11 @@ class IssuesController < ApplicationController
 
   def validate
     @issue = Issue.find(params[:id])
-    #TODO: can haz validator?
-    #TODO: take it to the model
-    @issue.who_is_validating = current_user
-    @issue.status = "validating"
-    @issue.save
+    if @issue.can_be_validated_by?(current_user)
+      @issue.who_is_validating = current_user
+      @issue.status = "validating"
+      @issue.save
+    end
 
     respond_to do |format|
       format.html { redirect_to @issue.project }
@@ -86,12 +92,12 @@ class IssuesController < ApplicationController
   end
 
   def abandon_validation
-    #TODO: can haz abandon solving?
-    #TODO: take it to the model
     @issue = Issue.find(params[:id])
-    @issue.who_is_validating = nil
-    @issue.status = "waiting for validation"
-    @issue.save
+    if @issue.can_be_finished_by?(current_user, "validating")
+      @issue.who_is_validating = nil
+      @issue.status = "waiting for validation"
+      @issue.save
+    end
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js
@@ -99,11 +105,11 @@ class IssuesController < ApplicationController
   end
   
   def done_validating
-    #TODO: can haz abandon solving?
-    #TODO: take it to the model
     @issue = Issue.find(params[:id])
-    @issue.status = params[:status]
-    @issue.save
+    if @issue.can_be_finished_by?(current_user, "validating")
+      @issue.status = params[:status]
+      @issue.save
+    end
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js

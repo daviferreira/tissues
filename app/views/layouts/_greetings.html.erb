@@ -6,7 +6,7 @@
     <div class="user-info">
       <p>
         <% if user_signed_in? %>
-          <%= link_to image_tag(current_user.avatar.url(:thumb), :class => "avatar"), current_user %> <%= t(:greetings_user) %>, <%= link_to current_user.name, current_user %>.
+          <%= link_to image_tag(current_user.avatar.url(:thumb), :class => "avatar"), current_user %> <%= t(:greetings_user) %>, <%= link_to current_user.name.split(" ").first, current_user %>.
         <% else %>
           <%= t(:greetings_anonymous) %>
         <% end %>

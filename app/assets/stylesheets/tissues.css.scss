@@ -137,6 +137,9 @@ header#overview {
 
 #main {
   margin: 0 0 40px 10px;
+  > div.alert:first-child {
+    margin-top: 40px;
+  }
 }
 
 .footer {

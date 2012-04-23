@@ -35,6 +35,7 @@ en:
     is_valid: "Ok, it's valid!"
     need_more_work: "Need some more work!"
     abandon_validation: "or abandon validation"
+    error_creating: "Please, type in the issue content."
 
   comments:
     comment_created: "Comment successfully submitted."
