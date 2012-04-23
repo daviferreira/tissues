@@ -5,6 +5,8 @@
 // the compiled file.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require ../stylesheets/bootstrap/js/bootstrap-alert
+//= require tissues
 //= require_tree .

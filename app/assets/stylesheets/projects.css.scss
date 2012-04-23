@@ -1,0 +1,192 @@
+@import "compass/reset";
+@import "compass/css3";
+
+$project_color: #424242;
+$text_color: #424242;
+
+@mixin issue-state($color) {
+  border-left-color: $color;
+  > a:hover, > a.active, &.active > a {
+    background-color: $color;
+  }
+  div.info {
+    background-color: rgba($color, .8);
+  }
+}
+
+body {
+  background-color: #f3eee4; 
+  border-top: 10px solid $project_color;
+  font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+#projects-page {
+  margin: 15px;
+  textarea {
+    @include border-radius(6px);
+    @include box-shadow(inset #ccc 2px 2px 8px);    
+    padding: 10px;
+    font-size: 17px;
+  }
+  header {
+    h1 {
+      color: $text_color;
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 57px;
+      margin: 0 0;
+      padding: 15px;
+      letter-spacing: -2px;
+      small {
+        letter-spacing: 0;
+        font-size: 20px;
+      }
+    }
+  }
+  ul {
+    li.issue {
+      position: relative;
+      background-color: lighten(#f3eee4, 5);
+      border-left: 12px solid $project_color;
+      color: #222;
+      font-size: 13px;
+      line-height: 16px;
+      div.info {
+        background-color: rgba($project_color, .8);
+      }
+      &.issue-not-approved { @include issue-state(#ff0000); }
+      &.issue-in-progress { @include issue-state(#3a74d0); }
+      &.issue-waiting-for-validation { @include issue-state(#fc0); }
+      &.issue-done { @include issue-state(#3c7); }
+      &.issue-validating { @include issue-state(#04bfbf); }
+      > a {
+        @include transition(all .1s ease-in-out);
+        color: $text_color;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 23px;
+        padding: 20px 15px;
+        display: block;
+        &:hover, &.active {
+          background-color: $project_color;
+          cursor: pointer;
+          color: #fff;
+        }
+      }
+      div.info, div.actions {
+        display: none;
+      }
+      div.info {
+        top: -28px;
+        position: absolute;
+        width: 1140px;
+        left: -12px;
+        ul {
+          float: right;
+          li {
+            color: rgba(#fff, .9);
+            font-size: 14px;
+            display: inline-block;
+            margin: 6px 0;
+            padding: 0 6px;
+            border-right: 1px dotted rgba(#fff, .3);
+            &:first-child {
+              padding-left: 24px;
+            }
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+      div.actions {
+        float: right;
+        margin: 18px 18px 0 18px;
+        a.text {
+          color: #fff;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      &.active {
+        > a {
+          color: #fff;
+        }
+      }
+      &:hover, &.active {
+        div.info, div.actions {
+          display: block;
+        }
+      }
+    }
+  }
+  li.details {
+    $darken_ammount: 20;
+    background-color: darken($project_color, $darken_ammount);
+    &.details-not-approved { background: darken(#ff0000, $darken_ammount); }
+    &.details-in-progress { background: darken(#3a74d0, $darken_ammount); }
+    &.details-waiting-for-validation { background: darken(#fc0, $darken_ammount); }
+    &.details-done { background: darken(#3c7, $darken_ammount); }
+    &.details-validating { background: darken(#04bfbf, $darken_ammount); }
+    display: none;
+    padding: 28px; 
+    h1 {
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0 0 24px 0;
+      padding: 0 0 12px 0;
+      color: #fff;
+      border-bottom: 1px solid rgba(#000, .3);
+      @include box-shadow(rgba(#fff, .5) 0 1px 0);
+    }
+    section.comments {
+      article {
+        margin: 0 0 12px 0;
+        div {
+          float: left;
+          &.avatar img{
+            @include border-radius(60px);
+            margin: 16px 0 0;
+          }
+          &.comment {
+            background-color: rgba(#fff, .9);
+            padding: 24px;
+            margin: 4px 0 0 12px;
+            width: 86%;
+            @include border-radius(12px);
+          }
+        }
+        p {
+          &.time-ago {
+            color: #999;
+            margin: 24px 0 0;
+            padding: 6px 0 0;
+            border-top: 1px dotted rgba(#999, .3);
+            font-size: 12px;
+            text-align: right;
+          }
+        }
+      }
+    }
+    form.comment {
+      margin: 18px 0 0 116px;
+      textarea {
+        font-size: 12px;
+        width: 60%;
+      }
+    }
+  }
+}
+
+#new_issue {
+  textarea {
+    width: 98%;
+    height: 60px;
+    margin: 12px 0 0;
+  }
+  .btn {
+    margin: 12px 0 0;
+  }
+}

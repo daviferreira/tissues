@@ -1,14 +1,26 @@
-<article class="issue issue-<%= issue.status.to_s.sub(" ", "_") %>">
-  <p class="actions" id="issue-actions-<%= issue.id %>">
+<li class="issue clearfix issue-<%= issue.status.to_s.gsub(" ", "-") %>" id="issue-<%= issue.id %>">
+  <div class="info">
+    <ul>
+      <% if issue.status == "validating" %>
+        <li>being validated by <%= issue.who_is_validating.name.split(" ").first %></li>
+      <% elsif issue.status == "in progress" %>  
+        <li><%= issue.who_is_solving.name.split(" ").first %> is working on it</li>
+      <% else %>
+        <li>submitted by <%= issue.user.name.split(" ").first %></li>
+      <% end %>
+      <li><%= pluralize issue.comment_threads.count, "comment" %></li>
+    </ul>
+  </div>
+  <div class="actions clearfix" id="issue-actions-<%= issue.id %>">
     <!-- TODO: Action helper -->
     <% if issue.status == "pending" %>
-      <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-large btn-success", :remote => true %>
+      <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-small", :remote => true %>
     <% end %>
     <% if issue.status == "waiting for validation" %>
       <% if issue.who_is_solving == current_user %>
         Waiting for validation.
       <% else %>
-        <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-large btn-warning", :remote => true %>
+        <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-small", :remote => true %>
       <% end %>
     <% end %>
     <% if issue.status == "in progress" and issue.who_is_solving == current_user %>
@@ -17,30 +29,6 @@
     <% if issue.status == "validating" and issue.who_is_validating == current_user %>
       <%= render "issues/buttons_validation", :issue => issue %>
     <% end %>
-  </p>
-  <p class="content">
-    <%= issue.content %> 
-    <span class="label label-<%= issue.status.to_s.sub(" ", "_") %>"><%= issue.status %></span>
-    <% if issue.tags.any? %>
-      <% issue.tags.each do |tag| %>
-        <span class="label label-warning"><%= link_to tag.name, "#" %></span>
-      <% end %>
-    <% end %>
-    <% if not @project %><span class="label"><%= link_to issue.project.name, issue.project %></span><% end %>
-  </p>
-  <p class="author"><strong><%= t("issues.author") %></strong> <span class="label"><%= link_to issue.user.name, issue.user %></span></p>
-  
-  <% if issue.comment_threads.any? %>
-    <section class="comentarios">
-      <% issue.comment_threads.each do |comment| %>
-        <article>
-          <p><%= comment.body %></p>
-          <p class="author">By <%= link_to comment.user.name, comment.user %>, <%= time_ago_in_words(comment.created_at) %> ago</p>
-        </article>
-      <% end %>
-    </section>
-  <% end %>
-  
-  <%= render "comments/form", :issue => issue %>
-
-</article>
+  </div>
+  <%= link_to issue.content, issue_details_path(issue), :remote => true %>
+</li>

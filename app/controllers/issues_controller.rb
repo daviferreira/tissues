@@ -10,9 +10,16 @@ class IssuesController < ApplicationController
   def create
       @issue = current_user.issues.build(params[:issue])
       @issue.status = "pending"
-      @project = @issue.project
       flash[:success] = "Issue created!" if @issue.save
-      render "projects/show"
+      redirect_to @issue.project
+  end
+
+  def details
+    @issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to @issue }
+      format.js
+    end
   end
 
   def destroy

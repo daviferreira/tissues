@@ -1,0 +1,17 @@
+<li class="details details-<%= issue.status.to_s.gsub(" ", "-") %>" id="issue-details-<%= issue.id %>">
+    <h1><%= pluralize issue.comment_threads.count, "comment" %></h1>
+    <% if issue.comment_threads.any? %>
+      <section class="comments">
+          <% issue.comment_threads.each do |comment| %>
+            <article class="clearfix">
+              <div class="avatar"><%= link_to image_tag(comment.user.avatar.url(:medium), :class => "avatar"), comment.user %></div>
+              <div class="comment">
+                <%= comment.body %>
+                <p class="time-ago">posted by <%= link_to comment.user.name.split(" ").first, comment.user %> <%= time_ago_in_words(comment.created_at) %> ago.</p>
+              </div>
+            </article>
+          <% end %>
+      </section>
+    <% end %>
+    <%= render "comments/form", :issue => issue %>
+</li>

@@ -18,6 +18,7 @@ Tissues::Application.routes.draw do
   match "/issue/validate/:id" => "issues#validate", :as => :validate_issue
   match "/issue/solve/:id/done" => "issues#done_solving", :as => :done_solving
   match "/issue/validate/:id/:status" => "issues#done_validating", :as => :done_validating
+  match "/issue/details/:id" => "issues#details", :as => :issue_details
 
   root :to => "static_pages#home"
 end

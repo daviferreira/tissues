@@ -4,8 +4,5 @@
   <div class="field">
     <%= f.text_area :content, placeholder: t("issues.compose") %>
   </div>
-  <div class="field">
-    <%= f.text_field :tag_list, placeholder: t("issues.tags"), class: "input-xxlarge" %>
-  </div>
   <%= f.submit t("issues.submit"), class: "btn btn-large btn-primary" %>
 <% end %>
