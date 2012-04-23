@@ -32,8 +32,8 @@ describe "User pages" do
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: "#{user.name} | Tissues") }
-    it { should have_selector('p', text: "#{I18n.t("projects.title")}: #{user.projects.count.to_s}") }
-    it { should have_selector('p', text: "#{I18n.t("issues.title")}: #{user.issues.count.to_s}") }
+    it { should have_selector('p', text: "#{user.projects.count.to_s} Project") }
+    it { should have_selector('p', text: "#{user.issues.count.to_s} Issue") }
     
     describe "my projects" do
       it { should have_content(p1.name) }

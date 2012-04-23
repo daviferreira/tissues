@@ -94,7 +94,7 @@ describe UsersController do
     it "should display the project count" do
       10.times { Factory(:project, :user => @user, :name => "foo") }
       get :show, :id => @user
-      response.body.should have_selector('strong',
+      response.body.should have_selector('p',
                                     :content => @user.projects.count.to_s)
     end
     
