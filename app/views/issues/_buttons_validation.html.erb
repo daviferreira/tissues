@@ -1,5 +1,5 @@
-<%= link_to t("issues.is_valid"), done_validating_path(issue, "validated"), :class => "btn 
+<%= link_to t("issues.is_valid"), done_validating_path(issue, "done"), :class => "btn 
  btn-success", :remote => true %>
-<%= link_to t("issues.need_more_work"), done_validating_path(issue, "pending"), :class => "btn
+<%= link_to t("issues.need_more_work"), done_validating_path(issue, "not approved"), :class => "btn
  btn-danger", :remote => true %>
 <%= link_to t("issues.abandon_validation"), abandon_validation_path(issue), :class => "text", :remote => true %>

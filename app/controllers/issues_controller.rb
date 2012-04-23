@@ -8,10 +8,13 @@ class IssuesController < ApplicationController
   end
 
   def create
-      @issue = current_user.issues.build(params[:issue])
-      @issue.status = "pending"
-      flash[:success] = "Issue created!" if @issue.save
-      redirect_to @issue.project
+    @issue = current_user.issues.build(params[:issue])
+    @issue.status = "pending"
+    flash[:success] = "Issue created!" if @issue.save
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
   end
 
   def details
@@ -34,6 +37,19 @@ class IssuesController < ApplicationController
     #TODO: take it to the model
     @issue.who_is_solving = current_user
     @issue.status = "in progress"
+    @issue.save
+
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
+  end
+
+  def done_solving
+    @issue = Issue.find(params[:id])
+    #TODO: can haz solved?
+    #TODO: take it to the model
+    @issue.status = "waiting for validation"
     @issue.save
 
     respond_to do |format|
@@ -81,22 +97,17 @@ class IssuesController < ApplicationController
       format.js
     end
   end
-
-  def done_solving
-    @issue = Issue.find(params[:id])
-    #TODO: can haz solved?
+  
+  def done_validating
+    #TODO: can haz abandon solving?
     #TODO: take it to the model
-    @issue.status = "waiting for validation"
+    @issue = Issue.find(params[:id])
+    @issue.status = params[:status]
     @issue.save
-
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js
     end
-  end
-
-  def done_validating
-
   end
   
   private

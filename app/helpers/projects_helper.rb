@@ -3,17 +3,19 @@ module ProjectsHelper
   def status_with_user(issue)
     case issue.status
       when "in progress"
-        "#{issue.who_is_solving.name.split(" ").first} #{t("issues.working_on_it")}"
+        name = get_user_first_name(issue.who_is_solving)
+        "#{name} #{if issue.who_is_solving == current_user then t(:are) else t(:is) end} #{t("issues.working_on_it")}"
       when "waiting for validation"
-        "#{issue.who_is_solving.name.split(" ").first} #{t("issues.solved_waiting_validation")}"
+        "#{get_user_first_name(issue.who_is_solving)} #{t("issues.solved_waiting_validation")}"
       when "validating"
-        "#{issue.who_is_validating.name.split(" ").first} #{t("issues.is_validating")}"
+        name = get_user_first_name(issue.who_is_validating)
+        "#{name} #{if issue.who_is_validating == current_user then t(:are) else t(:is) end} #{t("issues.is_validating")}"
       when "not approved"
-        "#{issue.who_is_validating.name.split(" ").first} #{t("issues.not_approved")}"
+        "#{get_user_first_name(issue.who_is_validating)} #{t("issues.not_approved")}"
       when "done"
-        "#{issue.who_is_solving.name.split(" ").first} #{t("issues.solved_it")}"
+        "#{get_user_first_name(issue.who_is_solving)} #{t("issues.solved_it")}"
       else
-        "#{t("issues.author")} #{issue.user.name.split(" ").first}"
+        "#{t("issues.author")} #{get_user_first_name(issue.user)}"
     end
   end
 
@@ -29,6 +31,14 @@ module ProjectsHelper
         action = action = "issues/buttons_validation" if issue.who_is_validating == current_user
     end
     render(action, :issue => issue) if action
+  end
+
+  def get_user_first_name(user)
+    if user == current_user 
+      "you"
+    else 
+      user.name.split(" ").first
+    end
   end
 
 end
