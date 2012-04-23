@@ -1,4 +1,11 @@
+@import "compass/reset";
 @import "compass/css3";
+
+body {
+  background-color: #f3eee4; 
+  border-top: 10px solid #424242;
+  font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
+}
 
 #app-container {
   margin-top: 40px;
@@ -105,7 +112,6 @@
     margin-bottom: 18px;
     font-size: 20px;
     line-height: 27px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   }
 }
 
@@ -336,4 +342,17 @@ article.project {
 
 form.comment {
   margin: 12px 0 0;
+}
+
+#notification {
+    display: none;
+    position: fixed;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    z-index: 9999;
+    top: 0;
+    p {
+      padding: 12px;
+    }
 }

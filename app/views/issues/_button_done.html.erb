@@ -1,2 +1,2 @@
-<%= link_to "Done!", done_solving_path(issue), :class => "btn btn-small btn-success", :remote => true %>
-<%= link_to "or abandon task", "#", :class => "text" %>
+<%= link_to t("issues.done"), done_solving_path(issue), :class => "btn btn-success", :remote => true %>
+<%= link_to t("issues.abandon_task"), abandon_solving_path(issue), :class => "text", :remote => true %>

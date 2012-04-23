@@ -30,7 +30,7 @@ if el.length == 0
   $('<%= escape_javascript(render("issues/details", :issue => @issue)) %>')
     .insertAfter("#issue-<%= @issue.id %>")
     .show effect, speed, ->
-      scroll_to @, speed, -1 * ($(@).prev().height() + 17)
+      scroll_to "#issue-details-<%= @issue.id %>", speed, -1 * ($(@).prev().height() + 17)
 else
   if el.is(":visible") 
     deactivate_issue()
@@ -38,4 +38,4 @@ else
   else 
     activate_issue()
     el.show effect, speed, ->
-      scroll_to @, speed, -1 * ($(@).prev().height() + 17)
+      scroll_to "#issue-details-<%= @issue.id %>", speed, -1 * ($(@).prev().height() + 17)

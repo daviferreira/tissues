@@ -5,7 +5,6 @@
     <h1><%= @project.name %> <small><%= link_to @project.url, @project.url, :target => "_blank" %></small></h1>
   </header>
 
-
   <ul class="clearfix">
   <% @project.issues.each do |issue| %>
     <%= render issue %>

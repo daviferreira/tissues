@@ -14,5 +14,5 @@ class Issue < ActiveRecord::Base
 	validates :project_id, presence: true
 	validates :content, presence: true
 
-  default_scope order: 'issues.updated_at DESC'
+  default_scope order: 'issues.created_at ASC'
 end

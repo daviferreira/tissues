@@ -42,6 +42,19 @@ class IssuesController < ApplicationController
     end
   end
 
+  def abandon_solving
+    #TODO: can haz abandon solving?
+    #TODO: take it to the model
+    @issue = Issue.find(params[:id])
+    @issue.who_is_solving = nil
+    @issue.status = "pending"
+    @issue.save
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
+  end
+
   def validate
     @issue = Issue.find(params[:id])
     #TODO: can haz validator?
@@ -50,6 +63,19 @@ class IssuesController < ApplicationController
     @issue.status = "validating"
     @issue.save
 
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
+  end
+
+  def abandon_validation
+    #TODO: can haz abandon solving?
+    #TODO: take it to the model
+    @issue = Issue.find(params[:id])
+    @issue.who_is_validating = nil
+    @issue.status = "waiting for validation"
+    @issue.save
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js

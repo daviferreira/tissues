@@ -1,34 +1,12 @@
 <li class="issue clearfix issue-<%= issue.status.to_s.gsub(" ", "-") %>" id="issue-<%= issue.id %>">
   <div class="info">
     <ul>
-      <% if issue.status == "validating" %>
-        <li>being validated by <%= issue.who_is_validating.name.split(" ").first %></li>
-      <% elsif issue.status == "in progress" %>  
-        <li><%= issue.who_is_solving.name.split(" ").first %> is working on it</li>
-      <% else %>
-        <li>submitted by <%= issue.user.name.split(" ").first %></li>
-      <% end %>
+      <li><%= status_with_user(issue) %></li>
       <li><%= pluralize issue.comment_threads.count, "comment" %></li>
     </ul>
   </div>
   <div class="actions clearfix" id="issue-actions-<%= issue.id %>">
-    <!-- TODO: Action helper -->
-    <% if issue.status == "pending" %>
-      <%= link_to "I want to solve this!", solve_issue_path(issue), :class => "btn btn-small", :remote => true %>
-    <% end %>
-    <% if issue.status == "waiting for validation" %>
-      <% if issue.who_is_solving == current_user %>
-        Waiting for validation.
-      <% else %>
-        <%= link_to "Validate", validate_issue_path(issue), :class => "btn btn-small", :remote => true %>
-      <% end %>
-    <% end %>
-    <% if issue.status == "in progress" and issue.who_is_solving == current_user %>
-      <%= render "issues/button_done", :issue => issue %>
-    <% end %>
-    <% if issue.status == "validating" and issue.who_is_validating == current_user %>
-      <%= render "issues/buttons_validation", :issue => issue %>
-    <% end %>
+    <%= show_action_for(issue) %>
   </div>
   <%= link_to issue.content, issue_details_path(issue), :remote => true %>
 </li>

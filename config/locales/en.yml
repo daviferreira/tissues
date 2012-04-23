@@ -23,6 +23,22 @@ en:
     compose: "Compose new issue"
     author: "Submitted by"
     tags: "Tags, separated by comma"
+    working_on_it: "is working on it"
+    solved_waiting_validation: "solved it and is waiting for validation"
+    is_validating: "is validating it"
+    not_approved: "said it's still not valid"
+    solved_it: "solved it"
+    done: "Done!"
+    abandon_task: "or abandon task"
+    want_to_solve: "I want to solve this!"
+    validate: "Validate"
+    is_valid: "Ok, it's valid!"
+    need_more_work: "Need some more work!"
+    abandon_validation: "or abandon validation"
+
+  comments:
+    comment_created: "Comment successfully submitted."
+    error_creating: "Please, type in your comment."
 
   users: 
     title: "Users"
