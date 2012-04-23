@@ -8,6 +8,7 @@ gem 'acts-as-taggable-on', '2.2.2'
 gem 'paperclip', '3.0'
 gem 'acts_as_commentable_with_threading', '1.1.2'
 gem 'jquery-rails', '2.0.0'
+gem 'coffee-rails', '3.2.2'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
@@ -23,7 +24,6 @@ group :assets do
   gem 'sass-rails',   '3.2.3'
   gem 'compass', '0.12.rc.1'
   gem 'compass-rails', '1.0.0.rc.3'
-  gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.0.3'
   gem 'less', '2.0.9' 
 end
