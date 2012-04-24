@@ -17,9 +17,7 @@ class Issue < ActiveRecord::Base
   default_scope order: 'issues.created_at ASC'
 
   def can_be_solved?
-    if self.status == "pending" or self.status == "not approved"
-      true if not self.who_is_solving
-    end
+    true if self.status == "pending" or self.status == "not approved"
   end
 
   def can_be_finished_by?(user, type)
