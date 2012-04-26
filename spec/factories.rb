@@ -27,4 +27,11 @@ FactoryGirl.define do
     project
     user
   end
+
+  factory :comment do
+    body "First!"
+    parent nil
+    commentable nil
+    user
+  end
 end
