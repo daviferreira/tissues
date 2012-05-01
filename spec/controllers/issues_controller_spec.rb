@@ -17,6 +17,11 @@ describe IssuesController do
       delete :destroy, :id => 1
       response.should redirect_to new_user_session_path
     end
+
+    it "should deny access to 'details'" do
+      get :details, :id => 1
+      response.should redirect_to new_user_session_path
+    end
   end
   
   describe "POST 'create'" do
@@ -97,43 +102,17 @@ describe IssuesController do
     
   end
 
-  describe "GET 'index'" do
+  describe "GET 'details'" do
+    let(:issue) { FactoryGirl.create(:issue, :user => user, :project => project) }
 
     describe "for an authorized user" do
+      before { sign_in user }
 
-      before(:each) do
-        sign_in user
-        100.times do
-          Factory(:issue, :content => Factory.next(:name), :user => user, :project => project)
-        end
-      end
-       
-      it "returns http success" do
-        get :index
-        response.should be_success
-      end
-      
-      it "should list all the issues" do
-        user2 = FactoryGirl.create(:user, :email => "another@example.com");
-        i1 = FactoryGirl.create(:issue, :user => user, :content => "Foo bar", :project => project)
-        i2 = FactoryGirl.create(:issue, :user => user2, :content => "Baz quux", :project => project)
-        get 'index', :page => 11
-        response.body.should have_selector('li', :text => i1.content)
-        response.body.should have_selector('li', :text => i2.content)
-      end
-      
-      it "should paginate issues" do
-        get :index
-        response.body.should have_selector('div.pagination')
-        response.body.should have_selector('li.disabled', :content => "Previous")
-        response.body.should have_selector('span.gap', :href => "#")
-        response.body.should have_selector('a', :href => "/issues?page=2",
-                                           :content => "2")
-        response.body.should have_selector('a', :href => "/issues?page=2",
-                                           :content => "Next")
-      end
+      it "should redirect to the issue" do
+        get :details, :id => issue
+        response.should redirect_to(issue)
+      end   
     end
   end
-
   
 end

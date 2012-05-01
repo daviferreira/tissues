@@ -1,0 +1,2 @@
+<%= link_to t(:edit), edit_issue_path(issue), :class => "btn btn-info edit", :remote => true %>
+<%= link_to t(:delete), issue, :class => "btn btn-danger delete", :remote => true, :method => "delete", :confirm => t(:are_you_sure) %>

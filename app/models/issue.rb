@@ -16,23 +16,21 @@ class Issue < ActiveRecord::Base
 
   default_scope order: 'issues.created_at ASC'
 
-  def can_be_solved?
+  def can_be_solved
     true if self.status == "pending" or self.status == "not approved"
   end
 
-  def can_be_finished_by?(user, type)
+  def can_be_finished_by(user, type)
     case type
       when "solving"
-        true if self.who_is_solving == user  and self.status == "in progress"
+        true if self.who_is_solving == user and self.status == "in progress"
       when "validating"
-        true if self.who_is_validating == user  and self.status == "validating"
+        true if self.who_is_validating == user and self.status == "validating"
     end
   end
 
-  def can_be_validated_by?(user)
-    if self.status == "waiting for validation"
-      true if self.who_is_solving != user
-    end
+  def can_be_validated_by(user)
+    true if self.who_is_solving != user and self.status == "waiting for validation"
   end
 
 end

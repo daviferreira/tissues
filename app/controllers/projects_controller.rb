@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user, only: [:update, :destroy, :archive]
+  before_filter :correct_user, only: [:edit, :update, :destroy, :archive]
   
   def index
     @projects = Project.paginate(page: params[:page], per_page: 12)

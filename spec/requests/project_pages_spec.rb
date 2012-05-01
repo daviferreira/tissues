@@ -54,6 +54,10 @@ describe "project pages" do
       let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
       let!(:i1) { FactoryGirl.create(:issue, user: user, project: p1, content: "Issue #1") }
       let!(:i2) { FactoryGirl.create(:issue, user: user, project: p1, content: "Issue #2") }
+
+      let!(:user2) { FactoryGirl.create(:user, :email => "different@example.com") }
+      let!(:i3) { FactoryGirl.create(:issue, user: user2, project: p1, content: "Issue #3") }
+      let!(:i4) { FactoryGirl.create(:issue, user: user2, project: p1, content: "Issue #4") }
       
       before { visit project_path(p1) }
       
@@ -66,6 +70,41 @@ describe "project pages" do
       describe "issues" do      
         it { should have_selector('li.issue', :text => i1.content) }
         it { should have_selector('li.issue', :text => i2.content) }
+        it { should have_selector('li.issue', :text => i3.content) }
+        it { should have_selector('li.issue', :text => i4.content) }
+
+        describe "issues edit/delete" do
+
+          describe "for the right user" do
+            it { should have_selector("li#issue-#{i1.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i1, :method => :delete) }
+            it { should have_selector("li#issue-#{i1.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i1)) }
+            it { should have_selector("li#issue-#{i2.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i2, :method => :delete) }
+            it { should have_selector("li#issue-#{i2.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i2)) }
+            it { should_not have_selector("li#issue-#{i3.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i3, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i3.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i3)) }
+            it { should_not have_selector("li#issue-#{i4.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i4, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i4.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i4)) }
+          end
+
+          describe "for another users" do
+            before do
+              click_link "Logout"
+              visit new_user_session_path
+              valid_signin user2
+              visit project_path(p1)
+            end
+
+            it { should_not have_selector("li#issue-#{i1.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i1, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i1.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i1)) }
+            it { should_not have_selector("li#issue-#{i2.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i2, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i2.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i2)) }
+            it { should have_selector("li#issue-#{i3.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i3, :method => :delete) }
+            it { should have_selector("li#issue-#{i3.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i3)) }
+            it { should have_selector("li#issue-#{i4.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i4, :method => :delete) }
+            it { should have_selector("li#issue-#{i4.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i4)) }
+
+          end
+        end
         
         describe "with invalid information" do
 

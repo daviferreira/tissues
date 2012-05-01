@@ -7,6 +7,7 @@
   </div>
   <div class="actions clearfix" id="issue-actions-<%= issue.id %>">
     <%= show_action_for(issue) %>
+    <%= render("issues/admin", :issue => issue) if issue.user == current_user %>
   </div>
   <%= link_to issue.content, issue_details_path(issue), :remote => true %>
 </li>

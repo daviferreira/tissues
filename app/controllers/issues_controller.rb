@@ -1,11 +1,7 @@
 class IssuesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user, only: :destroy
+  before_filter :correct_user, only: [:edit, :update, :destroy]
   before_filter :has_valid_project?, only: :create
-
-  def index
-    @issues = Issue.paginate(page: params[:page], per_page: 10)
-  end
 
   def create
     @issue = current_user.issues.build(params[:issue])
@@ -29,6 +25,14 @@ class IssuesController < ApplicationController
     end
   end
 
+  def edit
+    @issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to @issue }
+      format.js
+    end
+  end
+
   def destroy
     project = @issue.project
     @issue.destroy
@@ -38,7 +42,7 @@ class IssuesController < ApplicationController
   def solve
     @issue = Issue.find(params[:id])
 
-    if @issue.can_be_solved?
+    if @issue.can_be_solved
       @issue.who_is_solving = current_user
       @issue.status = "in progress"
       @issue.save
@@ -53,7 +57,7 @@ class IssuesController < ApplicationController
   def done_solving
     @issue = Issue.find(params[:id])
     
-    if @issue.can_be_finished_by?(current_user, "solving")
+    if @issue.can_be_finished_by(current_user, "solving")
       @issue.status = "waiting for validation"
       @issue.save
     end
@@ -66,7 +70,7 @@ class IssuesController < ApplicationController
 
   def abandon_solving
     @issue = Issue.find(params[:id])
-    if @issue.can_be_finished_by?(current_user, "solving")
+    if @issue.can_be_finished_by(current_user, "solving")
       @issue.who_is_solving = nil
       @issue.status = "pending"
       @issue.save
@@ -79,7 +83,7 @@ class IssuesController < ApplicationController
 
   def validate
     @issue = Issue.find(params[:id])
-    if @issue.can_be_validated_by?(current_user)
+    if @issue.can_be_validated_by(current_user)
       @issue.who_is_validating = current_user
       @issue.status = "validating"
       @issue.save
@@ -93,7 +97,7 @@ class IssuesController < ApplicationController
 
   def abandon_validation
     @issue = Issue.find(params[:id])
-    if @issue.can_be_finished_by?(current_user, "validating")
+    if @issue.can_be_finished_by(current_user, "validating")
       @issue.who_is_validating = nil
       @issue.status = "waiting for validation"
       @issue.save
@@ -106,7 +110,7 @@ class IssuesController < ApplicationController
   
   def done_validating
     @issue = Issue.find(params[:id])
-    if @issue.can_be_finished_by?(current_user, "validating")
+    if @issue.can_be_finished_by(current_user, "validating")
       @issue.status = params[:status]
       @issue.save
     end
