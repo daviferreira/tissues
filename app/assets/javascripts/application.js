@@ -7,7 +7,9 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require ../stylesheets/bootstrap/js/bootstrap-transition
 //= require ../stylesheets/bootstrap/js/bootstrap-alert
 //= require ../stylesheets/bootstrap/js/bootstrap-tooltip
+//= require ../stylesheets/bootstrap/js/bootstrap-modal
 //= require tissues
 //= require_tree .

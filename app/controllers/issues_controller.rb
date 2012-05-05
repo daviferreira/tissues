@@ -7,7 +7,7 @@ class IssuesController < ApplicationController
     @issue = current_user.issues.build(params[:issue])
     if @issue.valid?
       @issue.status = "pending"
-      flash[:success] = "Issue created!" if @issue.save
+      @issue.save
     else
       flash[:error] = t("issues.error_creating")
     end
@@ -34,9 +34,11 @@ class IssuesController < ApplicationController
   end
 
   def destroy
-    project = @issue.project
     @issue.destroy
-    redirect_to project
+    respond_to do |format|
+      format.html { redirect_to @issue.project }
+      format.js
+    end
   end
 
   def solve

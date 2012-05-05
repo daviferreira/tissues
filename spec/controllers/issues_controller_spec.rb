@@ -64,10 +64,6 @@ describe IssuesController do
         response.should redirect_to project
       end
 
-      it "should have a flash success message" do
-        post :create, :issue => @attr
-        flash[:success].should =~ /issue created/i
-      end
     end
   end
 

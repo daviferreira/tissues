@@ -69,3 +69,5 @@ en:
 
   delete: "delete"
   edit: "edit"
+  close: "close"
+  confirm_your_action: "Please, confirm your action"

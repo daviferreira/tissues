@@ -14,7 +14,7 @@ $text_color: #424242;
 }
 
 #projects-page {
-  margin: 0 16px;
+  margin: 0 0;
   textarea {
     @include border-radius(6px);
     @include box-shadow(inset #ccc 2px 2px 8px);    
@@ -56,7 +56,7 @@ $text_color: #424242;
         background-color: rgba($project_color, .8);
         top: -28px;
         position: absolute;
-        width: 1138px;
+        width: 1180px;
         left: -12px;
         ul {
           float: right;
@@ -172,9 +172,8 @@ $text_color: #424242;
 article.project {
   padding: 16px;
   @include border-radius(6px);
-  border: 6px solid #ccc;
-  margin: 0 16px 16px 16px;
-  background-color: lighten(#f3eee4, 5);
+  margin: 0 0 16px 0;
+  background-color: #fff;
   header {
     h1 {
       font-size: 42px;

@@ -76,13 +76,13 @@ describe "project pages" do
         describe "issues edit/delete" do
 
           describe "for the right user" do
-            it { should have_selector("li#issue-#{i1.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i1, :method => :delete) }
+            it { should have_selector("li#issue-#{i1.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should have_selector("li#issue-#{i1.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i1)) }
-            it { should have_selector("li#issue-#{i2.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i2, :method => :delete) }
+            it { should have_selector("li#issue-#{i2.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should have_selector("li#issue-#{i2.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i2)) }
-            it { should_not have_selector("li#issue-#{i3.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i3, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i3.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should_not have_selector("li#issue-#{i3.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i3)) }
-            it { should_not have_selector("li#issue-#{i4.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i4, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i4.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should_not have_selector("li#issue-#{i4.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i4)) }
           end
 
@@ -94,13 +94,13 @@ describe "project pages" do
               visit project_path(p1)
             end
 
-            it { should_not have_selector("li#issue-#{i1.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i1, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i1.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should_not have_selector("li#issue-#{i1.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i1)) }
-            it { should_not have_selector("li#issue-#{i2.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i2, :method => :delete) }
+            it { should_not have_selector("li#issue-#{i2.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should_not have_selector("li#issue-#{i2.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i2)) }
-            it { should have_selector("li#issue-#{i3.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i3, :method => :delete) }
+            it { should have_selector("li#issue-#{i3.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should have_selector("li#issue-#{i3.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i3)) }
-            it { should have_selector("li#issue-#{i4.id} > div.actions > a.delete", :text => I18n.t(:delete), :href => i4, :method => :delete) }
+            it { should have_selector("li#issue-#{i4.id} > div.actions > a.delete-issue", :text => I18n.t(:delete), :href => "#modal-confirm") }
             it { should have_selector("li#issue-#{i4.id} > div.actions > a.edit", :text => I18n.t(:edit), :href => edit_issue_path(i4)) }
 
           end

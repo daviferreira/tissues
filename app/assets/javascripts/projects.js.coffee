@@ -21,3 +21,11 @@ $ ->
   $('div.info, div.actions').on "mouseleave", ->
     if !$(@).parent().hasClass "active"
       $(@).parent().find("> a").removeClass "active"
+
+  $('a.delete-issue').on 'click', ->
+    modal = $('#modal-confirm')
+    modal.find('.btn-danger').attr('href', "/issues/#{$(@).data('id')}")
+    modal.find('.modal-body').html "#{$(@).data('message')}<span>#{$(@).data('issue')}</span>"
+
+  $('.btn-close').on 'click', ->
+    $('#modal-confirm').modal 'hide'

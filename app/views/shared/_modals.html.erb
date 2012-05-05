@@ -1,0 +1,13 @@
+<div class="modal fade" id="modal-confirm">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3><%= t(:confirm_your_action) %></h3>
+  </div>
+  <div class="modal-body">
+    <p></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-close"><%= t(:close) %></a>
+    <%= link_to t(:delete), "#", :class => "btn btn-danger delete", :remote => true, :method => "delete" %>
+  </div>
+</div>

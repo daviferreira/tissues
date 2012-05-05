@@ -12,8 +12,6 @@
             .appendTo($issues_list)
             .show "scale", 200
 
-  flash "<%= flash[:success] %>", "success"
-
   $("#new_issue").find("textarea").val ""
 
   $issue.find('div.info, div.actions').on "mouseenter", ->

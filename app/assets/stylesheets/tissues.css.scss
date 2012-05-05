@@ -7,16 +7,40 @@ body {
   font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
 }
 
+.modal {
+  display: none;
+  h3 {
+    font-size: 18px;
+    line-height: 27px;
+    color: #08c;
+  }
+  .close {
+    background: none;
+    border: none;
+  }
+  .modal-body {
+    span {
+      margin: 16px 0 0;
+      display: block;
+      color: rgba(#000, .3);
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+}
+
 header#overview {
   margin: 16px 0 16px 0;
   padding: 0 0 16px 0;
   h1 {
+    font-size: 54px;
+    line-height: 1;
+    margin-bottom: 9px;
     color: #424242;
-    font-size: 52px;
     font-weight: 900;
     line-height: 57px;
     margin: 0 0;
-    padding: 16px;
+    padding: 0 0;
     letter-spacing: -2px;
     text-transform: lowercase;
     @include text-shadow(#fff -1px -1px 0);
@@ -26,8 +50,11 @@ header#overview {
       text-shadow: none;
     }
   }
-  p.lead {
-    padding: 0 16px;
+  h2 {
+    font-weight: 300;
+    margin-bottom: 18px;
+    font-size: 20px;
+    line-height: 27px;
   }
 }
 
@@ -119,24 +146,8 @@ header#overview {
     border-radius: 0 0 0 0;
 }
 
-#overview {
-  h1 {
-    font-size: 54px;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 9px;
-  }
-
-  h2 {
-    font-weight: 300;
-    margin-bottom: 18px;
-    font-size: 20px;
-    line-height: 27px;
-  }
-}
-
 #main {
-  margin: 0 0 40px 10px;
+  margin: 0 0 40px 0;
   > div.alert:first-child {
     margin-top: 40px;
   }
