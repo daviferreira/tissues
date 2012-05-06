@@ -1,3 +1,3 @@
 $('#modal-confirm').modal 'hide'
-$("#issue-<%= @issue.id %>").fadeOut "fast", ->
+$("#issue-<%= @issue.id %>, #issue-details-<%= @issue.id %>").fadeOut "fast", ->
   $(@).remove()

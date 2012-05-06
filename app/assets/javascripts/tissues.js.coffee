@@ -36,3 +36,8 @@ $ ->
     e.preventDefault()
 
     scroll_to(@hash)
+
+  $('body').on 'keypress', 'textarea', (e) ->
+    if e.which is 13
+      e.preventDefault()
+      $(@).closest("form").submit()
