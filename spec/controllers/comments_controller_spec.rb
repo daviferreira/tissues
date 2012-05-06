@@ -50,10 +50,6 @@ describe CommentsController do
         response.should redirect_to project
       end
 
-      it "should have a flash success message" do
-        post :create, :comment => @attr
-        flash[:success].should == I18n.t("comments.comment_created")
-      end
     end
   end
 

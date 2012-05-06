@@ -1,5 +1,6 @@
 <li class="issue clearfix issue-<%= issue.status.to_s.gsub(" ", "-") %>" id="issue-<%= issue.id %>">
   <div class="info">
+    <span>click to hide</span>
     <ul>
       <li><%= status_with_user(issue) %></li>
       <li><%= pluralize issue.comment_threads.count, "comment" %></li>

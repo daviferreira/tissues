@@ -12,8 +12,6 @@
     .appendTo($comments_list)
     .show "scale", 200
 
-  flash "<%= flash[:success] %>", "success"
-
   $("form.comment").find("textarea").val ""
 <% end %>
 <% flash.clear %>

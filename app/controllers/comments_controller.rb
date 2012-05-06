@@ -4,11 +4,7 @@ class CommentsController < ApplicationController
   def create
     @issue = Issue.find(params[:comment][:issue_id])
     @comment = Comment.build_from(@issue, current_user.id, params[:comment][:body])
-    if @comment.save
-      flash[:success] = t("comments.comment_created")
-    else
-      flash[:error] = t("comments.error_creating")
-    end
+    flash[:error] = t("comments.error_creating") if not @comment.save
     respond_to do |format|
       format.html { redirect_to @issue.project }
       format.js

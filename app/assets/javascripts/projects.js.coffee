@@ -25,7 +25,10 @@ $ ->
   $('a.delete-issue').on 'click', ->
     modal = $('#modal-confirm')
     modal.find('.btn-danger').attr('href', "/issues/#{$(@).data('id')}")
-    modal.find('.modal-body').html "#{$(@).data('message')}<span>#{$(@).data('issue')}</span>"
+    modal.find('.modal-body')
+      .text("#{$(@).data('message')}")
+      .append("<span />")
+        .text("#{$(@).data('issue')}")
 
   $('.btn-close').on 'click', ->
     $('#modal-confirm').modal 'hide'
