@@ -22,7 +22,7 @@
       $(@).parent().find("> a").removeClass "active"
 
   $issue.find('a.delete').on 'click', ->
-    delete_issue $(@)
+    delete_object $(@)
 
 <% end %>
 <% flash.clear %>

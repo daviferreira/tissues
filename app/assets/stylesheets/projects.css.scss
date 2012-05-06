@@ -21,6 +21,12 @@ $text_color: #424242;
     padding: 10px;
     font-size: 17px;
   }
+  #overview {
+    i {
+      margin: 3px 4px 0 8px;
+      @include opacity(.6);
+    }
+  }
   ul {
     li.issue {
       position: relative;

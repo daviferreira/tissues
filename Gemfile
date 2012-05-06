@@ -25,7 +25,8 @@ group :assets do
   gem 'compass', '0.12.rc.1'
   gem 'compass-rails', '1.0.0.rc.3'
   gem 'uglifier', '1.0.3'
-  gem 'less', '2.0.9' 
+  gem 'less', '2.2.1' 
+  gem 'therubyracer', '0.9.10'
 end
 
 group :test do

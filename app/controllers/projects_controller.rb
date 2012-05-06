@@ -40,7 +40,10 @@ class ProjectsController < ApplicationController
   
   def destroy
     @project.destroy
-    redirect_to projects_path, :flash => { :success => "Project destroyed." }
+    respond_to do |format|
+      format.html { redirect_to projects_path }
+      format.js
+    end
   end
   
   def archive
