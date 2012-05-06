@@ -10,6 +10,14 @@ window.apply_issue_status = (status, issue) ->
   $details[0].className = $details[0].className.replace(/details\-([a-z\-]+)/g, '');
   $details.addClass("details-#{status}")
 
+window.delete_issue = (issue) ->
+  modal = $('#modal-confirm')
+  modal.find('.btn-danger').attr('href', issue.data("path"))
+  modal.find('.modal-body')
+    .text("#{issue.data('message')}")
+    .append("<span />")
+      .text("#{issue.data('issue')}")
+
 $ ->
   $('ul.users').tooltip {
       selector: "a[rel=tooltip]"
@@ -22,13 +30,8 @@ $ ->
     if !$(@).parent().hasClass "active"
       $(@).parent().find("> a").removeClass "active"
 
-  $('a.delete-issue').on 'click', ->
-    modal = $('#modal-confirm')
-    modal.find('.btn-danger').attr('href', "/issues/#{$(@).data('id')}")
-    modal.find('.modal-body')
-      .text("#{$(@).data('message')}")
-      .append("<span />")
-        .text("#{$(@).data('issue')}")
+  $('div.actions').on 'click', 'a.delete', ->
+    delete_issue $(@)
 
-  $('.btn-close').on 'click', ->
+  $('.modal').on 'click', '.btn-close', ->
     $('#modal-confirm').modal 'hide'

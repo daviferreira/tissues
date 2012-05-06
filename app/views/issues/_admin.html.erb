@@ -1,2 +1,2 @@
 <%= link_to t(:edit), edit_issue_path(issue), :class => "btn btn-info edit", :remote => true %>
-<%= link_to t(:delete), "#modal-confirm", :class => "btn btn-danger delete-issue", :data => {"id" => issue.id, "toggle" => "modal", "message" => "Are you sure you want to delete this issue?", "issue" => issue.content} %>
+<%= link_to t(:delete), "#modal-confirm", :class => "btn btn-danger delete", :data => {"id" => issue.id, "toggle" => "modal", "message" => "Are you sure you want to delete this issue?", "issue" => issue.content, "path" => issue_path(issue)} %>

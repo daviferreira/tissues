@@ -21,5 +21,8 @@
     if !$(@).parent().hasClass "active"
       $(@).parent().find("> a").removeClass "active"
 
+  $issue.find('a.delete').on 'click', ->
+    delete_issue $(@)
+
 <% end %>
 <% flash.clear %>
