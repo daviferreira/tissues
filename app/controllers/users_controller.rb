@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def destroy_avatar
     @user = User.find(params[:id])
     @user.update_attributes(:avatar => nil)
+    @user.reload
     respond_to do |format|
       format.html { redirect_to @user }
       format.js

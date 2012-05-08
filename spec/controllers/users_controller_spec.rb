@@ -102,7 +102,7 @@ describe UsersController do
 
   describe "GET 'destroy_avatar'" do
 
-    let(:user) { FactoryGirl.create(:user, :email => "paperclip@test.com", :avatar => File.join(Rails.root, 'spec', 'fixtures', 'test.png')) }
+    let(:user) { FactoryGirl.create(:user, :email => "paperclip@test.com", :avatar => File.open(File.join(Rails.root, 'spec', 'fixtures', 'test.png'), "r")) }
 
     describe "for a signed in user" do
 
@@ -110,7 +110,8 @@ describe UsersController do
 
       it "should destroy the user avatar if right user" do
         get :destroy_avatar, :id => user.id
-        user.avatar.url.should == "/assets/missing_original.png"
+        u = User.find_by_id(user.id)
+        u.avatar.url.should == "/assets/missing_original.png"
       end
 
       it "should redirect to the root_path when not the right user" do
