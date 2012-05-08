@@ -194,21 +194,6 @@ describe "project pages" do
       end
     end
     
-    describe "delete project" do
-      let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
-
-      before { visit projects_path }
-      
-      it "should destroy a project" do
-        expect { click_link "Delete project" }.should change(Project, :count).by(-1)
-      end
-      
-      describe "project destroyed message" do
-        before { click_link "Delete project" }
-        it { should have_content("Project destroyed.") }
-      end
-    end
-
     describe "archive project" do
       let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
 
