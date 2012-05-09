@@ -28,7 +28,7 @@ class IssuesController < ApplicationController
   def edit
     @issue = Issue.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to @issue }
+      format.html { redirect_to @issue.project }
       format.js
     end
   end

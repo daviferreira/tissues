@@ -110,5 +110,25 @@ describe IssuesController do
       end   
     end
   end
+
+  describe "edit issue" do
+    let(:issue) { FactoryGirl.create(:issue, :user => user, :project => project) }
+    before { sign_in user }
+
+    describe "GET 'edit'" do
+      it "returns http success" do
+        get 'edit', :id => issue
+        response.should redirect_to(issue.project)
+      end
+      
+      it "redirects to the home page user doesn't own the issue" do
+        user2 = FactoryGirl.create(:user, :email => "another@example.com");
+        issue2 = FactoryGirl.create(:issue, :user => user2, :content => "Baz quux", :project => project)
+        get 'edit', :id => issue2
+        response.should redirect_to root_path
+      end
+    end
+
+  end
   
 end
