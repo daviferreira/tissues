@@ -58,7 +58,6 @@ class IssuesController < ApplicationController
 
   def done_solving
     @issue = Issue.find(params[:id])
-    
     if @issue.can_be_finished_by(current_user, "solving")
       @issue.status = "waiting for validation"
       @issue.save
