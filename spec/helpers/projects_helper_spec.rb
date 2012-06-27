@@ -5,7 +5,7 @@ describe ProjectsHelper do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:project) { FactoryGirl.create(:project, :user => user, :name => "Sample Project") }
-  let(:issue) { FactoryGirl.create(:issue, :user => user, :project => project) }
+  let(:issue) { FactoryGirl.create(:issue, :user => user, :project => project, :who_is_validating => user, :who_is_solving => user) }
 
   describe "for current user" do
 
@@ -14,8 +14,33 @@ describe ProjectsHelper do
     end
 
     describe "formatted issue status and user" do
-      it "should return 'submitted by you' when pending" do
+      it "should return 'submitted by you' when 'pending'" do
         status_with_user(issue).should == "submitted by you"
+      end
+
+      it "should return 'you are working on it' when 'in progress'" do
+        issue.status = "in progress"
+        status_with_user(issue).should == "you are working on it"
+      end
+
+      it "should return 'you are validating it' when 'validating'" do
+        issue.status = "validating"
+        status_with_user(issue).should == "you are validating it"
+      end
+
+      it "should return 'you said it's still not valid' when 'not approved'" do
+        issue.status = "not approved"
+        status_with_user(issue).should == "you said it's still not valid"
+      end
+
+      it "should return 'you solved it' when 'done'" do
+        issue.status = "done"
+        status_with_user(issue).should == "you solved it"
+      end
+
+      it "should return 'you solved it, waiting for validation' when 'waiting for validation'" do
+        issue.status = "waiting for validation"
+        status_with_user(issue).should == "you solved it, waiting for validation"
       end
     end
 
