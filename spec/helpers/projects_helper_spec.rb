@@ -45,8 +45,23 @@ describe ProjectsHelper do
     end
 
     describe "show action for an issue" do
-      it "should render solve button if the issue is pending" do
+      it "should render solve button when the issue is pending" do
         show_action_for(issue).should == render("issues/button_solve", :issue => issue)
+      end
+
+      it "shouldn't render anything when the issue is waiting for validation" do
+        issue.status = "waiting for validation"
+        show_action_for(issue).should == nil
+      end
+
+      it "should render the done button when the issue is in progress" do
+        issue.status = "in progress"
+        show_action_for(issue).should == render("issues/button_done", :issue => issue)
+      end
+
+      it "should render the validation buttons when the issue is being validated" do
+        issue.status = "validating"
+        show_action_for(issue).should == render("issues/buttons_validation", :issue => issue)
       end
     end
 
