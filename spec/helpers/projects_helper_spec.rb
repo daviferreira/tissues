@@ -45,7 +45,9 @@ describe ProjectsHelper do
     end
 
     describe "show action for an issue" do
-      it "is a pending example"
+      it "should render solve button if the issue is pending" do
+        show_action_for(issue).should == render("issues/button_solve", :issue => issue)
+      end
     end
 
     describe "get user first name" do
