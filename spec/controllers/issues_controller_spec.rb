@@ -314,7 +314,7 @@ describe IssuesController do
           ["waiting for validation", "pending", "in progress", "done"].each do |status|
             issue.status = status
             issue.save
-            get :done_validating, :id => issue
+            get :done_validating, :id => issue, :status => status
             issue.reload
             issue.who_is_validating.should == user2
             issue.status.should == status
@@ -324,7 +324,7 @@ describe IssuesController do
         it "shouldn't do anything with the wrong user" do
           sign_out user2
           sign_in user
-          get :done_validating, :id => issue
+          get :done_validating, :id => issue, :status => "done"
           issue.reload
           issue.who_is_validating.should == user2
           issue.status.should == "validating"

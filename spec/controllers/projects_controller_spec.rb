@@ -199,7 +199,7 @@ describe ProjectsController do
 
     describe "GET 'show'" do
       it "redirects to the sign in path" do
-        get 'show'
+        get 'show', :id => project
         response.should redirect_to new_user_session_path
       end
     end
@@ -213,7 +213,7 @@ describe ProjectsController do
     
     describe "GET 'edit'" do
       it "redirects to the sign in path" do
-        get 'edit', :project => project
+        get 'edit', :id => project
         response.should redirect_to new_user_session_path
       end
     end
@@ -227,21 +227,21 @@ describe ProjectsController do
     
     describe "PUT 'update'" do
       it "redirects to the sign in path" do
-        put 'update'
+        put 'update', :id => project
         response.should redirect_to new_user_session_path
       end
     end
     
     describe "DELETE 'destroy'" do
       it "redirects to the sign in path" do
-        delete 'destroy'
+        delete 'destroy', :id => project
         response.should redirect_to new_user_session_path
       end
     end  
 
     describe "POST 'archive'" do
       it "redirects to the sign in path" do
-        post 'archive'
+        post 'archive', :id => project
         response.should redirect_to new_user_session_path
       end
     end

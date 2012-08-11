@@ -109,7 +109,7 @@ describe UsersController do
       before { sign_in user }
 
       it "should destroy the user avatar if right user" do
-        get :destroy_avatar, :id => user.id
+        get :destroy_avatar, :id => user
         u = User.find_by_id(user.id)
         u.avatar.url.should == "/assets/missing_original.png"
       end
@@ -117,7 +117,7 @@ describe UsersController do
       it "should redirect to the root_path when not the right user" do
         wrong_user = FactoryGirl.create(:user)
         sign_in wrong_user
-        get :destroy_avatar, :id => user.id
+        get :destroy_avatar, :id => user
         response.should redirect_to root_path
       end
 
@@ -126,7 +126,7 @@ describe UsersController do
     describe "for a non signed_in user" do
 
       it "should redirect to the root path" do
-        get :destroy_avatar
+        get :destroy_avatar, :id => user
         response.should redirect_to new_user_session_path
       end
 
