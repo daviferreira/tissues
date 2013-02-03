@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'devise', '2.0.0'
 gem 'omniauth', '1.0.2'
 gem 'will_paginate', '3.0.3'
