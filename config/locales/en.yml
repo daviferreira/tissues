@@ -7,6 +7,7 @@ en:
   about: "About"
 
   projects: 
+    singular: "Project"
     title: "Projects"
     create: "Create project"
     edit: "Edit project"
@@ -17,6 +18,7 @@ en:
     url: "Project URL"
 
   issues: 
+    singular: "Issue"
     title: "Issues"
     create: "Submit an issue"
     submit: "Submit issue"

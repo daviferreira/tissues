@@ -8,7 +8,7 @@
   </header>
 
   <div class="well">
-    <p><%= pluralize @user.projects.count, t("projects.title") %>, <%= pluralize @user.issues.count, t("issues.title") %></p>
+    <p><%= pluralize @user.projects.count, t("projects.singular") %>, <%= pluralize @user.issues.count, t("issues.singular") %></p>
   </div>
 
   <% if @user.projects.any? %>

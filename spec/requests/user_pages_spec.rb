@@ -27,7 +27,7 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo") }
     let!(:p2) { FactoryGirl.create(:project, user: FactoryGirl.create(:user, email: "newuser@example.com"), name: "Bar") }
-    let!(:i1) { FactoryGirl.create(:issue, project: p1, user: user)}
+    let!(:i1) { FactoryGirl.create(:issue, project: p1, user: user) }
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
@@ -40,6 +40,25 @@ describe "User pages" do
       it { should_not have_content(p2.name) }
       it { should have_content(user.projects.count) }
     end
+
+    describe "pluralize" do
+      it "should not pluralize 1 issue and 1 project" do
+        find('#user-page .well p').text.should == '1 Project, 1 Issue'
+      end
+
+      it "should pluralize 2 projects" do
+        FactoryGirl.create(:project, user: user, name: "Foo 2")
+        visit user_path(user)
+        find('#user-page .well p').text.should == '2 Projects, 1 Issue'
+      end
+
+      it "should pluralize 2 issues" do
+        FactoryGirl.create(:issue, project: p1, user: user)
+        visit user_path(user)
+        find('#user-page .well p').text.should == '1 Project, 2 Issues'
+      end
+    end
+
   end
 
   describe "Devise" do
