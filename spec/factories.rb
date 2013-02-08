@@ -5,15 +5,15 @@ FactoryGirl.define do
     password "foobar"
     avatar   nil
   end
-  
-  Factory.sequence :email do |n|
+
+  sequence :email do |n|
     "person-#{n}@example.com"
   end
 
-  Factory.sequence :name do |n|
+  sequence :name do |n|
     "Person #{n}"
   end
-  
+
   factory :project do
     name "Sample Project"
     url "http://www.example.com"
