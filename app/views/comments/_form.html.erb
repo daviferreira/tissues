@@ -1,11 +1,11 @@
 <%= form_for(:comment, :url => comments_path, :remote => true, :html => {:class => "comment"}) do |f| %>
-  
+
   <%= f.hidden_field :issue_id, :value => issue.id %>
 
   <div class="field">
     <%= f.text_area :body, :id => "comment_body_#{issue.id}", :class => "comment-body", :placeholder => "Your comment" %>
   </div>
-  
+
   <%= f.submit "Add comment", class: "btn btn-secondary" %>
 
 <% end %>

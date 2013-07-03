@@ -10,9 +10,9 @@
     <%= render issue %>
   <% end %>
   </ul>
-  
+
   <%= render "issues/form" if @project.status != "archived" %>
-    
+
   <footer>
     <% if @project.user == current_user %>
       <% if @project.status != "archived" %>
@@ -22,5 +22,5 @@
       <% end %>
     <% end %>
   </footer>
-  
+
 </section>

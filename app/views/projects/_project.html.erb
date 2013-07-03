@@ -3,7 +3,7 @@
     <div class="project-actions">
         <%= link_to raw('<i class="icon-edit icon-white"></i> ') + t("projects.edit"), edit_project_path(project), :class => "btn btn-small btn-primary" %>
         <%= link_to raw('<i class="icon-trash icon-white"></i> ') + t("projects.delete"), "#modal-confirm",
-                                            :class => "btn btn-small btn-danger delete", 
+                                            :class => "btn btn-small btn-danger delete",
                                             :data => {"id" => project.id, "toggle" => "modal", "message" => "Are you sure you want to delete this project?", "content" => project.name, "path" => project_path(project)} %>
     </div>
   <% end %>
