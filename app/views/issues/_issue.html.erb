@@ -9,5 +9,5 @@
     <%= show_action_for(issue) %>
     <%= render("issues/admin", :issue => issue) if issue.user == current_user %>
   </div>
-  <%= link_to issue.content, issue_details_path(issue), :remote => true %>
+  <%= link_to issue.content, issue_details_path(issue), :remote => true, :class => 'issue-body', :id => "issue-body-#{issue.id}" %>
 </li>

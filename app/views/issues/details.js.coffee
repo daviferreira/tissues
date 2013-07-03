@@ -9,6 +9,11 @@ $('.details').each ->
         .find('> a')
         .removeClass "active"
 
+$('.editing').each ->
+    $(@).find('.issue-inline-edit').remove()
+    $(@).find('.issue-body').show()
+    $(@).removeClass('editing')
+
 issue = $('#issue-<%= @issue.id %>')
 effect = "blind"
 speed = 200
