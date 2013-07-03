@@ -13,6 +13,7 @@ en:
     edit: "Edit project"
     delete: "Delete project"
     archive: "Archive project"
+    reopen: "Reopen project"
     save: "Save project"
     description: "Project description"
     url: "Project URL"

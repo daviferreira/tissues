@@ -131,6 +131,7 @@ describe "project pages" do
       before { visit project_path(p_archived) }
 
       it { should_not have_selector('a#create-issue', :text => I18n.t("issues.create")) }
+      it { should have_selector('a.reopen-project', :text => I18n.t("projects.reopen"), :href => reopen_project_path(p_archived)) }
     end
 
     describe "project creation" do

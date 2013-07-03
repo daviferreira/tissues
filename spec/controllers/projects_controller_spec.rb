@@ -186,6 +186,37 @@ describe ProjectsController do
 
     end
 
+    describe "reopen project" do
+
+      describe "POST 'reopen'" do
+
+        it "redirects to the project listing path" do
+          post :reopen, :id => project
+          response.should redirect_to projects_path
+        end
+
+        it "should unarchive a project" do
+          p1 = FactoryGirl.create(:project, :user => user,
+                                            :name => "Sample Project",
+                                            :status => "archived")
+          post :reopen, :id => p1
+          p1.reload
+          p1.status.should == "open"
+        end
+
+        it "redirects to the home page user doesn't own the project" do
+          user2 = FactoryGirl.create(:user, :email => "anotheruser@example.com")
+          project2 = FactoryGirl.create(:project, :user => user2, :name => "Baz quux")
+          post :reopen, :id => project2
+          response.should redirect_to root_path
+        end
+
+      end
+
+    end
+
+
+
   end
 
   describe "as a non signed-in user" do
