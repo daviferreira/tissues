@@ -2,7 +2,7 @@
 @import "compass/css3";
 
 body {
-  background-color: #f3eee4; 
+  background-color: #f3eee4;
   border-top: 10px solid #424242;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -183,7 +183,7 @@ header#overview {
             background-color: transparent;
           }
         }
-      } 
+      }
     }
   }
   .user-info {
@@ -194,7 +194,7 @@ header#overview {
       @include border-radius(20px);
       vertical-align: middle;
       margin: -4px 6px 0 0;
-    }  
+    }
   }
   p {
     float: left;

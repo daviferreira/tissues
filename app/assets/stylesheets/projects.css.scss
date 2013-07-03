@@ -20,7 +20,7 @@ $text_color: #424242;
   margin: 0 0;
   textarea {
     @include border-radius(6px);
-    @include box-shadow(inset #ccc 2px 2px 8px);    
+    @include box-shadow(inset #ccc 2px 2px 8px);
     padding: 10px;
     font-size: 17px;
   }
@@ -130,7 +130,7 @@ $text_color: #424242;
     &.details-done { background: darken(#3c7, $darken_ammount); }
     &.details-validating { background: darken(#04bfbf, $darken_ammount); }
     display: none;
-    padding: 28px; 
+    padding: 28px;
     h1 {
       font-weight: 700;
       font-size: 20px;
