@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
 
   def reopen
     @project.update_attributes({:status => "open"})
-    redirect_to projects_path, :flash => { :success => "Project reopened." }
+    redirect_to @project, :flash => { :success => "Project reopened." }
   end
 
   private

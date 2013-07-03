@@ -190,9 +190,9 @@ describe ProjectsController do
 
       describe "POST 'reopen'" do
 
-        it "redirects to the project listing path" do
+        it "redirects to the project page" do
           post :reopen, :id => project
-          response.should redirect_to projects_path
+          response.should redirect_to project_path(project)
         end
 
         it "should unarchive a project" do
