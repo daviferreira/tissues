@@ -212,6 +212,24 @@ describe "project pages" do
       end
     end
 
+    describe "reopen project" do
+      let!(:p1) { FactoryGirl.create(:project, user: user, name: "Foo", status: "archived") }
+
+      before { visit project_path(p1) }
+
+      it "should reopen a project" do
+        click_link I18n.t("projects.reopen")
+        p1.reload
+        p1.status.should == "open"
+      end
+
+      describe "project reopen message" do
+        before { click_link I18n.t("projects.reopen") }
+        it { should have_content("Project reopened.") }
+      end
+    end
+
+
   end
 
   describe "as a non-authenticated user" do
