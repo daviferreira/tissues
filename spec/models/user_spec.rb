@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  
+
   before { @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar") }
 
   subject { @user }
@@ -10,7 +10,7 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:projects) }
   it { should respond_to(:issues) }
-  
+
   it { should have_attached_file(:avatar) }
   it { should validate_attachment_content_type(:avatar).
                 allowing('image/png', 'image/gif', 'image/jpeg').
@@ -24,15 +24,15 @@ describe User do
     before { @user.name = " " }
     it { should_not be_valid }
   end
-  
+
   describe "when name is too long" do
     before { @user.name = "a" * 51 }
     it { should_not be_valid }
   end
-  
+
   describe "projects associations" do
     before { @user.save }
-    let!(:older_project) do 
+    let!(:older_project) do
       FactoryGirl.create(:project, user: @user, created_at: 1.day.ago)
     end
     let!(:newer_project) do
@@ -42,7 +42,7 @@ describe User do
     it "should have the right projects in the right order" do
       @user.projects.should == [newer_project, older_project]
     end
-    
+
     it "should destroy associated projects" do
       projects = @user.projects
       @user.destroy
@@ -51,10 +51,10 @@ describe User do
       end
     end
   end
-  
+
   describe "listing users" do
     before { @user.save }
-    let!(:user_a) do 
+    let!(:user_a) do
       FactoryGirl.create(:user, name: "A user", email: "auser@example.com")
     end
     let!(:user_x) do
@@ -68,7 +68,7 @@ describe User do
   describe "issues associations" do
     before { @user.save }
     let!(:project) {FactoryGirl.create(:project, user: @user) }
-    let!(:older_issue) do 
+    let!(:older_issue) do
       FactoryGirl.create(:issue, user: @user, project: project, created_at: 1.day.ago)
     end
     let!(:recent_issue) do
@@ -78,7 +78,7 @@ describe User do
     it "should have the right issues in the right order" do
       @user.issues.should == [older_issue, recent_issue]
     end
-    
+
     it "should destroy associated issues" do
       issues = @user.issues
       @user.destroy
@@ -87,5 +87,5 @@ describe User do
       end
     end
   end
-  
+
 end

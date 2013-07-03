@@ -108,7 +108,7 @@ class IssuesController < ApplicationController
       format.js
     end
   end
-  
+
   def done_validating
     @issue = Issue.find(params[:id])
     if @issue.can_be_finished_by(current_user, "validating")
@@ -120,17 +120,17 @@ class IssuesController < ApplicationController
       format.js
     end
   end
-  
+
   private
 
       def correct_user
         @issue = current_user.issues.find_by_id(params[:id])
         redirect_to root_path if @issue.nil?
       end
-      
+
       def has_valid_project?
         project_id = params[:issue][:project_id]
         redirect_to root_path if project_id.nil? or not Project.find(project_id)
       end
-  
+
 end

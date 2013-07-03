@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Project do
-  
+
   let(:user) { FactoryGirl.create(:user) }
   before do
     @project = user.projects.new(name: "Example Project", status: "active")
@@ -15,19 +15,19 @@ describe Project do
   it { should respond_to(:url) }
   it { should respond_to(:issues) }
   its(:user) { should == user }
-    
+
   it { should be_valid }
 
   describe "when name is not present" do
     before { @project.name = " " }
     it { should_not be_valid }
   end
-  
+
   describe "when name is too long" do
     before { @project.name = "a" * 141 }
     it { should_not be_valid }
   end
-  
+
   describe "when user_id is not present" do
     before { @project.user_id = nil }
     it { should_not be_valid }
@@ -39,7 +39,7 @@ describe Project do
       @project.save
     end
 
-    let!(:older_issue) do 
+    let!(:older_issue) do
       FactoryGirl.create(:issue, user: user, project: @project, created_at: 1.day.ago)
     end
     let!(:recent_issue) do
@@ -49,7 +49,7 @@ describe Project do
     it "should have the right issues in the right order" do
       @project.issues.should == [older_issue, recent_issue]
     end
-    
+
     it "should destroy associated issues" do
       issues = @project.issues
       @project.destroy

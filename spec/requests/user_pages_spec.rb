@@ -20,7 +20,7 @@ describe "User pages" do
         page.should have_selector('img', class: 'avatar')
       end
     end
-      
+
   end
 
   describe "profile page" do
@@ -34,7 +34,7 @@ describe "User pages" do
     it { should have_selector('title', text: "#{user.name} | Tissues") }
     it { should have_selector('p', text: "#{user.projects.count.to_s} Project") }
     it { should have_selector('p', text: "#{user.issues.count.to_s} Issue") }
-    
+
     describe "my projects" do
       it { should have_content(p1.name) }
       it { should_not have_content(p2.name) }
@@ -67,7 +67,7 @@ describe "User pages" do
     describe "error messages" do
       let(:error) { '3 errors prohibited this user from being saved' }
       before { click_button "Sign up" }
-      it { should have_content(error) } 
+      it { should have_content(error) }
     end
   end
 
@@ -84,12 +84,12 @@ describe "User pages" do
 
       before do
         visit new_user_session_path
-        valid_signin user 
+        valid_signin user
         visit edit_user_registration_path
       end
 
       it { should have_selector('input', type: "file", id: "user_avatar") }
     end
   end
-  
+
 end

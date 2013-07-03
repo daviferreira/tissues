@@ -40,6 +40,10 @@ group :test do
   gem 'simplecov', '0.6.1'
 end
 
+group :linux do
+  gem 'rb-inotify', '~> 0.8.8'
+end
+
 group :production do
   gem 'pg', '0.12.2'
 end

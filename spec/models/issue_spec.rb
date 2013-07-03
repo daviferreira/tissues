@@ -58,7 +58,7 @@ describe Issue do
   			@issue.can_be_solved.should be_false
   		end
   	end
-  	
+
   end
 
   describe "when finishing" do
@@ -124,7 +124,7 @@ describe Issue do
   			@issue.can_be_validated_by(user).should be_false
   		end
   	end
-  	
+
   end
 
 end

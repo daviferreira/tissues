@@ -9,7 +9,7 @@ class Issue < ActiveRecord::Base
 
   acts_as_taggable
   acts_as_commentable
-	
+
 	validates :user_id, presence: true
 	validates :project_id, presence: true
 	validates :content, presence: true

@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe IssuesController do
   render_views
-  
+
   let(:user) { FactoryGirl.create(:user) }
   let(:project) { FactoryGirl.create(:project, :user => user, :name => "Sample Project") }
 
@@ -12,7 +12,7 @@ describe IssuesController do
       post :create
       response.should redirect_to new_user_session_path
     end
-    
+
     it "should deny access to 'destroy'" do
       delete :destroy, :id => 1
       response.should redirect_to new_user_session_path
@@ -28,9 +28,9 @@ describe IssuesController do
       response.should redirect_to new_user_session_path
     end
   end
-  
+
   describe "POST 'create'" do
-    
+
     before { sign_in user }
 
     describe "failure" do
@@ -42,12 +42,12 @@ describe IssuesController do
           post :create, :issue => @attr
         end.should_not change(Issue, :count)
       end
-      
+
       it "should redirect to the root path without a project" do
         post :create, :issue => @attr
         response.should redirect_to root_path
       end
-      
+
       it "should redirect to the project page with a project" do
         post :create, :issue => @attr.merge(:project_id => project.id)
         response.should redirect_to project
@@ -55,15 +55,15 @@ describe IssuesController do
     end
 
     describe "success" do
-      
+
       before { @attr = { :content => "Lorem ipsum dolor sit amet", :project_id => project.id } }
-      
+
       it "should create an issue" do
         lambda do
           post :create, :issue => @attr
         end.should change(Issue, :count).by(1)
       end
-      
+
       it "should redirect to the project page" do
         post :create, :issue => @attr
         response.should redirect_to project
@@ -75,7 +75,7 @@ describe IssuesController do
   describe "DELETE 'destroy'" do
 
     describe "for an unauthorized user" do
-      
+
       before(:each) do
         wrong_user = FactoryGirl.create(:user, :email => Factory.next(:email))
         @issue = Factory(:issue, :user => user, :project => project)
@@ -87,20 +87,20 @@ describe IssuesController do
         response.should redirect_to(root_path)
       end
     end
-    
+
     describe "for an authorized user" do
-      
+
       before { sign_in user }
-      
+
       it "should destroy the issue" do
         i1 = FactoryGirl.create(:issue, :user => user, :project => project)
         lambda do
           delete :destroy, :id => i1
         end.should change(Issue, :count).by(-1)
       end
-      
+
     end
-    
+
   end
 
   describe "GET 'details'" do
@@ -110,7 +110,7 @@ describe IssuesController do
     it "should redirect to the issue" do
       get :details, :id => issue
       response.should redirect_to(issue)
-    end   
+    end
 
   end
 
@@ -123,7 +123,7 @@ describe IssuesController do
         get :edit, :id => issue
         response.should redirect_to(issue.project)
       end
-      
+
       it "redirects to the home page user doesn't own the issue" do
         user2 = FactoryGirl.create(:user, :email => "another@example.com")
         issue2 = FactoryGirl.create(:issue, :user => user2, :content => "Baz quux", :project => project)
@@ -228,8 +228,8 @@ describe IssuesController do
     end
 
     describe "validate an issue" do
-      let(:issue) { FactoryGirl.create(:issue, :user => user, :project => project, 
-                                       :status => "waiting for validation", 
+      let(:issue) { FactoryGirl.create(:issue, :user => user, :project => project,
+                                       :status => "waiting for validation",
                                        :who_is_solving => user) }
       before { sign_in user }
 
@@ -267,7 +267,7 @@ describe IssuesController do
       describe "GET 'abandon_validation'" do
         let(:user2) { FactoryGirl.create(:user, :email => "another@example.com") }
 
-        before(:each) do 
+        before(:each) do
           sign_in user2
           get :validate, :id => issue
           issue.reload
@@ -304,7 +304,7 @@ describe IssuesController do
       describe "GET 'done_validating'" do
         let(:user2) { FactoryGirl.create(:user, :email => "another@example.com") }
 
-        before(:each) do 
+        before(:each) do
           sign_in user2
           get :validate, :id => issue
           issue.reload
@@ -346,5 +346,5 @@ describe IssuesController do
     end
 
   end
-  
+
 end

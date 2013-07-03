@@ -16,7 +16,7 @@ describe CommentsController do
   end
 
   describe "POST 'create'" do
-    
+
     before { sign_in user }
 
     describe "failure" do
@@ -28,7 +28,7 @@ describe CommentsController do
           post :create, :comment => @attr
         end.should_not change(Comment, :count)
       end
-            
+
       it "should redirect to the project page" do
         post :create, :comment => @attr
         response.should redirect_to project
@@ -36,15 +36,15 @@ describe CommentsController do
     end
 
     describe "success" do
-      
+
       before { @attr = { :body => "Lorem ipsum dolor sit amet", :issue_id => issue.id } }
-      
+
       it "should create a comment" do
         lambda do
           post :create, :comment => @attr
         end.should change(Comment, :count).by(1)
       end
-      
+
       it "should redirect to the issue page" do
         post :create, :comment => @attr
         response.should redirect_to project

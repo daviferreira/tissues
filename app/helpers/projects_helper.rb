@@ -34,9 +34,9 @@ module ProjectsHelper
   end
 
   def get_user_first_name(user)
-    if user == current_user 
+    if user == current_user
       "you"
-    else 
+    else
       user.name.split(" ").first
     end
   end
