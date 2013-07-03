@@ -11,7 +11,7 @@ window.flash = (message, type, timeout=5000) ->
   hide_notification = ->
     clearTimeout flash_timer
     $('#notification').slideUp "fast"
-    
+
   $('#notification')
     .attr('class', '')
     .addClass("alert-#{type}")

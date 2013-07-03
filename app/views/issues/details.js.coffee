@@ -28,7 +28,7 @@ deactivate_issue = ->
   issue
     .removeClass("active")
     .find("> a:first")
-      .removeClass "active"  
+      .removeClass "active"
 
 if el.length == 0
   activate_issue()
@@ -37,10 +37,10 @@ if el.length == 0
     .show effect, speed, ->
       scroll_to "#issue-details-<%= @issue.id %>", speed, -1 * ($(@).prev().height() + 17)
 else
-  if el.is(":visible") 
+  if el.is(":visible")
     deactivate_issue()
     el.slideUp()
-  else 
+  else
     activate_issue()
     el.show effect, speed, ->
       scroll_to "#issue-details-<%= @issue.id %>", speed, -1 * ($(@).prev().height() + 17)
